@@ -13,10 +13,10 @@ def classification_rule_generation(transactions: pd.DataFrame, min_support, corr
 
     f1 = util.apriori_for_transaction(transactions, min_support=min_support, max_len=1)
     frequent_itemsets.append(f1)
-    for item in f1:
-        rules = ponerg(item, classes, corr, min_conf)
-        PCR = PCR.append(rules[0])
-        NCR = NCR.append(rules[1])
+    # for item in f1:
+    #     rules = ponerg(item, classes, corr, min_conf)
+    #     PCR = PCR.append(rules[0])
+    #     NCR = NCR.append(rules[1])
 
     k = 2  # change to 1
     while len(frequent_itemsets[k - 1]) > 0:
@@ -26,9 +26,9 @@ def classification_rule_generation(transactions: pd.DataFrame, min_support, corr
         for index, itemset in c_k.iterrows():
             if itemset['support'] >= min_support:
                 frequent_itemsets[k] = frequent_itemsets[k].append(itemset)
-            rules = ponerg(itemset, classes, corr, min_conf)
-            PCR = PCR.append(rules[0])
-            NCR = NCR.append(rules[1])
+            # rules = ponerg(itemset, classes, corr, min_conf)
+            # PCR = PCR.append(rules[0])
+            # NCR = NCR.append(rules[1])
         k += 1
     return PCR, NCR
 
@@ -60,62 +60,14 @@ def ponerg(itemset, classes, corr, min_conf):
     return PCR, NCR
 
 
-# def ponerg(transactions, min_support):
-#     # Create a list of all items in the transactions
-#     items = [item for sublist in transactions for item in sublist]
-#     # Count the frequency of each item
-#     item_counts = Counter(items)
-#     # Filter out items that do not meet the minimum support
-#     frequent_items = [item for item, count in item_counts.items() if count >= min_support]
-#     # Sort the frequent items in ascending order by frequency
-#     frequent_items.sort(key=lambda x: item_counts[x])
-#
-#     # Initialize the list of frequent itemsets
-#     frequent_itemsets = []
-#     # Generate all combinations of frequent items
-#     for i in range(1, len(frequent_items) + 1):
-#         for combination in itertools.combinations(frequent_items, i):
-#             # Count the frequency of the combination in the transactions
-#             combination_count = sum([1 for transaction in transactions if set(combination).issubset(set(transaction))])
-#             # Add the combination to the list of frequent itemsets if it meets the minimum support
-#             if combination_count >= min_support:
-#                 frequent_itemsets.append(combination)
-#     return frequent_itemsets
 
-
-# Example usage
-# transactions = [['A', 'B', 'C'], ['A', 'B', 'D'], ['B', 'C', 'D'], ['A', 'C']]
-# min_support = 2
-# frequent_itemsets = ponerg(transactions, min_support)
-# print(frequent_itemsets)
-
-
-# def classification_rule_generation(transactions, min_support, min_confidence):
-#     # Initialize the frequent itemsets and the association rules
-#     frequent_itemsets = []
-#     association_rules = []
-#
-#     # Find the frequent itemsets
-#     for i in range(1, len(transactions) + 1):
-#         Ck = generate_candidate_itemsets(transactions, i)
-#         for itemset in Ck:
-#             if calc_support(transactions, itemset) >= min_support:
-#                 frequent_itemsets.append(itemset)
-#
-#     # Generate the association rules from the frequent itemsets
-#     for i in range(1, len(frequent_itemsets)):
-#         for itemset in frequent_itemsets[i]:
-#             subsets = generate_subsets(itemset)
-#             for subset in subsets:
-#                 confidence = calc_confidence(transactions, subset, itemset)
-#                 if confidence >= min_confidence:
-#                     association_rules.append((subset, itemset - subset, confidence))
-#
-#     return association_rules
 
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
+
+
+
     print('PyCharm')
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
