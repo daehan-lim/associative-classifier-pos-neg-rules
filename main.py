@@ -15,7 +15,7 @@ def classification_rule_generation(transactions, min_support, corr, min_conf):
     frequent_itemsets = [pd.DataFrame(columns=['support', 'itemsets'])]
 
     f1 = util.apriori_for_transaction(transactions, min_support=min_support, max_len=1)
-    frequent_itemsets.append(f1)
+    frequent_itemsets = [pd.DataFrame(f1)]
     # for item in f1:
     #     rules = ponerg(item, classes, corr, min_conf)
     #     PCR = PCR.append(rules[0])
