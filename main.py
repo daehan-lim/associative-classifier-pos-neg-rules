@@ -62,7 +62,18 @@ def classification_rule_generation(transactions, min_support, corr, min_conf):
 #     return PCR, NCR
 
 
-
+def merge_itemsets(k_itemsets, one_itemsets, k):
+    # Create a list to store the resulting frozensets
+    result = []
+    for k_itemset in k_itemsets:
+        for one_itemset in one_itemsets:
+            merge = k_itemset | one_itemset
+            if len(merge) == k + 1 and merge not in result:
+                result.append(merge)
+            elif merge in result:
+                merge
+    # Convert the list of frozensets to a Pandas Series and return it
+    return pd.Series(result)
 
 
 # Press the green button in the gutter to run the script.
