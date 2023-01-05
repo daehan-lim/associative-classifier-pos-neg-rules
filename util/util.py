@@ -97,14 +97,14 @@ def apriori_of_size_k(
         res = pd.concat((support, itemsets), axis=1)
         all_res.append(res)
 
-    res_df = pd.concat(all_res)
-    res_df.columns = ["support", "itemsets"]
+    # res_df = pd.concat(all_res)
+    res.columns = ["support", "itemsets"]
     if use_colnames:
         mapping = {idx: item for idx, item in enumerate(df.columns)}
-        res_df["itemsets"] = res_df["itemsets"].apply(
+        res["itemsets"] = res["itemsets"].apply(
             lambda x: frozenset([mapping[i] for i in x])
         )
-    res_df = res_df.reset_index(drop=True)
+    res_df = res.reset_index(drop=True)
 
     if verbose:
         print()  # adds newline if verbose counter was used
