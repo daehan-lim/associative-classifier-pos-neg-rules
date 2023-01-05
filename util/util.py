@@ -4,12 +4,17 @@ from mlxtend.preprocessing import TransactionEncoder
 import numpy as np
 
 
-def apriori_for_transaction(transaction, min_support, max_len=1):
+# def apriori_for_transaction(transaction, min_support, max_len=1):
+#     data_df = convert_trans_to_df(transaction)
+#     return apriori(pd.DataFrame(data_df), min_support=min_support, use_colnames=True,
+#                    max_len=max_len)
+
+
+def convert_trans_to_df(transaction):
     te = TransactionEncoder()
     te_ary = te.fit_transform(transaction)
     data_df = pd.DataFrame(te_ary, columns=te.columns_)
-    return apriori(pd.DataFrame(data_df), min_support=min_support, use_colnames=True,
-                   max_len=max_len)
+    return data_df
 
 
 def generate_new_combinations(old_combinations):
