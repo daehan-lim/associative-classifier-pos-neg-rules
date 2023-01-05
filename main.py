@@ -22,19 +22,21 @@ def classification_rule_generation(transactions, min_support, corr, min_conf):
 
     k = 1  # change to 1
     while len(frequent_itemsets[k - 1]) > 0:
-        itemset_union_frozen = frequent_itemsets[k - 1]['itemsets'].append(f1['itemsets'])
-        itemset_union_list = [list(frozen_set) for frozen_set in itemset_union_frozen]
-        c_k = util.apriori_for_transaction(itemset_union_list, min_support=min_support, max_len=k + 1) # F_k-1 U f1
+        # itemset_union_frozen = frequent_itemsets[k - 1]['itemsets'].append(f1['itemsets'])
+        # itemset_union_list = [list(frozen_set) for frozen_set in itemset_union_frozen]
+        itemset_union = merge_itemsets(frequent_itemsets[k - 1]['itemsets'], f1['itemsets'], k)
+        # c_k = util.apriori_for_transaction(itemset_union, min_support=min_support, max_len=k + 1)  # F_k-1 U f1
+        c_k = pd.DataFrame({"support": 0.007, "itemsets": itemset_union})
+        itemset_k = pd.DataFrame(columns=['support', 'itemsets'])
         for index, itemset in c_k.iterrows():
             if itemset['support'] >= min_support:
-                frequent_itemsets[k] = frequent_itemsets[k].append(itemset)
+                itemset_k = itemset_k.append(itemset, ignore_index=True)
             # rules = ponerg(itemset, classes, corr, min_conf)
             # PCR = PCR.append(rules[0])
             # NCR = NCR.append(rules[1])
+        frequent_itemsets.append(itemset_k)
         k += 1
     return PCR, NCR
-
-
 
 
 # def ponerg(itemset, classes, corr, min_conf):
@@ -92,7 +94,4 @@ if __name__ == '__main__':
     classification_rule_generation(transactions=records, min_support=0.005, min_conf=0.2,
                                    corr=1)
 
-
     print('PyCharm')
-
-
