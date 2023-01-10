@@ -34,7 +34,8 @@ def apriori(transactions, min_support):
         freq_item = k_freq_itemsets[k]
         print(f'k = {k}, ck timeit = {timeit.timeit(lambda: create_candidate_k(freq_item, k), number=1)}')
         ck = create_candidate_k(freq_item, k)
-        print(f'k = {k}, fk timeit = {timeit.timeit(lambda: create_freq_itemsets(transactions, ck, min_support=min_support), number=1)}')
+        print(
+            f'k = {k}, fk timeit = {timeit.timeit(lambda: create_freq_itemsets(transactions, ck, min_support=min_support), number=1)}')
         freq_item = create_freq_itemsets(transactions, ck, min_support=min_support)
         k_freq_itemsets.append(freq_item)
         k += 1
@@ -85,6 +86,7 @@ def create_candidate_k(freq_item, k):
                 if item not in ck:
                     ck.append(item)
     return ck
+
 
 if __name__ == '__main__':
     # X is the transaction table from above
