@@ -81,7 +81,7 @@ def apriori_of_size_k(
             combin = combin.reshape(-1, next_max_itemset)
 
             if combin.size == 0:
-                break
+                return pd.DataFrame()
             if is_sparse:
                 _bools = X[:, combin[:, 0]] == all_ones
                 for n in range(1, combin.shape[1]):
