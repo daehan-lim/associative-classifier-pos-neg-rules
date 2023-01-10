@@ -1,3 +1,5 @@
+import csv
+
 import numpy as np
 import pandas as pd
 from itertools import combinations
@@ -60,7 +62,7 @@ def create_freq_item(X, ck, min_support):
                 else:
                     item_count[item] += 1
 
-    n_row = X.shape[0]
+    n_row = len(X)
     freq_item = []
     item_support = {}
 
@@ -113,11 +115,16 @@ X = np.array([[0, 1, 0, 0],
               [0, 1, 2, 3],
               [0, 1, 2, 5]])
 
-dataset = pd.read_csv('../data/store_data.csv', header=None, keep_default_na=False)
-transactions = []
-for i in range(0, dataset.shape[0]):
-    transactions.append([str(dataset.values[i, j]) for j in range(0, 20)])
+# dataset = pd.read_csv('../data/store_data.csv', header=None, keep_default_na=False)
+# transactions = []
+# for i in range(0, dataset.shape[0]):
+#     transactions.append([str(dataset.values[i, j]) for j in range(0, 20)])
 
-freq_items, item_support_dict = apriori(np.array(transactions), min_support=0.1)
+records = []
+with open('../data/store_data.csv', 'r') as file:
+    for row in csv.reader(file):
+        records.append(row)
+freq_items, item_support_dict = apriori(records, min_support=0.1)
+
 print(f'freq items {freq_items}')
 print(f'support dic {item_support_dict}')
