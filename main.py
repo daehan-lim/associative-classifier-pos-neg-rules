@@ -1,3 +1,4 @@
+import csv
 import urllib.request
 import os
 import pandas as pd
@@ -83,9 +84,14 @@ if __name__ == '__main__':
     # for i in range(0, dataset.shape[0]):
     #     transactions.append([str(dataset.values[i, j]) for j in range(0, 20)])
 
+    # records = []
+    # for line in urllib.request.urlopen("https://user.informatik.uni-goettingen.de/~sherbold/store_data.csv"):
+    #     records.append(line.decode('ascii').strip().split(','))
+
     records = []
-    for line in urllib.request.urlopen("https://user.informatik.uni-goettingen.de/~sherbold/store_data.csv"):
-        records.append(line.decode('ascii').strip().split(','))
+    with open('../data/store_data.csv', 'r') as file:
+        for row in csv.reader(file):
+            records.append(row)
 
     classification_rule_generation(transactions=records, min_support=0.005, min_conf=0.2,
                                    corr=1)
