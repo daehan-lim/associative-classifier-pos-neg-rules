@@ -1,33 +1,36 @@
 import pandas as pd
+
+from src.posneg_rule_gen.posneg_rule_generation import ponerg
 from src.rule_gen import apriori_mlx
 from src.util import util
 import itertools
 
 
 def classification_rule_generation(transactions, min_support, corr, min_conf):
-    PCR = pd.DataFrame(columns=['antecedents', 'consequents'])
-    NCR = pd.DataFrame(columns=['antecedents', 'consequents'])
-    # classes = transactions['class']
+    PCR = []
+    NCR = []
 
     # f1 = apriori(pd.DataFrame(transactions_df), min_support=min_support, use_colnames=True, max_len=1)
     c1 = create_candidate_1(transactions)
+    classes = []
+    for one_itemset in c1:
+        one_itemset_item, = one_itemset
+        classes.append(one_itemset_item)
     f1 = create_freq_itemsets(transactions, c1, min_support=min_support)
     frequent_itemsets = [f1]
     for item in f1:
-        # rules = ponerg(item, classes, corr, min_conf)
-        # PCR = PCR.append(rules[0])
-        # NCR = NCR.append(rules[1])
-        pass
+        rules = ponerg(item, classes, corr, min_conf)
+        PCR.extend(rules[0])
+        NCR.extend(rules[1])
 
     transactions_df = util.convert_trans_to_df(transactions)
     k = 0
     while frequent_itemsets[k] is not None and len(frequent_itemsets[k]) > 0:
         ck = _generate_ck_merge(frequent_itemsets[k], f1)
         for item in ck:
-            # rules = ponerg(item, classes, corr, min_conf)
-            # PCR = PCR.append(rules[0])
-            # NCR = NCR.append(rules[1])
-            pass
+            rules = ponerg(item, classes, corr, min_conf)
+            PCR.extend(rules[0])
+            NCR.extend(rules[1])
 
         k_freq_itemsets = apriori_mlx.apriori_of_size_k(pd.DataFrame(transactions_df),
                                                         min_support=min_support, use_colnames=True, k=k+2)
@@ -35,7 +38,7 @@ def classification_rule_generation(transactions, min_support, corr, min_conf):
                                  else k_freq_itemsets['itemsets'].tolist())
         k += 1
 
-    return frequent_itemsets
+    return PCR, NCR
     # return PCR, NCR
 
 
