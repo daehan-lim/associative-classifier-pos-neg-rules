@@ -64,6 +64,25 @@ def ponerg(itemset, classes, corr, min_conf):
     return PCR, NCR
 
 
+def _greater_than_items(item_set, one_itemset_item):
+    for set_item in item_set:
+        if one_itemset_item <= set_item:
+            return False
+    return True
+
+
+def merge_itemsets(k_itemsets, one_itemsets):
+    # Create a list to store the resulting frozensets
+    ck = []
+    for one_itemset in one_itemsets:
+        for k_itemset in k_itemsets:
+            one_itemset_item, = one_itemset  # unpacking the only element in set
+            if _greater_than_items(k_itemset, one_itemset_item):
+                ck.append(k_itemset | one_itemset)
+    # Convert the list of frozensets to a Pandas Series and return it
+    return pd.Series(ck)
+
+
 def _merge_itemsets(k_itemsets, one_itemsets, k):
     # Create a list to store the resulting frozensets
     result = []
