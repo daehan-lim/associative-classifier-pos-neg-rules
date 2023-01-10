@@ -9,19 +9,17 @@ def classification_rule_generation(transactions, min_support, corr, min_conf):
     NCR = pd.DataFrame(columns=['antecedents', 'consequents'])
     # classes = transactions['class']
 
-    transactions_df = util.convert_trans_to_df(transactions)
     # f1 = apriori(pd.DataFrame(transactions_df), min_support=min_support, use_colnames=True, max_len=1)
-    # frequent_itemsets = [pd.DataFrame(f1)]
-
     c1 = create_candidate_1(transactions)
     f1 = create_freq_itemsets(transactions, c1, min_support=min_support)
+    frequent_itemsets = [f1]
     for item in f1:
         # rules = ponerg(item, classes, corr, min_conf)
         # PCR = PCR.append(rules[0])
         # NCR = NCR.append(rules[1])
         pass
-    frequent_itemsets = [f1]
 
+    transactions_df = util.convert_trans_to_df(transactions)
     k = 0
     while frequent_itemsets[k] is not None and len(frequent_itemsets[k]) > 0:
         ck = _generate_ck_merge(frequent_itemsets[k], f1)
@@ -32,7 +30,7 @@ def classification_rule_generation(transactions, min_support, corr, min_conf):
             pass
 
         k_freq_itemsets = apriori_mlx.apriori_of_size_k(pd.DataFrame(transactions_df),
-                                                        min_support=min_support, use_colnames=True, k=k + 2)
+                                                        min_support=min_support, use_colnames=True, k=k+2)
         frequent_itemsets.append(None if k_freq_itemsets.empty
                                  else k_freq_itemsets['itemsets'].tolist())
         k += 1
