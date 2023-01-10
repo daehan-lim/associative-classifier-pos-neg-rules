@@ -1,4 +1,5 @@
 import csv
+import timeit
 
 import numpy as np
 import pandas as pd
@@ -37,7 +38,9 @@ def apriori(X, min_support):
     k = 0
     while len(freq_items[k]) > 0:
         freq_item = freq_items[k]
+        print(f'k = {k}, ck timeit = {timeit.timeit(lambda: create_candidate_k(freq_item, k), number=1)}')
         ck = create_candidate_k(freq_item, k)
+        print(f'k = {k}, fk timeit = {timeit.timeit(lambda: create_freq_item(X, ck, min_support=min_support), number=1)}')
         freq_item, item_support = create_freq_item(X, ck, min_support=min_support)
         freq_items.append(freq_item)
         item_support_dict.update(item_support)
@@ -109,11 +112,11 @@ X = np.array([[1, 1, 0, 0, 0, 0],
               [1, 1, 1, 1, 0, 0],
               [1, 1, 1, 0, 0, 1]])
 """
-X = np.array([[0, 1, 0, 0],
-              [0, 2, 3, 4],
-              [1, 2, 3, 5],
-              [0, 1, 2, 3],
-              [0, 1, 2, 5]])
+# X = np.array([[0, 1, 0, 0],
+#               [0, 2, 3, 4],
+#               [1, 2, 3, 5],
+#               [0, 1, 2, 3],
+#               [0, 1, 2, 5]])
 
 # dataset = pd.read_csv('../data/store_data.csv', header=None, keep_default_na=False)
 # transactions = []
@@ -124,7 +127,9 @@ records = []
 with open('../data/store_data.csv', 'r') as file:
     for row in csv.reader(file):
         records.append(row)
-freq_items, item_support_dict = apriori(records, min_support=0.1)
+freq_items, item_support_dict = apriori(records, min_support=0.005)
+
+# print(timeit.timeit(lambda: apriori(records, min_support=0.1), number=5))
 
 print(f'freq items {freq_items}')
 print(f'support dic {item_support_dict}')
