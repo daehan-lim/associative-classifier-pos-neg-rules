@@ -13,8 +13,8 @@ def classification_rule_generation(transactions, min_support, corr, min_conf):
     NCR = pd.DataFrame(columns=['antecedents', 'consequents'])
     # classes = transactions['class']
 
-    f1 = apriori(pd.DataFrame(util.convert_trans_to_df(transactions)), min_support=min_support, use_colnames=True,
-                 max_len=1)
+    transactions_df = util.convert_trans_to_df(transactions)
+    f1 = apriori(pd.DataFrame(transactions_df), min_support=min_support, use_colnames=True, max_len=1)
     frequent_itemsets = [pd.DataFrame(f1)]
     # for item in f1:
     #     rules = ponerg(item, classes, corr, min_conf)
@@ -25,8 +25,7 @@ def classification_rule_generation(transactions, min_support, corr, min_conf):
     while len(frequent_itemsets[k - 1]) > 0:
         # itemset_union = _merge_itemsets(frequent_itemsets[k - 1]['itemsets'], f1['itemsets'], k)
         # c_k = util.apriori_for_transaction(itemset_union, min_support=min_support, max_len=k + 1)  # F_k-1 U f1
-        c_k = util.apriori_of_size_k(pd.DataFrame(util.convert_trans_to_df(transactions)),
-                                     min_support=min_support, use_colnames=True, k=k + 1)
+        c_k = util.apriori_of_size_k(pd.DataFrame(transactions_df), min_support=min_support, use_colnames=True, k=k + 1)
         frequent_itemset_k = pd.DataFrame(columns=['support', 'itemsets'])
         for index, row in c_k.iterrows():
             if row['support'] >= min_support:
