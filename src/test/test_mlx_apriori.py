@@ -8,7 +8,7 @@ from mlxtend.frequent_patterns import association_rules
 
 
 records = []
-with open('data/store_data.csv', 'r') as file:
+with open('../../data/store_data.csv', 'r') as file:
     for row in csv.reader(file):
         records.append(row)
 
