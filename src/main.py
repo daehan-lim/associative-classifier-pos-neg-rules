@@ -43,9 +43,10 @@ if __name__ == '__main__':
         for row in csv.reader(file):
             records.append(row)
 
-    print(timeit.timeit(
-        lambda: rule_gen_with_ck.classification_rule_generation(transactions=records, min_support=0.005, min_conf=0.2,
-                                                                corr=1), number=1))
-    # print(timeit.timeit(
-    #     lambda: rule_gen_mlx.classification_rule_generation(transactions=records, min_support=0.005, min_conf=0.2, corr=1),
-    #     number=5))
+    print(rule_gen_mlx.classification_rule_generation(transactions=records,
+                                                          min_support=0.005, min_conf=0.2, corr=1))
+    # print(timeit.timeit(lambda: rule_gen_with_ck.classification_rule_generation(
+    #     transactions=records, min_support=0.005, min_conf=0.2, corr=1), number=1))
+
+    # print(timeit.timeit(lambda: rule_gen_mlx.classification_rule_generation(
+    #     transactions=records, min_support=0.005, min_conf=0.2, corr=1), number=5))
