@@ -1,11 +1,6 @@
 import csv
-import timeit
 import pandas as pd
-from util import util
-import itertools
-import util.ck_generation as ck_gen
-import rule_gen_mlx
-import rule_gen_with_ck
+from src.rule_gen import rule_generation
 
 
 def ponerg(itemset, classes, corr, min_conf):
@@ -43,8 +38,9 @@ if __name__ == '__main__':
         for row in csv.reader(file):
             records.append(row)
 
-    print(rule_gen_mlx.classification_rule_generation(transactions=records,
-                                                          min_support=0.005, min_conf=0.2, corr=1))
+    print(rule_generation.classification_rule_generation(transactions=records,
+                                                      min_support=0.005, min_conf=0.2, corr=1))
+
     # print(timeit.timeit(lambda: rule_gen_with_ck.classification_rule_generation(
     #     transactions=records, min_support=0.005, min_conf=0.2, corr=1), number=1))
 

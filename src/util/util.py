@@ -1,6 +1,5 @@
 import pandas as pd
 from mlxtend.preprocessing import TransactionEncoder
-import numpy as np
 
 
 def convert_trans_to_df(transaction):
