@@ -113,7 +113,7 @@ X = np.array([[0, 1, 0, 0],
               [0, 1, 2, 3],
               [0, 1, 2, 5]])
 
-dataset = pd.read_csv('data/store_data.csv', header=None, keep_default_na=False)
+dataset = pd.read_csv('../data/store_data.csv', header=None, keep_default_na=False)
 transactions = []
 for i in range(0, dataset.shape[0]):
     transactions.append([str(dataset.values[i, j]) for j in range(0, 20)])

@@ -20,8 +20,8 @@ data_df = pd.DataFrame(te_ary, columns=te.columns_)
 # use support of 0.005 - low threshold may include to many candidates
 # careful selection of rules based on other metrics required
 # this means that we use a higher confidence
-frequent_itemsets = apriori(pd.DataFrame(data_df), min_support=0.005, use_colnames=True)
-print(frequent_itemsets)
+frequent_itemsets = apriori(pd.DataFrame(data_df), min_support=0.2, use_colnames=True)
+print(f'freq itemsets {frequent_itemsets}')
 
 rules = association_rules(frequent_itemsets, metric="confidence",
                   min_threshold=0.5).sort_values('lift', ascending=False)
