@@ -29,14 +29,14 @@ def apriori(X, min_support):
     # the candidate sets for the 1-item is different,
     # create them independently from others
     c1 = create_candidate_1(X)
-    freq_item, item_support_dict = create_freq_item(X, c1, min_support=0.5)
+    freq_item, item_support_dict = create_freq_item(X, c1, min_support=min_support)
     freq_items = [freq_item]
 
     k = 0
     while len(freq_items[k]) > 0:
         freq_item = freq_items[k]
         ck = create_candidate_k(freq_item, k)
-        freq_item, item_support = create_freq_item(X, ck, min_support=0.5)
+        freq_item, item_support = create_freq_item(X, ck, min_support=min_support)
         freq_items.append(freq_item)
         item_support_dict.update(item_support)
         k += 1
@@ -107,11 +107,17 @@ X = np.array([[1, 1, 0, 0, 0, 0],
               [1, 1, 1, 1, 0, 0],
               [1, 1, 1, 0, 0, 1]])
 """
-X = np.array([[0, 1],
+X = np.array([[0, 1, 0, 0],
               [0, 2, 3, 4],
               [1, 2, 3, 5],
               [0, 1, 2, 3],
               [0, 1, 2, 5]])
-freq_items, item_support_dict = apriori(X, min_support = 0.5)
-freq_items
 
+dataset = pd.read_csv('data/store_data.csv', header=None, keep_default_na=False)
+transactions = []
+for i in range(0, dataset.shape[0]):
+    transactions.append([str(dataset.values[i, j]) for j in range(0, 20)])
+
+freq_items, item_support_dict = apriori(np.array(transactions), min_support=0.1)
+print(f'freq items {freq_items}')
+print(f'support dic {item_support_dict}')
