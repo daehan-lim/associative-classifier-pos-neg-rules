@@ -1,11 +1,11 @@
-import os
 import urllib.request
-
+import os
 import pandas as pd
 from util import util
 from mlxtend.frequent_patterns import apriori
 from mlxtend.preprocessing import TransactionEncoder
 from mlxtend.frequent_patterns import association_rules
+import itertools
 
 
 def classification_rule_generation(transactions, min_support, corr, min_conf):
