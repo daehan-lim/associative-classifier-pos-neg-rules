@@ -24,12 +24,13 @@ def ponerg(itemset, classes, class_support_count_dict, corr, min_conf, transacti
                 if (conf := confidence(combined_support_count_nr1, class_support_count_dict[c])) >= min_conf:
                     NCR.append({'antecedent': neg_itemset, 'consequent': c_str, 'confidence': conf})
                 if (conf := confidence(combined_support_count_nr2, class_support_count_dict[c])) >= min_conf:
-                    NCR.append({'antecedent': itemset, 'consequent': '!' + c_str, 'confidence': conf})
+                    NCR.append({'antecedent': itemset, 'consequent': '!' + c_str, 'confidence': -conf})
 
     return PCR, NCR
 
 
-def correlation(itemset, c) -> float:
+def correlation(itemset, c) -> float:  # fix
+
     return random.uniform(-1, 1)
 
 

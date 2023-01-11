@@ -17,10 +17,11 @@ te = TransactionEncoder()
 te_ary = te.fit_transform(records)
 data_df = pd.DataFrame(te_ary, columns=te.columns_)
 
-# frequent_itemsets = apriori(pd.DataFrame(data_df), min_support=0.1, use_colnames=True)
-print(timeit.timeit(lambda: apriori(pd.DataFrame(data_df), min_support=0.005, use_colnames=True), number=5))
+frequent_itemsets = apriori(pd.DataFrame(data_df), min_support=0.000000000000000000000000001,
+                            use_colnames=True, max_len=3)
+# print(timeit.timeit(lambda: apriori(pd.DataFrame(data_df), min_support=0.005, use_colnames=True), number=5))
 # print(f'{frequent_itemsets}')
 
-# rules = association_rules(frequent_itemsets, metric="confidence",
-#                   min_threshold=0.5).sort_values('lift', ascending=False)
-# print(rules)
+rules = association_rules(frequent_itemsets, metric="confidence",
+                  min_threshold=0.005).sort_values('lift', ascending=False)
+print(rules)

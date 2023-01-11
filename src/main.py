@@ -3,6 +3,8 @@ import timeit
 
 import numpy as np
 import pandas as pd
+
+from src.classification import classification
 from src.rule_gen import rule_generation
 from src.rule_gen import rule_gen_with_ck
 
@@ -18,10 +20,13 @@ if __name__ == '__main__':
 
     PCR, NCR = rule_generation.classification_rule_generation(transactions=records,
                                                               min_support=0.02, min_conf=0.2, corr=0.7)
+    predicted_class = classification.classification(frozenset(['napkins', 'grated cheese', 'butter']), PCR + NCR, 0.001)
     pr = np.expand_dims(np.array(PCR), axis=1)
     nr = np.expand_dims(np.array(NCR), axis=1)
     print(PCR)
     print(NCR)
+    print(f"itemset: {frozenset(['napkins', 'grated cheese', 'butter'])}")
+    print(f"Predicted class: {predicted_class}")
 
     # print(rule_generation.classification_rule_generation(transactions=records,
     #                                                      min_support=0.05, min_conf=0.2, corr=0.3))
