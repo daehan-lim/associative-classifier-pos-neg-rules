@@ -16,6 +16,9 @@ def classification(itemset, rules_set, confidence_margin):
             else:
                 break
 
+    if len(matching_rules) == 0:
+        return None
+
     # Divide the set S into subsets based on category
     rules_by_class = defaultdict(list)
     for rule in matching_rules:
