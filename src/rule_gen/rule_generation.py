@@ -11,6 +11,7 @@ def classification_rule_generation(transactions, min_support, corr, min_conf):
     NCR = []
 
     # f1 = apriori(pd.DataFrame(transactions_df), min_support=min_support, use_colnames=True, max_len=1)
+    transactions_df = util.convert_trans_to_df(transactions)
     c1 = create_candidate_1(transactions)
     classes = c1[-2:]
     classes.insert(0, c1[0])
@@ -18,16 +19,15 @@ def classification_rule_generation(transactions, min_support, corr, min_conf):
     f1 = create_1_freq_itemsets(transactions, c1, min_support=min_support)
     frequent_itemsets = [f1]
     for item in f1:
-        rules = ponerg(item, classes, class_support_count_dict, corr, min_conf, transactions)
+        rules = ponerg(item, classes, class_support_count_dict, corr, min_conf, transactions_df)
         PCR.extend(rules[0])
         NCR.extend(rules[1])
 
-    transactions_df = util.convert_trans_to_df(transactions)
     k = 0
     while frequent_itemsets[k] is not None and len(frequent_itemsets[k]) > 0:
         ck = _generate_ck_merge(frequent_itemsets[k], f1)
         for item in ck:
-            rules = ponerg(item, classes, class_support_count_dict, corr, min_conf, transactions)
+            rules = ponerg(item, classes, class_support_count_dict, corr, min_conf, transactions_df)
             PCR.extend(rules[0])
             NCR.extend(rules[1])
 

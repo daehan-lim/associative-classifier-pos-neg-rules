@@ -30,6 +30,12 @@ def get_item_support_count(item, transactions):
 
 
 def get_item_support_count_df(itemset: frozenset, df):
+    """
+    Efficient support calculation
+    :param itemset: Items need to be in transaction
+    :param df: DataFrame of transactions
+    :return: support of itemset
+    """
     subset = df[list(itemset)]
     # subset['support'] = subset.all(axis=1) # returns column
     support = subset.all(axis=1).sum()
