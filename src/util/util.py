@@ -27,3 +27,10 @@ def get_item_support_count(item, transactions):
         if item.issubset(transaction):
             support_count += 1
     return support_count
+
+
+def get_item_support_count_df(itemset: frozenset, df):
+    subset = df[list(itemset)]
+    # subset['support'] = subset.all(axis=1) # returns column
+    support = subset.all(axis=1).sum()
+    return support
