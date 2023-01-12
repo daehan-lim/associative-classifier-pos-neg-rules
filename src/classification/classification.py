@@ -6,7 +6,7 @@ def classification(itemset, rules_set, confidence_margin):
     count = 0
     first_rule_confidence = None
     for rule in rules_set:
-        if (rule['antecedent'] | frozenset([rule['consequent']])).issubset(itemset):
+        if (rule['antecedent']).issubset(itemset) and rule['consequent'] not in itemset:
             if count == 0:
                 count += 1
                 first_rule_confidence = rule['confidence']
@@ -54,6 +54,8 @@ if __name__ == '__main__':
              {'antecedent': frozenset({'grated cheese', 'butter'}), 'consequent': 'napkins', 'confidence': 0.2}]
     my_itemset = frozenset(['napkins', 'grated cheese', 'butter'])
     my_confidence_margin = 0.001
+
+    print('napkins' not in my_itemset)
 
     # matching_rules = []
     # count = 0

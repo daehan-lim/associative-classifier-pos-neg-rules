@@ -19,13 +19,14 @@ if __name__ == '__main__':
             records.append(row)
 
     PCR, NCR = rule_generation.classification_rule_generation(transactions=records,
-                                                              min_support=0.02, min_conf=0.2, corr=0.7)
-    predicted_class = classification.classification(frozenset(['napkins', 'grated cheese', 'butter']), PCR + NCR, 0.001)
+                                                              min_support=0.02, min_conf=0.05, corr=0.05)
+    itemset = frozenset(['!mineral water', 'shrimp'])
+    predicted_class = classification.classification(itemset, PCR + NCR, 0.001)
     pr = np.expand_dims(np.array(PCR), axis=1)
     nr = np.expand_dims(np.array(NCR), axis=1)
     print(PCR)
     print(NCR)
-    print(f"itemset: {frozenset(['napkins', 'grated cheese', 'butter'])}")
+    print(f"itemset: {itemset}")
     print(f"Predicted class: {predicted_class}")
 
     # print(rule_generation.classification_rule_generation(transactions=records,
