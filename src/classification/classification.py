@@ -30,8 +30,8 @@ def classification(itemset, rules_set, confidence_margin):
         avg_conf_by_group[rule_group] = sum(rule['confidence'] for rule in rules_by_class[rule_group]) / len(
             rules_by_class[rule_group])
 
-    # Assign the new object to the class with the highest confidence score
     predicted_class = None
+    # Assign the new object to the class with the highest confidence score
     if (max_confidence := max(avg_conf_by_group.values())) > 0:
         predicted_class = [c for c, conf in avg_conf_by_group.items() if conf == max_confidence][0]
 
@@ -47,25 +47,26 @@ def rule_matches_object(rule, object_o: frozenset) -> bool:
 
 
 if __name__ == '__main__':
-    my_rules = [{'antecedent': frozenset({'low fat yogurt'}), 'consequent': 'napkins', 'confidence': 0.4},
-                {'antecedent': frozenset({'chocolate'}), 'consequent': 'shrimp', 'confidence': 0.251865671641791},
-                {'antecedent': frozenset({'chicken'}), 'consequent': 'cream', 'confidence': 0.2857142857142857},
-                {'antecedent': frozenset({'red wine'}), 'consequent': 'napkins', 'confidence': 0.2},
-                {'antecedent': frozenset({'low fat yogurt', 'ground beef'}), 'consequent': 'napkins',
-                 'confidence': 0.2},
-                {'antecedent': frozenset({'green tea', 'grated cheese'}), 'consequent': 'napkins', 'confidence': 0.2},
-                {'antecedent': frozenset({'frozen vegetables', 'grated cheese'}), 'consequent': 'napkins',
-                 'confidence': 0.2},
-                {'antecedent': frozenset({'spaghetti', 'grated cheese'}), 'consequent': 'napkins', 'confidence': 0.2},
-                {'antecedent': frozenset({'ground beef', 'spaghetti'}), 'consequent': 'cream',
-                 'confidence': 0.2857142857142857},
-                {'antecedent': frozenset({'spaghetti', 'herb & pepper'}), 'consequent': 'napkins', 'confidence': 0.2},
-                {'antecedent': frozenset({'pancakes', 'grated cheese'}), 'consequent': 'napkins', 'confidence': 0.2},
-                {'antecedent': frozenset({'pancakes', 'butter'}), 'consequent': 'napkins', 'confidence': 0.2},
-                {'antecedent': frozenset({'ground beef', 'grated cheese'}), 'consequent': 'napkins', 'confidence': 0.2},
-                {'antecedent': frozenset({'grated cheese', 'butter'}), 'consequent': 'napkins', 'confidence': 0.2}]
-    my_itemset = frozenset(['napkins', 'grated cheese', 'butter'])
-    my_confidence_margin = 0.001
+    pass
+    # my_rules = [{'antecedent': frozenset({'low fat yogurt'}), 'consequent': 'napkins', 'confidence': 0.4},
+    #             {'antecedent': frozenset({'chocolate'}), 'consequent': 'shrimp', 'confidence': 0.251865671641791},
+    #             {'antecedent': frozenset({'chicken'}), 'consequent': 'cream', 'confidence': 0.2857142857142857},
+    #             {'antecedent': frozenset({'red wine'}), 'consequent': 'napkins', 'confidence': 0.2},
+    #             {'antecedent': frozenset({'low fat yogurt', 'ground beef'}), 'consequent': 'napkins',
+    #              'confidence': 0.2},
+    #             {'antecedent': frozenset({'green tea', 'grated cheese'}), 'consequent': 'napkins', 'confidence': 0.2},
+    #             {'antecedent': frozenset({'frozen vegetables', 'grated cheese'}), 'consequent': 'napkins',
+    #              'confidence': 0.2},
+    #             {'antecedent': frozenset({'spaghetti', 'grated cheese'}), 'consequent': 'napkins', 'confidence': 0.2},
+    #             {'antecedent': frozenset({'ground beef', 'spaghetti'}), 'consequent': 'cream',
+    #              'confidence': 0.2857142857142857},
+    #             {'antecedent': frozenset({'spaghetti', 'herb & pepper'}), 'consequent': 'napkins', 'confidence': 0.2},
+    #             {'antecedent': frozenset({'pancakes', 'grated cheese'}), 'consequent': 'napkins', 'confidence': 0.2},
+    #             {'antecedent': frozenset({'pancakes', 'butter'}), 'consequent': 'napkins', 'confidence': 0.2},
+    #             {'antecedent': frozenset({'ground beef', 'grated cheese'}), 'consequent': 'napkins', 'confidence': 0.2},
+    #             {'antecedent': frozenset({'grated cheese', 'butter'}), 'consequent': 'napkins', 'confidence': 0.2}]
+    # my_itemset = frozenset(['napkins', 'grated cheese', 'butter'])
+    # my_confidence_margin = 0.001
 
     # matching_rules = []
     # count = 0
