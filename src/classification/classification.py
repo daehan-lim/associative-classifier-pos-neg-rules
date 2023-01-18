@@ -6,7 +6,7 @@ def classification(itemset, rules_set, confidence_margin):
     count = 0
     first_rule_confidence = None
     for rule in rules_set:
-        if (rule['antecedent']).issubset(itemset) and rule['consequent'] not in itemset:
+        if (rule['antecedent']).issubset(itemset) and rule['consequent'] not in itemset:  # remove second condition later
             if count == 0:
                 count += 1
                 first_rule_confidence = abs(rule['confidence'])

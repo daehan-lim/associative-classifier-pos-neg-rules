@@ -12,10 +12,10 @@ def classification_rule_generation(transactions, min_support, corr, min_conf):
 
     # f1 = apriori(pd.DataFrame(transactions_df), min_support=min_support, use_colnames=True, max_len=1)
     transactions_df = util.convert_trans_to_df(transactions)
-    c1 = create_candidate_1(transactions)
-    classes = c1[-2:]
-    classes.insert(0, c1[0])
-    class_support_count_dict = util.get_support_count_dict(classes, transactions)
+    classes = [frozenset(['Alive']), frozenset(['Expired'])]
+    c1 = create_candidate_1(transactions, ['Alive', 'Expired'])
+    # class_support_count_dict = util.get_support_count_dict(classes, transactions)
+    class_support_count_dict = util.get_support_count_dict_df(classes, transactions_df)
     f1 = create_1_freq_itemsets(transactions, c1, min_support=min_support)
     frequent_itemsets = [f1]
     for item in f1:
@@ -31,7 +31,7 @@ def classification_rule_generation(transactions, min_support, corr, min_conf):
             PCR.extend(rules[0])
             NCR.extend(rules[1])
 
-        k_freq_itemsets = apriori_mlx.apriori_of_size_k(pd.DataFrame(transactions_df),
+        k_freq_itemsets = apriori_mlx.apriori_of_size_k(pd.DataFrame(transactions_df.drop(['Alive', 'Expired'], axis=1)),
                                                         min_support=min_support, use_colnames=True, k=k+2)
         frequent_itemsets.append(None if k_freq_itemsets.empty
                                  else k_freq_itemsets['itemsets'].tolist())
@@ -66,7 +66,7 @@ def _generate_ck_merge(k_freq_itemsets, one_freq_itemsets):
     return ck
 
 
-def create_candidate_1(transactions):
+def create_candidate_1(transactions, classes):
     """
     create the 1-item candidate,
     it's basically creating a frozenset for each unique item
@@ -75,9 +75,10 @@ def create_candidate_1(transactions):
     c1 = []
     for transaction in transactions:
         for t in transaction:
-            t = frozenset([t])
-            if t not in c1:
-                c1.append(t)
+            if t not in classes:
+                t = frozenset([t])
+                if t not in c1:
+                    c1.append(t)
     return c1
 
 
