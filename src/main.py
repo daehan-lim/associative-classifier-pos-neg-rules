@@ -19,9 +19,9 @@ if __name__ == '__main__':
             records.append(list(filter(None, row)))
 
     PCR, NCR = rule_generation.classification_rule_generation(transactions=records,
-                                                              min_support=0.05, min_conf=0.3, corr=0.05)
+                                                              min_support=0.05, min_conf=0.06, corr=0.05)
 
-    itemset = frozenset(['2 ML  -  METOCLOPRAMIDE HCL 5 MG/ML IJ SOLN', '3 ML VIAL : INSULIN LISPRO (HUMAN) 100 UNIT/ML SC SOLN'])
+    itemset = frozenset(['METOPROLOL SUCCINATE ER 50 MG PO TB24', '2 ML  -  METOCLOPRAMIDE HCL 5 MG/ML IJ SOLN'])
     sorted_rules = sorted(PCR + NCR, key=lambda d: abs(d['confidence']), reverse=True)
     predicted_class = classification.classification(itemset, sorted_rules, 0.1)
     pr = np.expand_dims(np.array(PCR), axis=1)

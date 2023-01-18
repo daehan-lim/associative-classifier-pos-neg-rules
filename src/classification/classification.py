@@ -6,7 +6,7 @@ def classification(itemset, rules_set, confidence_margin):
     count = 0
     first_rule_confidence = None
     for rule in rules_set:
-        if (rule['antecedent']).issubset(itemset):
+        if rule_matches_object(rule, itemset):
             if count == 0:
                 count += 1
                 first_rule_confidence = abs(rule['confidence'])
@@ -37,6 +37,13 @@ def classification(itemset, rules_set, confidence_margin):
 
     # predicted_class = max(avg_conf_by_group.items(), key=lambda x: x[1])[0]
     return predicted_class
+
+
+def rule_matches_object(rule, object_o: frozenset) -> bool:
+    if next(iter(rule['antecedent']))[0] == '!':  # says if rule is of the type ~X -> C
+        # Return whether it's true none of the items in the antecedent are contained in the object (transaction)
+        return object_o.isdisjoint(frozenset([item.replace('!', '') for item in rule['antecedent']]))
+    return (rule['antecedent']).issubset(object_o)
 
 
 if __name__ == '__main__':
