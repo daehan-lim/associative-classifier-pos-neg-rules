@@ -18,9 +18,7 @@ def ponerg(itemset, classes, class_support_count_dict, corr, min_conf, transacti
             combined_support_count_nr1 = util.get_support_count_not_i_and_c(itemset, c_str, transactions_df)
             combined_support_count_nr2 = util.get_support_count_i_and_not_c(itemset, c_str, transactions_df)  # fix
             if (conf := confidence(combined_support_count_nr1, class_support_count_dict[c])) >= min_conf:
-                neg_itemset = set()
-                for item in itemset:
-                    neg_itemset.add('!' + item)
+                neg_itemset = frozenset(['!' + item for item in itemset])
                 NCR.append({'antecedent': neg_itemset, 'consequent': c_str, 'confidence': conf})
             if (conf := confidence(combined_support_count_nr2, util.get_item_support_count_df(
                     c, transactions_df, negated=True))) >= min_conf:
