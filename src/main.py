@@ -21,16 +21,16 @@ if __name__ == '__main__':
     PCR = []
     NCR = []
     predicted_class = None
-    itemset = frozenset(['ACETAMINOPHEN 325 MG PO TABS',
+    object_o = frozenset(['ACETAMINOPHEN 325 MG PO TABS',
 
-                         ])
+                          ])
     corr = 0.5
     while corr > 0.001:
         PCR, NCR = rule_generation.classification_rule_generation(
             transactions=records, min_support=0.1, min_conf=0.09, corr=0.04)
         if len(PCR + NCR) > 0:
             sorted_rules = sorted(PCR + NCR, key=lambda d: abs(d['confidence']), reverse=True)
-            predicted_class = classification.classification(itemset, sorted_rules, 0.1)
+            predicted_class = classification.classification(object_o, sorted_rules, 0.1)
             if predicted_class is not None:
                 break
         if corr > 0.11:
@@ -42,7 +42,7 @@ if __name__ == '__main__':
     nr = np.expand_dims(np.array(NCR), axis=1)
     print(PCR)
     print(NCR)
-    print(f"itemset: {itemset}")
+    print(f"Object to classify: {object_o}")
     print(f"Predicted class: {predicted_class}")
 
     # print(rule_generation.classification_rule_generation(transactions=records,

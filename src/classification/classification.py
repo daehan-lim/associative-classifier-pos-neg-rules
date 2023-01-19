@@ -1,12 +1,12 @@
 from collections import defaultdict
 
 
-def classification(itemset, rules_set, confidence_margin):
+def classification(object_o, rules_set, confidence_margin):
     matching_rules = []
     count = 0
     first_rule_confidence = None
     for rule in rules_set:
-        if rule_matches_object(rule, itemset):
+        if rule_matches_object(rule, object_o):
             if count == 0:
                 count += 1
                 first_rule_confidence = abs(rule['confidence'])
