@@ -28,25 +28,33 @@ def ponerg(itemset, classes, class_support_count_dict, corr, min_conf, transacti
     return PCR, NCR
 
 
-def correlation(itemset, c, transactions_df, f11, fm1):
-    f1m = util.get_item_support_count_df(itemset, transactions_df)
+def correlation(itemset, c, transactions_df, f11, f_plus_1):
+    f1_plus = util.get_item_support_count_df(itemset, transactions_df)
     f00 = util.get_item_support_count_df(itemset | c, transactions_df, negated=True)
 
-    f01 = fm1 - f11
-    f10 = f1m - f11
-    fm0 = f10 + f00
-    f0m = f01 + f00
+    f01 = f_plus_1 - f11
+    f10 = f1_plus - f11
+    f_plus_0 = f10 + f00
+    f0_plus = f01 + f00
+
+    # f_01 = util.get_support_count_not_i_and_c(itemset, list(c)[0], transactions_df)
+    # f_10 = util.get_support_count_i_and_not_c(itemset, list(c)[0], transactions_df)
+    # matrix = [
+    #     [f11, f10, f1_plus],
+    #     [f01, f00, f0_plus],
+    #     [f_plus_1, f_plus_0, len(transactions_df.index)],
+    # ]
 
     # with warnings.catch_warnings():
     #     warnings.filterwarnings('error')
     #     try:
-    #         corr = (f11 * f00 - f10 * f01) / math.sqrt(fm0 * fm1 * f1m * f0m)
+    #         corr = (f11 * f00 - f10 * f01) / math.sqrt(f_plus_0 * f_plus_1 * f1_plus * f0_plus)
     #     except Warning as e:
     #         a = 2
     #         b = 3
-    if fm0 * fm1 * f1m * f0m == 0:
+    if f_plus_0 * f_plus_1 * f1_plus * f0_plus == 0:
         return 0
-    return (f11 * f00 - f10 * f01) / math.sqrt(fm0 * fm1 * f1m * f0m)
+    return (f11 * f00 - f10 * f01) / math.sqrt(f_plus_0 * f_plus_1 * f1_plus * f0_plus)
 
 
 # f11 the number of times X and Y appear together in the same transaction (support of X and Y)
