@@ -14,7 +14,7 @@ if __name__ == '__main__':
     # 0, 20)])
 
     records = []
-    with open('../data/eicu.csv', 'r') as file:
+    with open('../data/eicu_all_attrb.csv', 'r') as file:
         for row in csv.reader(file):
             records.append(list(filter(None, row)))
 
@@ -27,7 +27,7 @@ if __name__ == '__main__':
     corr = 0.5
     while corr > 0.001:
         PCR, NCR = rule_generation.classification_rule_generation(
-            transactions=records, min_support=0.05, min_conf=0.2, corr=corr)
+            transactions=records, min_support=0.05, min_conf=0.08, corr=0.02)
         if len(PCR + NCR) > 0:
             sorted_rules = sorted(PCR + NCR, key=lambda d: abs(d['confidence']), reverse=True)
             predicted_class = classification.classification(itemset, sorted_rules, 0.1)
