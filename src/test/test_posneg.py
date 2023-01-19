@@ -5,7 +5,7 @@ import timeit
 from src.util import util
 
 records = []
-with open('../../data/eicu.csv', 'r') as file:
+with open('../../data/eicu_three_meds.csv', 'r') as file:
     for row in csv.reader(file):
         records.append(row)
 transactions_df = util.convert_trans_to_df(records)

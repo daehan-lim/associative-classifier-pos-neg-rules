@@ -6,14 +6,12 @@ from src.util import util
 import itertools
 
 
-def classification_rule_generation(transactions, min_support, corr, min_conf):
+def classification_rule_generation(transactions, c1, classes, min_support, corr, min_conf):
     PCR = []
     NCR = []
 
     # f1 = apriori(pd.DataFrame(transactions_df), min_support=min_support, use_colnames=True, max_len=1)
     transactions_df = util.convert_trans_to_df(transactions)
-    classes = [frozenset(['Alive']), frozenset(['Expired'])]
-    c1 = create_candidate_1(transactions, ['Alive', 'Expired'])
     # class_support_count_dict = util.get_support_count_dict(classes, transactions)
     class_support_count_dict = util.get_support_count_dict_df(classes, transactions_df)
     f1 = create_1_freq_itemsets(transactions, c1, min_support=min_support)

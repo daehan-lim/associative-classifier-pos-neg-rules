@@ -13,21 +13,22 @@ if __name__ == '__main__':
     # the heading for i in range(0, dataset.shape[0]): transactions.append([str(dataset.values[i, j]) for j in range(
     # 0, 20)])
 
-    records = []
-    with open('../data/eicu_all_attrb.csv', 'r') as file:
-        for row in csv.reader(file):
-            records.append(list(filter(None, row)))
+    with open('../data/eicu_all_attrb_header.csv', 'r') as file:
+        reader = csv.reader(file)
+        header = next(reader)
+        header.remove('mortality')
+        c1 = [frozenset([item]) for item in header]
+        records = [list(filter(None, row)) for row in reader]
 
     PCR = []
     NCR = []
     predicted_class = None
     object_o = frozenset(['ACETAMINOPHEN 325 MG PO TABS',
-
                           ])
     corr = 0.5
     while corr > 0.001:
         PCR, NCR = rule_generation.classification_rule_generation(
-            transactions=records, min_support=0.1, min_conf=0.09, corr=0.04)
+            transactions=records, c1=c1, classes=[frozenset(['Alive']), frozenset(['Expired'])], min_support=0.1, min_conf=0.09, corr=0.04)
         if len(PCR + NCR) > 0:
             sorted_rules = sorted(PCR + NCR, key=lambda d: abs(d['confidence']), reverse=True)
             predicted_class = classification.classification(object_o, sorted_rules, 0.1)
