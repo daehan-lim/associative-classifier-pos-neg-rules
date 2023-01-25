@@ -1,12 +1,8 @@
 import csv
-import timeit
-
 import numpy as np
 import pandas as pd
-
 from src.classification import classification
 from src.rule_gen import rule_generation
-from src.rule_gen import rule_gen_with_ck
 
 if __name__ == '__main__':
     # dataset = pd.read_csv('data/store_data.csv', header=None)  # To make sure the first row is not thought of as
@@ -20,24 +16,21 @@ if __name__ == '__main__':
         c1 = [frozenset([item]) for item in header]
         records = [list(filter(None, row)) for row in reader]
 
-    PCR = []
-    NCR = []
-    predicted_class = None
+        # df = pd.read_csv('../data/eicu_all_attrb_header.csv', keep_default_na=False)
+        # header2 = df.columns.tolist()
+        # header2.remove('mortality')
+        # c1_2 = [frozenset([item]) for item in header2]
+        # # noinspection PyTypeChecker
+        # records2 = [list(filter(None, row)) for row in df.values.tolist()]
+
     object_o = frozenset(['ACETAMINOPHEN 325 MG PO TABS',
                           ])
-    corr = 0.5
-    while corr > 0.001:
-        PCR, NCR = rule_generation.classification_rule_generation(
-            transactions=records, c1=c1, classes=[frozenset(['Alive']), frozenset(['Expired'])], min_support=0.1, min_conf=0.09, corr=0.04)
-        if len(PCR + NCR) > 0:
-            sorted_rules = sorted(PCR + NCR, key=lambda d: abs(d['confidence']), reverse=True)
-            predicted_class = classification.classification(object_o, sorted_rules, 0.1)
-            if predicted_class is not None:
-                break
-        if corr > 0.11:
-            corr -= 0.1
-        else:
-            corr -= 0.04
+
+    PCR, NCR = rule_generation.classification_rule_generation(
+        transactions=records, c1=c1, classes=[frozenset(['Alive']), frozenset(['Expired'])], min_support=0.01,
+        min_conf=0.5, corr=0.05)
+    sorted_rules = sorted(PCR + NCR, key=lambda d: abs(d['confidence']), reverse=True)
+    predicted_class = classification.classification(object_o, sorted_rules, 0.1)
 
     pr = np.expand_dims(np.array(PCR), axis=1)
     nr = np.expand_dims(np.array(NCR), axis=1)
