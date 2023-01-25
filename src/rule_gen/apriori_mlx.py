@@ -64,73 +64,39 @@ def apriori_of_size_1(df, min_support=0.5):
     return itemsets
 
 
-def apriori_of_size_k(
-        df, min_support=0.5, use_colnames=False, verbose=0, k=1
-):
-    if hasattr(df, "sparse"):
-        # DataFrame with SparseArray (pandas >= 0.24)
-        if df.size == 0:
-            X = df.values
-        else:
-            X = df.sparse.to_coo().tocsc()
-        is_sparse = True
-    else:
-        # dense DataFrame
-        X = df.values
-        is_sparse = False
-    support = _support(X, X.shape[0], is_sparse)
+def apriori_of_size_k(df, min_support=0.5, use_colnames=False, k=2):
+    X = df.values
+    support_series = _support(X, X.shape[0], _is_sparse=False)
     ary_col_idx = np.arange(X.shape[1])
-    support_dict = {1: support[support >= min_support]}
-    itemset_dict = {1: ary_col_idx[support >= min_support].reshape(-1, 1)}
+    itemset_dict = {1: ary_col_idx[support_series >= min_support].reshape(-1, 1)}
     max_itemset = 1
     rows_count = float(X.shape[0])
 
-    all_ones = np.ones((int(rows_count), 1))
+    while max_itemset and max_itemset < (k or float("inf")):
+        next_max_itemset = max_itemset + 1
 
-    if k > 1:
-        while max_itemset and max_itemset < (k or float("inf")):
-            next_max_itemset = max_itemset + 1
+        combin = generate_new_combinations(itemset_dict[max_itemset])
+        combin = np.fromiter(combin, dtype=int)
+        combin = combin.reshape(-1, next_max_itemset)
 
-            combin = generate_new_combinations(itemset_dict[max_itemset])
-            combin = np.fromiter(combin, dtype=int)
-            combin = combin.reshape(-1, next_max_itemset)
+        if combin.size == 0:
+            return pd.DataFrame()
+        _bools = np.all(X[:, combin], axis=2)
+        support_series = _support(np.array(_bools), rows_count, False)
+        _mask = (support_series >= min_support).reshape(-1)
+        if any(_mask):
+            itemset_dict[next_max_itemset] = np.array(combin[_mask])
+            max_itemset = next_max_itemset
+        else:
+            return pd.DataFrame()
 
-            if combin.size == 0:
-                return pd.DataFrame()
-            if is_sparse:
-                _bools = X[:, combin[:, 0]] == all_ones
-                for n in range(1, combin.shape[1]):
-                    _bools = _bools & (X[:, combin[:, n]] == all_ones)
-            else:
-                _bools = np.all(X[:, combin], axis=2)
-
-            support = _support(np.array(_bools), rows_count, is_sparse)
-            _mask = (support >= min_support).reshape(-1)
-            if any(_mask):
-                itemset_dict[next_max_itemset] = np.array(combin[_mask])
-                support_dict[next_max_itemset] = np.array(support[_mask])
-                max_itemset = next_max_itemset
-            else:
-                return pd.DataFrame()
-
-    all_res = []
     for k in sorted(itemset_dict):
-        support = pd.Series(support_dict[k])
         itemsets = pd.Series([frozenset(i) for i in itemset_dict[k]], dtype="object")
 
-        res = pd.concat((support, itemsets), axis=1)
-        all_res.append(res)
-
-    # res_df = pd.concat(all_res)
-    res.columns = ["support", "itemsets"]
     if use_colnames:
         mapping = {idx: item for idx, item in enumerate(df.columns)}
-        res["itemsets"] = res["itemsets"].apply(
+        itemsets = itemsets.apply(
             lambda x: frozenset([mapping[i] for i in x])
         )
-    res_df = res.reset_index(drop=True)
 
-    if verbose:
-        print()  # adds newline if verbose counter was used
-
-    return res_df
+    return itemsets

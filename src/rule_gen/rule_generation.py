@@ -33,7 +33,7 @@ def classification_rule_generation(transactions, classes, min_support, corr, min
         k_freq_itemsets = apriori_mlx.apriori_of_size_k(pd.DataFrame(transactions_df.drop(['Alive', 'Expired'], axis=1)),
                                                         min_support=min_support, use_colnames=True, k=k+2)
         frequent_itemsets.append(None if k_freq_itemsets.empty
-                                 else k_freq_itemsets['itemsets'].tolist())
+                                 else k_freq_itemsets.tolist())
         k += 1
 
     return PCR, NCR
