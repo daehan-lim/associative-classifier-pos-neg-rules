@@ -4,15 +4,21 @@ from src.posneg_rule_gen.posneg_rule_generation import ponerg
 from src.rule_gen import apriori_mlx
 from src.util import util
 import itertools
+from mlxtend.preprocessing import TransactionEncoder
+import timeit
 
 
-def classification_rule_generation(transactions, c1, classes, min_support, corr, min_conf):
+def classification_rule_generation(transactions, classes, min_support, corr, min_conf):
     PCR = []
     NCR = []
 
     # f1 = apriori(pd.DataFrame(transactions_df), min_support=min_support, use_colnames=True, max_len=1)
-    transactions_df = util.convert_trans_to_df(transactions)
-    # class_support_count_dict = util.get_support_count_dict(classes, transactions)
+    te = TransactionEncoder()
+    te_ary = te.fit_transform(transactions)
+    transactions_df = pd.DataFrame(te_ary, columns=te.columns_)
+    te.columns_.remove('Expired')  # generalize later without using class names
+    te.columns_.remove('Alive')
+    c1 = [frozenset([item]) for item in te.columns_]
     class_support_count_dict = util.get_support_count_dict_df(classes, transactions_df)
     f1 = create_1_freq_itemsets(transactions, c1, min_support=min_support)
     frequent_itemsets = [f1]
