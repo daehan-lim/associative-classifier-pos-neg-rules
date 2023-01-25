@@ -49,6 +49,21 @@ def _support(_x, _n_rows, _is_sparse):
     return np.array(out).reshape(-1)
 
 
+def apriori_of_size_1(df, min_support=0.5):
+    X = df.values
+    support_series = _support(X, X.shape[0], _is_sparse=False)
+    ary_col_idx = np.arange(X.shape[1])
+    itemset_array = ary_col_idx[support_series >= min_support].reshape(-1, 1)
+
+    itemsets = pd.Series([frozenset(i) for i in itemset_array], dtype="object")
+    mapping = {idx: item for idx, item in enumerate(df.columns)}
+    itemsets = itemsets.apply(
+        lambda x: frozenset([mapping[i] for i in x])
+    )
+
+    return itemsets
+
+
 def apriori_of_size_k(
         df, min_support=0.5, use_colnames=False, verbose=0, k=1
 ):

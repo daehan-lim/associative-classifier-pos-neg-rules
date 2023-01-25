@@ -12,15 +12,10 @@ def classification_rule_generation(transactions, classes, min_support, corr, min
     PCR = []
     NCR = []
 
-    # f1 = apriori(pd.DataFrame(transactions_df), min_support=min_support, use_colnames=True, max_len=1)
-    te = TransactionEncoder()
-    te_ary = te.fit_transform(transactions)
-    transactions_df = pd.DataFrame(te_ary, columns=te.columns_)
-    te.columns_.remove('Expired')  # generalize later without using class names
-    te.columns_.remove('Alive')
-    c1 = [frozenset([item]) for item in te.columns_]
+    transactions_df = util.convert_trans_to_df(transactions)
     class_support_count_dict = util.get_support_count_dict_df(classes, transactions_df)
-    f1 = create_1_freq_itemsets(transactions, c1, min_support=min_support)
+    f1 = apriori_mlx.apriori_of_size_1(pd.DataFrame(transactions_df.drop(['Alive', 'Expired'], axis=1)),
+                                       min_support=min_support).tolist()
     frequent_itemsets = [f1]
     for item in f1:
         rules = ponerg(item, classes, class_support_count_dict, corr, min_conf, transactions_df)
@@ -86,17 +81,3 @@ def create_candidate_1(transactions, classes):
     return c1
 
 
-def create_1_freq_itemsets(transactions, ck, min_support):
-    """
-    filters the candidate with the specified minimum support
-    """
-
-    #loop through the transaction and compute the count for each candidate (item)
-    support_count_dict = util.get_support_count_dict(ck, transactions)
-    freq_itemsets = []
-    # if the support of an item is greater than the min_support, then it is considered as frequent
-    for item in support_count_dict:
-        support = support_count_dict[item] / len(transactions)
-        if support >= min_support:
-            freq_itemsets.append(item)
-    return freq_itemsets
