@@ -61,42 +61,32 @@ def apriori_of_size_1(df, min_support=0.5):
         lambda x: frozenset([mapping[i] for i in x])
     )
 
-    return itemsets
+    return itemsets, itemset_array
 
 
-def apriori_of_size_k(df, min_support=0.5, use_colnames=False, k=2):
-    X = df.values
-    support_series = _support(X, X.shape[0], _is_sparse=False)
-    ary_col_idx = np.arange(X.shape[1])
-    itemset_dict = {1: ary_col_idx[support_series >= min_support].reshape(-1, 1)}
-    max_itemset = 1
-    rows_count = float(X.shape[0])
+def apriori_of_size_k(df, previous_itemset_array, min_support=0.5, k=2):
+    transactions_series = df.values
+    rows_count = float(df.values.shape[0])
 
-    while max_itemset and max_itemset < (k or float("inf")):
-        next_max_itemset = max_itemset + 1
+    combin = generate_new_combinations(previous_itemset_array)
+    combin = np.fromiter(combin, dtype=int)
+    combin = combin.reshape(-1, k)
 
-        combin = generate_new_combinations(itemset_dict[max_itemset])
-        combin = np.fromiter(combin, dtype=int)
-        combin = combin.reshape(-1, next_max_itemset)
+    if combin.size == 0:
+        return pd.DataFrame(), None
+    _bools = np.all(transactions_series[:, combin], axis=2)
+    support_series = _support(np.array(_bools), rows_count, False)
+    _mask = (support_series >= min_support).reshape(-1)
+    if any(_mask):
+        itemset_array = np.array(combin[_mask])
+    else:
+        return pd.DataFrame(), None
 
-        if combin.size == 0:
-            return pd.DataFrame()
-        _bools = np.all(X[:, combin], axis=2)
-        support_series = _support(np.array(_bools), rows_count, False)
-        _mask = (support_series >= min_support).reshape(-1)
-        if any(_mask):
-            itemset_dict[next_max_itemset] = np.array(combin[_mask])
-            max_itemset = next_max_itemset
-        else:
-            return pd.DataFrame()
+    itemsets = pd.Series([frozenset(i) for i in itemset_array], dtype="object")
 
-    for k in sorted(itemset_dict):
-        itemsets = pd.Series([frozenset(i) for i in itemset_dict[k]], dtype="object")
+    mapping = {idx: item for idx, item in enumerate(df.columns)}
+    itemsets = itemsets.apply(
+        lambda x: frozenset([mapping[i] for i in x])
+    )
 
-    if use_colnames:
-        mapping = {idx: item for idx, item in enumerate(df.columns)}
-        itemsets = itemsets.apply(
-            lambda x: frozenset([mapping[i] for i in x])
-        )
-
-    return itemsets
+    return itemsets, itemset_array

@@ -12,8 +12,8 @@ if __name__ == '__main__':
     object_o = frozenset(['ACETAMINOPHEN 325 MG PO TABS',
                           ])
     PCR, NCR = rule_generation.classification_rule_generation(
-        transactions=records, classes=[frozenset(['Alive']), frozenset(['Expired'])], min_support=0.01,
-        min_conf=0.5, corr=0.05)
+        transactions=records, classes=[frozenset(['Alive']), frozenset(['Expired'])], min_support=0.03,
+        min_conf=0.05, corr=0.01)
     sorted_rules = sorted(PCR + NCR, key=lambda d: abs(d['confidence']), reverse=True)
     predicted_class = classification.classification(object_o, sorted_rules, 0.1)
 

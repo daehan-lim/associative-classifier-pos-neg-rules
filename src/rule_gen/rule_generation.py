@@ -14,8 +14,9 @@ def classification_rule_generation(transactions, classes, min_support, corr, min
 
     transactions_df = util.convert_trans_to_df(transactions)
     class_support_count_dict = util.get_support_count_dict_df(classes, transactions_df)
-    f1 = apriori_mlx.apriori_of_size_1(pd.DataFrame(transactions_df.drop(['Alive', 'Expired'], axis=1)),
-                                       min_support=min_support).tolist()
+    f1, previous_itemset_array = apriori_mlx.apriori_of_size_1(
+        pd.DataFrame(transactions_df.drop(['Alive', 'Expired'], axis=1)), min_support=min_support)
+    f1 = f1.tolist()
     frequent_itemsets = [f1]
     for item in f1:
         rules = ponerg(item, classes, class_support_count_dict, corr, min_conf, transactions_df)
@@ -30,8 +31,9 @@ def classification_rule_generation(transactions, classes, min_support, corr, min
             PCR.extend(rules[0])
             NCR.extend(rules[1])
 
-        k_freq_itemsets = apriori_mlx.apriori_of_size_k(pd.DataFrame(transactions_df.drop(['Alive', 'Expired'], axis=1)),
-                                                        min_support=min_support, use_colnames=True, k=k+2)
+        k_freq_itemsets, previous_itemset_array = apriori_mlx.apriori_of_size_k(
+            pd.DataFrame(transactions_df.drop(['Alive', 'Expired'], axis=1)), previous_itemset_array,
+            min_support=min_support, k=k+2)
         frequent_itemsets.append(None if k_freq_itemsets.empty
                                  else k_freq_itemsets.tolist())
         k += 1
