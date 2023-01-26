@@ -6,14 +6,14 @@ from src.rule_gen import rule_generation
 
 if __name__ == '__main__':
 
-    with open('../data/eicu_all_attrb.csv', 'r') as file:
+    with open('../data/training_dataset.csv', 'r') as file:
         records = [list(filter(None, row)) for row in csv.reader(file)]
 
     object_o = frozenset(['ACETAMINOPHEN 325 MG PO TABS',
                           ])
     PCR, NCR = rule_generation.classification_rule_generation(
-        transactions=records, classes=[frozenset(['Alive']), frozenset(['Expired'])], min_support=0.03,
-        min_conf=0.05, corr=0.01)
+        transactions=records, classes=[frozenset(['1']), frozenset(['0'])], min_support=0.05,
+        min_conf=0.05, corr=0.03)
     sorted_rules = sorted(PCR + NCR, key=lambda d: abs(d['confidence']), reverse=True)
     predicted_class = classification.classification(object_o, sorted_rules, 0.1)
 
