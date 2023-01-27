@@ -1,10 +1,8 @@
 import pandas as pd
-
 from src.posneg_rule_gen.posneg_rule_generation import ponerg
 from src.rule_gen import apriori_mlx
 from src.util import util
 import itertools
-from mlxtend.preprocessing import TransactionEncoder
 import timeit
 
 
@@ -40,7 +38,6 @@ def classification_rule_generation(transactions, classes, min_support, corr, min
         k += 1
 
     return PCR, NCR
-    # return PCR, NCR
 
 
 def _greater_than_items(item_set, one_itemset_item):
@@ -64,23 +61,7 @@ def _generate_ck_merge(k_freq_itemsets, one_freq_itemsets):
                 one_itemset_item, = one_itemset  # unpacking the only element in set
                 if _greater_than_items(k_itemset, one_itemset_item):
                     ck.append(k_itemset | one_itemset)
-    # Convert the list of frozensets to a Pandas Series and return it
     return ck
 
-
-def create_candidate_1(transactions, classes):
-    """
-    create the 1-item candidate,
-    it's basically creating a frozenset for each unique item
-    and storing them in a list
-    """
-    c1 = []
-    for transaction in transactions:
-        for t in transaction:
-            if t not in classes:
-                t = frozenset([t])
-                if t not in c1:
-                    c1.append(t)
-    return c1
 
 
