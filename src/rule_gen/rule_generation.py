@@ -31,8 +31,7 @@ def classification_rule_generation(transactions, classes, min_support, corr, min
             NCR.extend(rules[1])
 
         k_freq_itemsets, previous_itemset_array = apriori_mlx.apriori_of_size_k(
-            itemsets_df, previous_itemset_array,
-            min_support=min_support, k=k+2)
+            itemsets_df, previous_itemset_array, min_support=min_support, k=k+2)
         frequent_itemsets.append(None if k_freq_itemsets.empty
                                  else k_freq_itemsets.tolist())
         k += 1
@@ -41,7 +40,7 @@ def classification_rule_generation(transactions, classes, min_support, corr, min
 
 
 def _greater_than_items(item_set, one_itemset_item):
-    for set_item in sorted(item_set):
+    for set_item in item_set:
         if one_itemset_item <= set_item:
             return False
     return True
