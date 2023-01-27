@@ -11,9 +11,9 @@ if __name__ == '__main__':
     with open('../data/test_dataset.csv', 'r') as file:
         test_set = [list(filter(None, row)) for row in csv.reader(file)]
 
-    min_support = 0.02
-    min_conf = 0.05
-    corr = 0.09
+    min_support = 0.03
+    min_conf = 0.04
+    corr = 0.07
     PCR, NCR = rule_generation.classification_rule_generation(
         transactions=training_set, classes=[frozenset(['1']), frozenset(['0'])], min_support=min_support,
         min_conf=min_conf, corr=corr)
