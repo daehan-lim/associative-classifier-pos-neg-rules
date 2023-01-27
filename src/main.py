@@ -25,7 +25,7 @@ if __name__ == '__main__':
     for transaction in test_set:
         real_classes.append(transaction[-1])
         object_o = frozenset([item for item in transaction[:-1]])
-        predicted_classes.append(classification.classification(object_o, sorted_rules, 0.1))
+        predicted_classes.append(classification.classification(object_o, sorted_rules))
 
     pr = np.expand_dims(np.array(PCR), axis=1)
     nr = np.expand_dims(np.array(NCR), axis=1)
