@@ -3,24 +3,24 @@ from util import util
 import timeit
 
 
-def ponerg(itemset, classes, class_support_count_dict, min_conf, transactions_df):
+def ponerg(itemset, classes, class_supp_count_dict, min_conf, transactions_df):
     rules = []
     for c in classes:
-        combined_support_count = util.get_item_support_count_df(itemset | c, transactions_df)
-        antecedent_support_count = util.get_item_support_count_df(itemset, transactions_df)
-        lift = get_lift(combined_support_count, antecedent_support_count, class_support_count_dict[c], len(transactions_df))
+        i_and_c_supp_count = util.get_item_support_count_df(itemset | c, transactions_df)
+        i_supp_count = util.get_item_support_count_df(itemset, transactions_df)
+        lift = get_lift(i_and_c_supp_count, i_supp_count, class_supp_count_dict[c], len(transactions_df))
         c_str, = c
         if lift > 1:
-            if (conf := confidence(combined_support_count, antecedent_support_count)) >= min_conf:
+            if (conf := confidence(i_and_c_supp_count, i_supp_count)) >= min_conf:
                 rules.append({'antecedent': itemset, 'consequent': c_str, 'confidence': conf})
             break
     return rules
 
 
-def get_lift(combined_support_count, antecedent_support_count, consequent_support_count, N):
-    if antecedent_support_count == 0 or consequent_support_count == 0:
+def get_lift(i_and_c_supp_count, i_supp_count, class_supp_count, N):
+    if i_supp_count == 0 or class_supp_count == 0:
         return 0
-    return (combined_support_count * N) / (antecedent_support_count * consequent_support_count)
+    return (i_and_c_supp_count * N) / (i_supp_count * class_supp_count)
 
 
 def correlation(itemset, c, transactions_df, f1_plus, f11, f_plus_1):
@@ -54,5 +54,5 @@ def correlation(itemset, c, transactions_df, f1_plus, f11, f_plus_1):
 # f0+ = f01 + f00
 
 
-def confidence(combined_support_count, antecedent_support_count):
-    return combined_support_count / antecedent_support_count
+def confidence(i_and_c_supp_count, i_supp_count):
+    return i_and_c_supp_count / i_supp_count
