@@ -8,6 +8,8 @@ if __name__ == '__main__':
     with open('../data/training_dataset.csv', 'r') as file:
         training_set = [list(filter(None, row)) for row in csv.reader(file)]
 
+    avg_transaction_size = sum(len(transaction) for transaction in training_set) / len(training_set)
+
     with open('../data/test_dataset.csv', 'r') as file:
         test_set = [list(filter(None, row)) for row in csv.reader(file)]
 
