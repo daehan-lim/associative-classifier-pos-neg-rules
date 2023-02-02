@@ -1,3 +1,5 @@
+import multiprocessing
+
 import pandas as pd
 from src.posneg_rule_gen.posneg_rule_generation import ponerg
 from src.rule_gen import apriori_mlx
@@ -5,8 +7,22 @@ from src.util import util
 import itertools
 import timeit
 
+classes = []
+min_support = -1
+min_conf = -1
+class_support_count_dict = dict()
+transactions_df = None
 
-def classification_rule_generation(transactions, classes, min_support, corr, min_conf):
+
+def classification_rule_generation(transactions, m_classes, m_min_support, m_min_conf):
+    global classes
+    global min_support
+    global min_conf
+    global class_support_count_dict
+    global transactions_df
+    classes = m_classes
+    min_support = m_min_support
+    min_conf = m_min_conf
     rules = []
 
     transactions_df = util.convert_trans_to_df(transactions)
@@ -17,20 +33,32 @@ def classification_rule_generation(transactions, classes, min_support, corr, min
     f1 = f1.tolist()
     frequent_itemsets = [f1]
     for item in f1:
-        rules.extend(ponerg(item, classes, class_support_count_dict, corr, min_conf, transactions_df))
+        rules.extend(ponerg(item, classes, class_support_count_dict, min_conf, transactions_df))
 
     k = 0
     while frequent_itemsets[k] is not None and len(frequent_itemsets[k]) > 0:
         ck = _generate_ck_merge(frequent_itemsets[k], f1)
-        for item in ck:
-            rules.extend(ponerg(item, classes, class_support_count_dict, corr, min_conf, transactions_df))
+        with multiprocessing.Pool() as pool:
+            result = pool.map(ponerg_parallel, ck)
+        rules_to_extend = [x[0] for x in result if x != []]
+        rules.extend(rules_to_extend)
+        # for rule_list in result:
+        #     if rule_list:
+        #         rules.extend(rule_list)
+
+        # for item in ck:
+        #     rules.extend(ponerg(item, classes, class_support_count_dict, min_conf, transactions_df))
         k_freq_itemsets, previous_itemset_array = apriori_mlx.apriori_of_size_k(
-            itemsets_df, previous_itemset_array, min_support=min_support, k=k+2)
+            itemsets_df, previous_itemset_array, min_support=min_support, k=k + 2)
         frequent_itemsets.append(None if k_freq_itemsets.empty
                                  else k_freq_itemsets.tolist())
         k += 1
 
     return rules
+
+
+def ponerg_parallel(ck_item):
+    return ponerg(ck_item, classes, class_support_count_dict, min_conf, transactions_df)
 
 
 def _greater_than_items(item_set, one_itemset_item):
@@ -55,6 +83,3 @@ def _generate_ck_merge(k_freq_itemsets, one_freq_itemsets):
                 if _greater_than_items(k_itemset, one_itemset_item):
                     ck.append(k_itemset | one_itemset)
     return ck
-
-
-

@@ -17,8 +17,8 @@ if __name__ == '__main__':
     min_conf = 0.15
     corr = 0.07
     rules = rule_generation.classification_rule_generation(
-        transactions=training_set, classes=[frozenset(['1']), frozenset(['0'])], min_support=min_support,
-        min_conf=min_conf, corr=corr)
+        transactions=training_set, m_classes=[frozenset(['1']), frozenset(['0'])], m_min_support=min_support,
+        m_min_conf=min_conf)
     sorted_rules = sorted(rules, key=lambda d: abs(d['confidence']), reverse=True)
 
     real_classes = []

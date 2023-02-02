@@ -3,7 +3,7 @@ from src.util import util
 import timeit
 
 
-def ponerg(itemset, classes, class_support_count_dict, corr, min_conf, transactions_df):
+def ponerg(itemset, classes, class_support_count_dict, min_conf, transactions_df):
     rules = []
     for c in classes:
         combined_support_count = util.get_item_support_count_df(itemset | c, transactions_df)
