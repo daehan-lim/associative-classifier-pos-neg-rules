@@ -15,8 +15,8 @@ if __name__ == '__main__':
     with open('../data/test_dataset.csv', 'r') as file:
         test_set = [list(filter(None, row)) for row in csv.reader(file)]
 
-    min_support = 0.016
-    min_conf = 0.01
+    min_support = 0.015
+    min_conf = 0.05
     rules = rule_generation.classification_rule_generation(
         transactions=training_set, m_classes=[frozenset(['1']), frozenset(['0'])], m_min_support=min_support,
         m_min_conf=min_conf)
@@ -38,9 +38,9 @@ if __name__ == '__main__':
     print(f"min_support = {min_support},  min_conf = {min_conf}")
     print(f"# of classes predicted as '0': {np.count_nonzero(y_pred == 0)}  "
           f"out of {np.count_nonzero(y_true == 0)} in real set")
-    print(f"# of misclassifications: {np.count_nonzero(y_pred == -1)}")
     print(f"# of classes predicted as '1': {np.count_nonzero(y_pred == 1)}  "
           f"out of {np.count_nonzero(y_true == 1)} in real set")
+    print(f"# of misclassifications: {np.count_nonzero(y_pred == -1)}")
     print(f"Rules: {len(rules)}")
     print(f"Accuracy: {accuracy}%")
 
