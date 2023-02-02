@@ -39,13 +39,7 @@ def classification_rule_generation(transactions, m_classes, m_min_support, m_min
     while frequent_itemsets[k] is not None and len(frequent_itemsets[k]) > 0:
         ck = _generate_ck_merge(frequent_itemsets[k], f1)
         with multiprocessing.Pool() as pool:
-            result = pool.map(ponerg_parallel, ck)
-        rules_to_extend = [x[0] for x in result if x != []]
-        rules.extend(rules_to_extend)
-        # for rule_list in result:
-        #     if rule_list:
-        #         rules.extend(rule_list)
-
+            rules.extend([x[0] for x in pool.map(ponerg_parallel, ck) if x != []])
         # for item in ck:
         #     rules.extend(ponerg(item, classes, class_support_count_dict, min_conf, transactions_df))
         k_freq_itemsets, previous_itemset_array = apriori_mlx.apriori_of_size_k(
