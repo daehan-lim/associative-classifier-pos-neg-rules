@@ -8,14 +8,14 @@ def ponerg(itemset, classes, class_supp_count_dict, min_conf, transactions_df):
     for c in classes:
         i_and_c_supp_count = util.get_item_support_count_df(itemset | c, transactions_df)
         i_supp_count = util.get_item_support_count_df(itemset, transactions_df)
-        lift = get_lift(i_and_c_supp_count, i_supp_count, class_supp_count_dict[c], len(transactions_df))
-        if lift > 1:
-            c_str, = c
-            i_and_not_c_supp_count = util.get_support_count_i_and_not_c(itemset, c_str, transactions_df)
-            not_c_supp_count = util.get_item_support_count_df(c, transactions_df, negated=True)
+        # lift = get_lift(i_and_c_supp_count, i_supp_count, class_supp_count_dict[c], len(transactions_df))
+        c_str, = c
+        i_and_not_c_supp_count = util.get_support_count_i_and_not_c(itemset, c_str, transactions_df)
+        not_c_supp_count = util.get_item_support_count_df(c, transactions_df, negated=True)
+        css = i_and_not_c_supp_count / not_c_supp_count
+        if css < i_supp_count / len(transactions_df):
             if (conf := confidence_selection(
-                    i_and_c_supp_count, i_supp_count, class_supp_count_dict[c], i_and_not_c_supp_count,
-                    not_c_supp_count)) >= min_conf:
+                    i_and_c_supp_count, i_supp_count, class_supp_count_dict[c], css)) >= min_conf:
                 rules.append({'antecedent': itemset, 'consequent': c_str, 'confidence': conf})
             break
         else:
@@ -33,12 +33,11 @@ def confidence(i_and_c_supp_count, i_supp_count):
     return i_and_c_supp_count / i_supp_count
 
 
-def confidence_selection(i_and_c_supp_count, i_supp_count, class_supp_count, i_and_not_c_supp_count, not_c_supp_count):
-    if class_supp_count == 0 or not_c_supp_count == 0 or i_and_not_c_supp_count == 0:
+def confidence_selection(i_and_c_supp_count, i_supp_count, class_supp_count, css):
+    if class_supp_count == 0 or css == 0:
         return 0
     conf = confidence(i_and_c_supp_count, i_supp_count)
     class_supp = i_and_c_supp_count / class_supp_count
-    css = i_and_not_c_supp_count / not_c_supp_count
     return class_supp / css
 
 
