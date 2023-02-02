@@ -15,7 +15,7 @@ if __name__ == '__main__':
     with open('../data/test_dataset.csv', 'r') as file:
         test_set = [list(filter(None, row)) for row in csv.reader(file)]
 
-    min_support = 0.015
+    min_support = 0.03
     min_conf = 0.05
     rules = rule_generation.classification_rule_generation(
         transactions=training_set, m_classes=[frozenset(['1']), frozenset(['0'])], m_min_support=min_support,

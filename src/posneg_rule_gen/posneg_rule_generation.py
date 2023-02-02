@@ -38,7 +38,7 @@ def confidence_selection(i_and_c_supp_count, i_supp_count, class_supp_count, css
         return 0
     conf = confidence(i_and_c_supp_count, i_supp_count)
     class_supp = i_and_c_supp_count / class_supp_count
-    return class_supp / css
+    return conf * (class_supp / css)
 
 
 def correlation(itemset, c, transactions_df, f1_plus, f11, f_plus_1):

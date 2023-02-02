@@ -2,10 +2,41 @@ from collections import defaultdict
 
 
 def classification(object_o, rules_set, confidence_margin):
+    matching_rules = []
+    count = 0
+    first_rule_confidence = None
     for rule in rules_set:
         if rule_matches_object(rule, object_o):
-            return int(rule['consequent'])
-    return -1
+            if count == 0:
+                count += 1
+                first_rule_confidence = abs(rule['confidence'])
+                matching_rules.append(rule)
+            elif abs(rule['confidence']) > first_rule_confidence - confidence_margin:
+                matching_rules.append(rule)
+            else:
+                break
+
+    if len(matching_rules) == 0:
+        return -1
+
+    # Divide the set S into subsets based on category
+    rules_by_class = defaultdict(list)
+    for rule in matching_rules:
+        rules_by_class[rule['consequent'].replace('!', '')].append(rule)
+
+    # Calculate the average confidence score for each category
+    avg_conf_by_group = dict()
+    for rule_group in rules_by_class:
+        avg_conf_by_group[rule_group] = sum(rule['confidence'] for rule in rules_by_class[rule_group]) / len(
+            rules_by_class[rule_group])
+
+    predicted_class = -1
+    # Assign the new object to the class with the highest confidence score
+    if (max_confidence := max(avg_conf_by_group.values())) > 0:
+        predicted_class = [c for c, conf in avg_conf_by_group.items() if conf == max_confidence][0]
+
+    # predicted_class = max(avg_conf_by_group.items(), key=lambda x: x[1])[0]
+    return int(predicted_class)
 
 
 def rule_matches_object(rule, object_o: frozenset) -> bool:
