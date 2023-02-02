@@ -1,7 +1,7 @@
 import csv
 import numpy as np
-from src.classification import classification
-from src.rule_gen import rule_generation
+from classification import classification
+from rule_gen import rule_generation
 
 if __name__ == '__main__':
 

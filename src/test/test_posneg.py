@@ -2,7 +2,7 @@ import csv
 import math
 import timeit
 
-from src.util import util
+from util import util
 
 records = []
 with open('../../data/eicu_three_meds.csv', 'r') as file:

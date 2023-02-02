@@ -1,5 +1,5 @@
 import math
-from src.util import util
+from util import util
 import timeit
 
 

@@ -1,6 +1,6 @@
 import pandas as pd
 import itertools
-import src.util.ck_generation as ck_gen
+import util.ck_generation as ck_gen
 
 
 def classification_rule_generation(transactions, min_support, corr, min_conf):

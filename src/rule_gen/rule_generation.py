@@ -1,9 +1,9 @@
 import multiprocessing
 
 import pandas as pd
-from src.posneg_rule_gen.posneg_rule_generation import ponerg
-from src.rule_gen import apriori_mlx
-from src.util import util
+from posneg_rule_gen.posneg_rule_generation import ponerg
+from rule_gen import apriori_mlx
+from util import util
 import itertools
 import timeit
 
