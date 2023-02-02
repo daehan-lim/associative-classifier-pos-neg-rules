@@ -31,11 +31,10 @@ if __name__ == '__main__':
     accuracy = 100 * np.sum(y_true == y_pred) / len(y_true)
 
     print(f"min_support = {min_support},  min_conf = {min_conf},  corr = {corr}")
-    print(f"# of 0 in y_true: {np.count_nonzero(y_true == 0)}")
-    print(f"# of 0 in y_pred: {np.count_nonzero(y_pred == 0)}")
-    print(f"# of -1 in y_pred: {np.count_nonzero(y_pred == -1)}")
-    print(f"Positive rules: {len(PCR)}")
-    print(f"Negative rules: {len(NCR)}")
+    print(f"Out of {np.count_nonzero(y_true == 0)} '0' classes in test set")
+    print(f"# of classes predicted as '0': {np.count_nonzero(y_pred == 0)}")
+    print(f"# of misclassifications: {np.count_nonzero(y_pred == -1)}")
+    print(f"Rules: {len(rules)}")
     print(f"Accuracy: {accuracy}%")
 
     # pr = np.expand_dims(np.array(PCR), axis=1)
