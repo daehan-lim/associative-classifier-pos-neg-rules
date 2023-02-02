@@ -1,8 +1,21 @@
 from collections import defaultdict
 
 
-def classification(object_o, rules_set):
-    matching_rules = [rule for rule in rules_set if rule_matches_object(rule, object_o)]
+def classification(object_o, rules_set, confidence_margin):
+    matching_rules = []
+    count = 0
+    first_rule_confidence = None
+    for rule in rules_set:
+        if rule_matches_object(rule, object_o):
+            if count == 0:
+                count += 1
+                first_rule_confidence = abs(rule['confidence'])
+                matching_rules.append(rule)
+            elif abs(rule['confidence']) > first_rule_confidence - confidence_margin:
+                matching_rules.append(rule)
+            else:
+                break
+
     if len(matching_rules) == 0:
         return -1
 

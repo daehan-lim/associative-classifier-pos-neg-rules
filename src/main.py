@@ -15,8 +15,8 @@ if __name__ == '__main__':
     with open('../data/test_dataset.csv', 'r') as file:
         test_set = [list(filter(None, row)) for row in csv.reader(file)]
 
-    min_support = 0.2
-    min_conf = 0.05
+    min_support = 0.016
+    min_conf = 0.01
     rules = rule_generation.classification_rule_generation(
         transactions=training_set, m_classes=[frozenset(['1']), frozenset(['0'])], m_min_support=min_support,
         m_min_conf=min_conf)
@@ -31,7 +31,7 @@ if __name__ == '__main__':
     for transaction in test_set:
         real_classes.append(int(transaction[-1]))
         object_o = frozenset([item for item in transaction[:-1]])
-        predicted_classes.append(classification.classification(object_o, sorted_rules))
+        predicted_classes.append(classification.classification(object_o, sorted_rules, 0.1))
     y_true, y_pred = np.array(real_classes), np.array(predicted_classes)
     accuracy = 100 * np.sum(y_true == y_pred) / len(y_true)
 
