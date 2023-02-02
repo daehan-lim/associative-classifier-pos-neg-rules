@@ -4,9 +4,7 @@ import timeit
 
 
 def ponerg(itemset, classes, class_support_count_dict, corr, min_conf, transactions_df):
-    PCR = []  # pd.DataFrame(columns=['antecedents', 'consequents'])
-    NCR = []  # pd.DataFrame(columns=['antecedents', 'consequents'])
-
+    rules = []
     for c in classes:
         combined_support_count = util.get_item_support_count_df(itemset | c, transactions_df)
         antecedent_support_count = util.get_item_support_count_df(itemset, transactions_df)
@@ -14,8 +12,9 @@ def ponerg(itemset, classes, class_support_count_dict, corr, min_conf, transacti
         c_str, = c
         if lift > 1:
             if (conf := confidence(combined_support_count, antecedent_support_count)) >= min_conf:
-                PCR.append({'antecedent': itemset, 'consequent': c_str, 'confidence': conf})
-    return PCR, NCR
+                rules.append({'antecedent': itemset, 'consequent': c_str, 'confidence': conf})
+            break
+    return rules
 
 
 def get_lift(combined_support_count, antecedent_support_count, consequent_support_count, N):

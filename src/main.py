@@ -16,10 +16,10 @@ if __name__ == '__main__':
     min_support = 0.03
     min_conf = 0.15
     corr = 0.07
-    PCR, NCR = rule_generation.classification_rule_generation(
+    rules = rule_generation.classification_rule_generation(
         transactions=training_set, classes=[frozenset(['1']), frozenset(['0'])], min_support=min_support,
         min_conf=min_conf, corr=corr)
-    sorted_rules = sorted(PCR + NCR, key=lambda d: abs(d['confidence']), reverse=True)
+    sorted_rules = sorted(rules, key=lambda d: abs(d['confidence']), reverse=True)
 
     real_classes = []
     predicted_classes = []

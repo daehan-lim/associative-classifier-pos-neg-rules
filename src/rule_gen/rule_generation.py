@@ -7,8 +7,7 @@ import timeit
 
 
 def classification_rule_generation(transactions, classes, min_support, corr, min_conf):
-    PCR = []
-    NCR = []
+    rules = []
 
     transactions_df = util.convert_trans_to_df(transactions)
     itemsets_df = pd.DataFrame(transactions_df.drop(['1', '0'], axis=1))
@@ -18,25 +17,20 @@ def classification_rule_generation(transactions, classes, min_support, corr, min
     f1 = f1.tolist()
     frequent_itemsets = [f1]
     for item in f1:
-        rules = ponerg(item, classes, class_support_count_dict, corr, min_conf, transactions_df)
-        PCR.extend(rules[0])
-        NCR.extend(rules[1])
+        rules.extend(ponerg(item, classes, class_support_count_dict, corr, min_conf, transactions_df))
 
     k = 0
     while frequent_itemsets[k] is not None and len(frequent_itemsets[k]) > 0:
         ck = _generate_ck_merge(frequent_itemsets[k], f1)
         for item in ck:
-            rules = ponerg(item, classes, class_support_count_dict, corr, min_conf, transactions_df)
-            PCR.extend(rules[0])
-            NCR.extend(rules[1])
-
+            rules.extend(ponerg(item, classes, class_support_count_dict, corr, min_conf, transactions_df))
         k_freq_itemsets, previous_itemset_array = apriori_mlx.apriori_of_size_k(
             itemsets_df, previous_itemset_array, min_support=min_support, k=k+2)
         frequent_itemsets.append(None if k_freq_itemsets.empty
                                  else k_freq_itemsets.tolist())
         k += 1
 
-    return PCR, NCR
+    return rules
 
 
 def _greater_than_items(item_set, one_itemset_item):
