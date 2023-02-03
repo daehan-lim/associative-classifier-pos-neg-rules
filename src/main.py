@@ -40,6 +40,8 @@ if __name__ == '__main__':
           f"out of {np.count_nonzero(y_true == 0)} in real set")
     print(f"# of classes predicted as '1': {np.count_nonzero(y_pred == 1)}  "
           f"out of {np.count_nonzero(y_true == 1)} in real set")
+    # print(f"Correctly Predicted as 0: {np.sum(y_true == 0 and y_pred == 0)}")
+    # print(f"Correctly Predicted as 1: {np.sum(y_true == 1 and y_pred == 1)}")
     print(f"# of misclassifications: {np.count_nonzero(y_pred == -1)}")
     print(f"Rules: {len(rules)}")
     print(f"Accuracy: {accuracy}%")
