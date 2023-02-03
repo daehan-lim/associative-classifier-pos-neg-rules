@@ -47,7 +47,7 @@ def classification_rule_generation(transactions, m_classes, m_min_support, m_min
         frequent_itemsets.append(None if k_freq_itemsets.empty
                                  else k_freq_itemsets.tolist())
         k += 1
-
+    print(f"k: {len(frequent_itemsets)}")
     return rules
 
 
