@@ -81,7 +81,7 @@ if __name__ == '__main__':
     print(f"F1 mean: {round(2 * F1 * F1_w_unclass / (F1 + F1_w_unclass), 3)}")
     print(f"Accuracy: {accuracy}%")
     print(f"Rules: {len(rules)}")
-    print(f"Max length of freq itemsets (k): {len(rules[-1]['antecedent']) - 1}")
+    print(f"Max length of freq itemsets (k): {len(rules[-1]['antecedent'])}")
     print(f"Avg rule conf: {round(sum(rule['confidence'] for rule in rules) / len(rules), 3)}")
     print(f"Min rule conf: {round(sorted_rules[-1]['confidence'], 3)}")
 
