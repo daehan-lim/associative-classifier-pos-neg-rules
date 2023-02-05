@@ -25,8 +25,6 @@ if __name__ == '__main__':
         min_conf=min_conf)
     sorted_rules = sorted(rules, key=lambda d: abs(d['confidence']), reverse=True)
 
-    # print(timeit.timeit(lambda: rule_generation.classification_rule_generation(), number=1))
-
     real_classes = []
     predicted_classes = []
     for transaction in test_set:
@@ -36,7 +34,7 @@ if __name__ == '__main__':
     y_true, y_pred = np.array(real_classes), np.array(predicted_classes)
     accuracy = 100 * np.sum(y_true == y_pred) / len(y_true)
 
-    print(f"min_support = {min_support},  min_conf = {min_conf}")
+    print(f"supp = {min_support},  conf = {min_conf}")
 
     TP = np.sum(np.logical_and(y_pred == 1, y_true == 1))
     TN = np.sum(np.logical_and(y_pred == 0, y_true == 0))
@@ -62,8 +60,8 @@ if __name__ == '__main__':
     ]
     precision = TP / (TP + FP)
     recall = TP / (TP + FN)
+    F1 = 2 * TP / (2*TP + FP + FN)
     print(tabulate(confusion_matrix, headers='firstrow', tablefmt='fancy_grid'))
-    print(f"Max length of freq itemsets (k): {len(rules[-1]['antecedent']) - 1}")
     # print(f"# of classes predicted as '0': {np.count_nonzero(y_pred == 0)}  "
     #       f"out of {np.count_nonzero(y_true == 0)} in real set")
     # print(f"# of classes predicted as '1': {np.count_nonzero(y_pred == 1)}  "
@@ -71,11 +69,17 @@ if __name__ == '__main__':
     # print(f"# of classes predicted as '-1': {np.count_nonzero(y_pred == -1)}")
     # print(f"Correctly Predicted as 0: {np.sum(np.logical_and(y_pred == 0, y_true == 0))}")
     # print(f"Correctly Predicted as 1: {np.sum(np.logical_and(y_pred == 1, y_true == 1))}")
-    print(f"Rules: {len(rules)}")
-    print(f"Accuracy: {accuracy}%")
     print(f"Precision: {round(precision, 3)}")
     print(f"Recall: {round(recall, 3)}")
+    print(f"F1 harmonic mean: {round(F1, 3)}")
+    print(f"Accuracy: {accuracy}%")
+    print(f"Rules: {len(rules)}")
+    print(f"Max length of freq itemsets (k): {len(rules[-1]['antecedent']) - 1}")
+    print(f"Avg rule conf: {round(sum(rule['confidence'] for rule in rules) / len(rules), 3)}")
+    print(f"Min rule conf: {round(sorted_rules[-1]['confidence'], 3)}")
+    print(f"Max rule conf: {round(sorted_rules[0]['confidence'], 3)}")
+
+
 
     # pr = np.expand_dims(np.array(PCR), axis=1)
-    # print(timeit.timeit(lambda: rule_generation.classification_rule_generation(
-    #     transactions=records, min_support=0.005, min_conf=0.2, corr=1), number=5))
+    # print(timeit.timeit(lambda: rule_generation.classification_rule_generation(), number=1))
