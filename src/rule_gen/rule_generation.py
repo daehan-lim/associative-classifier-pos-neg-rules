@@ -36,7 +36,6 @@ def classification_rule_generation(transactions, classes, min_support, min_conf)
                 rules.extend(ponerg(item, classes, class_support_count_dict, min_conf, transactions_df))
             frequent_itemsets.append(k_freq_itemsets)
         k += 1
-    print(f"k: {len(frequent_itemsets)}")
     return rules
 
 
