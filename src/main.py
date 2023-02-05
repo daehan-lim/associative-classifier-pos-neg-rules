@@ -18,7 +18,7 @@ if __name__ == '__main__':
     # min_transaction_size = min(len(transaction) for transaction in training_set)
     # max_transaction_size = max(len(transaction) for transaction in training_set)
 
-    min_support = 0.04
+    min_support = 0.0115
     min_conf = 0.05
     rules = rule_generation.classification_rule_generation(
         transactions=training_set, classes=[frozenset(['0']), frozenset(['1'])], min_support=min_support,
@@ -60,7 +60,10 @@ if __name__ == '__main__':
     ]
     precision = TP / (TP + FP)
     recall = TP / (TP + FN)
-    F1 = 2 * TP / (2*TP + FP + FN)
+    F1 = 2 * recall * precision / (recall + precision)
+    precision_w_unclass = TP / (TP + FP + NO_N)
+    recall_w_unclass = TP / (TP + FN + NO_P)
+    F1_w_unclass = 2 * recall_w_unclass * precision_w_unclass / (recall_w_unclass + precision_w_unclass)
     print(tabulate(confusion_matrix, headers='firstrow', tablefmt='fancy_grid'))
     # print(f"# of classes predicted as '0': {np.count_nonzero(y_pred == 0)}  "
     #       f"out of {np.count_nonzero(y_true == 0)} in real set")
@@ -69,16 +72,18 @@ if __name__ == '__main__':
     # print(f"# of classes predicted as '-1': {np.count_nonzero(y_pred == -1)}")
     # print(f"Correctly Predicted as 0: {np.sum(np.logical_and(y_pred == 0, y_true == 0))}")
     # print(f"Correctly Predicted as 1: {np.sum(np.logical_and(y_pred == 1, y_true == 1))}")
+    print(f"Precision considering -1 class: {round(precision_w_unclass, 3)}")
+    print(f"Recall considering -1 class: {round(recall_w_unclass, 3)}")
+    print(f"F1 (harmonic mean) considering -1 class: {round(F1_w_unclass, 3)}")
     print(f"Precision: {round(precision, 3)}")
     print(f"Recall: {round(recall, 3)}")
-    print(f"F1 harmonic mean: {round(F1, 3)}")
+    print(f"F1 (harmonic mean): {round(F1, 3)}")
+    print(f"F1 mean: {round(2 * F1 * F1_w_unclass / (F1 + F1_w_unclass), 3)}")
     print(f"Accuracy: {accuracy}%")
     print(f"Rules: {len(rules)}")
     print(f"Max length of freq itemsets (k): {len(rules[-1]['antecedent']) - 1}")
     print(f"Avg rule conf: {round(sum(rule['confidence'] for rule in rules) / len(rules), 3)}")
     print(f"Min rule conf: {round(sorted_rules[-1]['confidence'], 3)}")
-    print(f"Max rule conf: {round(sorted_rules[0]['confidence'], 3)}")
-
 
 
     # pr = np.expand_dims(np.array(PCR), axis=1)
