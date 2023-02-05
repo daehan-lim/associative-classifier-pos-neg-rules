@@ -18,7 +18,7 @@ if __name__ == '__main__':
     min_support = 0.04
     min_conf = 0.05
     rules = rule_generation.classification_rule_generation(
-        transactions=training_set, classes=[frozenset(['1']), frozenset(['0'])], min_support=min_support,
+        transactions=training_set, classes=[frozenset(['0']), frozenset(['1'])], min_support=min_support,
         min_conf=min_conf)
     sorted_rules = sorted(rules, key=lambda d: abs(d['confidence']), reverse=True)
 
