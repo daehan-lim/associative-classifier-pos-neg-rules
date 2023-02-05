@@ -1,7 +1,9 @@
 import csv
 import timeit
-
+import pandas as pd
 import numpy as np
+from mlxtend.preprocessing import TransactionEncoder
+
 from classification import classification
 from rule_gen import rule_generation
 
@@ -15,7 +17,24 @@ if __name__ == '__main__':
     with open('../data/test_dataset.csv', 'r') as file:
         test_set = [list(filter(None, row)) for row in csv.reader(file)]
 
-    min_support = 0.03
+    te = TransactionEncoder()
+    te_ary = te.fit_transform(training_set)
+    transactions_df = pd.DataFrame(te_ary, columns=te.columns_)
+    te.columns_.remove('1')  # generalize later without using class names
+    te.columns_.remove('0')
+
+
+    te2 = TransactionEncoder()
+    te_ary2 = te2.fit_transform(test_set)
+    transactions_df2 = pd.DataFrame(te_ary2, columns=te2.columns_)
+    te2.columns_.remove('1')  # generalize later without using class names
+    te2.columns_.remove('0')
+
+    diff = set(te.columns_).symmetric_difference(set(te2.columns_))
+    a_not_b = set(te.columns_) - set(te2.columns_)
+    b_not_a = set(te2.columns_) - set(te.columns_)
+
+    min_support = 0.04
     min_conf = 0.05
     rules = rule_generation.classification_rule_generation(
         transactions=training_set, classes=[frozenset(['1']), frozenset(['0'])], min_support=min_support,
