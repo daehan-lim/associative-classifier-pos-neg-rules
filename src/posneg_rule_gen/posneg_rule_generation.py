@@ -3,16 +3,18 @@ from util import util
 import timeit
 
 
-def ponerg(itemset, classes, class_supp_count_dict, min_conf, transactions_df):
+def ponerg(itemset, classes, class_supp_count_dict, min_conf, corr, transactions_df):
     rules = []
     for c in classes:
         i_and_c_supp_count = util.get_item_support_count_df(itemset | c, transactions_df)
         i_supp_count = util.get_item_support_count_df(itemset, transactions_df)
-        lift = get_lift(i_and_c_supp_count, i_supp_count, class_supp_count_dict[c], len(transactions_df))
+        # lift = get_lift(i_and_c_supp_count, i_supp_count, class_supp_count_dict[c], len(transactions_df))
+        r = correlation(itemset, c, transactions_df, i_supp_count, i_and_c_supp_count,
+                        class_supp_count_dict[c])
         c_str, = c
-        if lift > 1:
+        if r > corr:
             if (conf := confidence(i_and_c_supp_count, i_supp_count)) >= min_conf:
-                rules.append({'antecedent': itemset, 'consequent': c_str, 'confidence': conf})
+                rules.append({'antecedent': itemset, 'consequent': c_str, 'confidence': conf, 'corr' : r})
             break
     return rules
 
@@ -41,8 +43,11 @@ def correlation(itemset, c, transactions_df, f1_plus, f11, f_plus_1):
 
     if f_plus_0 * f_plus_1 * f1_plus * f0_plus == 0:
         return 0
-    return (f11 * f00 - f10 * f01) / math.sqrt(f_plus_0 * f_plus_1 * f1_plus * f0_plus)
-
+    N = 20000
+    # corr1 = (f11 * f00 - f10 * f01) / math.sqrt(f_plus_0 * f_plus_1 * f1_plus * f0_plus)
+    # corr2 =  (N * f11 - f1_plus * f_plus_1) / math.sqrt(f_plus_0 * f_plus_1 * f1_plus * f0_plus)
+    corr = (N * f11 - f1_plus * f_plus_1) / math.sqrt(f1_plus * (N - f1_plus) * f_plus_1 * (N - f_plus_1))
+    return corr
 
 # f11 the number of times X and Y appear together in the same transaction (support of X and Y)
 # f01 the number of transactions that contain Y but not X (support of !X and Y)

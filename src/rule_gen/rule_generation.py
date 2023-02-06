@@ -6,7 +6,7 @@ import itertools
 import timeit
 
 
-def classification_rule_generation(transactions, classes, min_support, min_conf):
+def classification_rule_generation(transactions, classes, min_support, min_conf, corr):
     rules = []
 
     transactions_df = util.convert_trans_to_df(transactions)
@@ -16,7 +16,7 @@ def classification_rule_generation(transactions, classes, min_support, min_conf)
     f1 = f1.tolist()
     frequent_itemsets = [f1]
     for item in f1:
-        rules.extend(ponerg(item, classes, class_support_count_dict, min_conf, transactions_df))
+        rules.extend(ponerg(item, classes, class_support_count_dict, min_conf, corr, transactions_df))
 
     k = 0
     while frequent_itemsets[k] is not None and len(frequent_itemsets[k]) > 0:
@@ -33,7 +33,7 @@ def classification_rule_generation(transactions, classes, min_support, min_conf)
         else:
             k_freq_itemsets = k_freq_itemsets.tolist()
             for item in k_freq_itemsets:
-                rules.extend(ponerg(item, classes, class_support_count_dict, min_conf, transactions_df))
+                rules.extend(ponerg(item, classes, class_support_count_dict, min_conf, corr, transactions_df))
             frequent_itemsets.append(k_freq_itemsets)
         k += 1
     return rules
