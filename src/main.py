@@ -18,8 +18,8 @@ if __name__ == '__main__':
     # min_transaction_size = min(len(transaction) for transaction in training_set)
     # max_transaction_size = max(len(transaction) for transaction in training_set)
 
-    min_support = 0.015
-    min_conf = 0.05
+    min_support = 0.0115
+    min_conf = 1.06
     corr = 0.001
     print(f"supp = {min_support},  conf = {min_conf}, corr = {corr}")
 
@@ -37,14 +37,13 @@ if __name__ == '__main__':
     y_true, y_pred = np.array(real_classes), np.array(predicted_classes)
     accuracy = 100 * np.sum(y_true == y_pred) / len(y_true)
 
-
     TP = np.sum(np.logical_and(y_pred == 1, y_true == 1))
     TN = np.sum(np.logical_and(y_pred == 0, y_true == 0))
-    #Predicted a label of 1 (Alive), but the true label is 0.
+    # Predicted a label of 1 (Alive), but the true label is 0.
     FP = np.sum(np.logical_and(y_pred == 1, y_true == 0))
     # Predicted a label of 0 (Dead), but the true label is 1.
     FN = np.sum(np.logical_and(y_pred == 0, y_true == 1))
-    #Predicted as -1 when actual class = 1 (positive)
+    # Predicted as -1 when actual class = 1 (positive)
     NO_P = np.sum(np.logical_and(y_pred == -1, y_true == 1))
     # Predicted as -1 when actual class = 0
     NO_N = np.sum(np.logical_and(y_pred == -1, y_true == 0))
@@ -86,7 +85,6 @@ if __name__ == '__main__':
     print(f"Max length of freq itemsets (k): {len(rules[-1]['antecedent'])}")
     print(f"Avg rule conf: {round(sum(rule['confidence'] for rule in rules) / len(rules), 3)}")
     print(f"Min rule conf: {round(sorted_rules[-1]['confidence'], 3)}")
-
 
     # pr = np.expand_dims(np.array(PCR), axis=1)
     # print(timeit.timeit(lambda: rule_generation.classification_rule_generation(), number=1))

@@ -73,6 +73,6 @@ def confidence_selection(i_and_c_supp_count, i_supp_count, class_supp_count, i_a
     class_supp = i_and_c_supp_count / class_supp_count
     css = i_and_not_c_supp_count / not_c_supp_count
     # result = not_i_and_not_c_supp_count / i_and_not_c_supp_count #ML
-    # result = class_supp / css
-    result = conf * (class_supp / css)
+    # result = conf * (class_supp / css)
+    result = class_supp / css
     return result
