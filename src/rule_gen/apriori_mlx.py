@@ -66,10 +66,10 @@ def apriori_of_size_1(df, min_support=0.5):
 
 def apriori_of_size_k(df, previous_itemset_array, min_support=0.5, k=2):
     transactions_series = df.values
-    rows_count = float(df.values.shape[0])
+    rows_count = float(transactions_series.shape[0])
 
     combin = generate_new_combinations(previous_itemset_array)
-    combin = np.fromiter(combin, dtype=int)
+    combin = np.fromiter(combin, dtype=np.int16)
     combin = combin.reshape(-1, k)
 
     if combin.size == 0:
