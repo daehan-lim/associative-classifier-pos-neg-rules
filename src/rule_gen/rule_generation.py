@@ -8,35 +8,35 @@ import timeit
 
 def classification_rule_generation(transactions, classes, min_support, min_conf, corr):
     rules = []
-
     transactions_df = util.convert_trans_to_df(transactions)
-    itemsets_df = pd.DataFrame(transactions_df.drop(['1', '0'], axis=1))
-    class_support_count_dict = util.get_support_count_dict_df(classes, transactions_df)
-    f1, previous_itemset_array = apriori_mlx.apriori_of_size_1(itemsets_df, min_support=min_support)
-    f1 = f1.tolist()
-    frequent_itemsets = [f1]
-    for item in f1:
-        rules.extend(ponerg(item, classes, class_support_count_dict, min_conf, corr, transactions_df))
+
+    for c in classes:
+        class_label, = c
+        transactions_per_c = pd.DataFrame(
+            transactions_df[transactions_df[class_label]].reset_index(drop=True).drop(['1', '0'], axis=1))
+        add_rules_per_c(rules, c, transactions_per_c, min_support, min_conf, corr, transactions_df)
+    return rules
+
+
+def add_rules_per_c(rules, c, transactions_per_c, min_support, min_conf, corr, transactions_df):
+    f1_per_c, previous_itemset_arr = apriori_mlx.apriori_of_size_1(transactions_per_c, min_support=min_support)
+    f1_per_c = f1_per_c.tolist()
+    for item in f1_per_c:
+        rules.extend(ponerg(item, c, len(transactions_per_c), min_conf, corr, transactions_df))
+    freq_itemsets = [f1_per_c]
 
     k = 0
-    while frequent_itemsets[k] is not None and len(frequent_itemsets[k]) > 0:
-        # ck = _generate_ck_merge(frequent_itemsets[k], f1)
-        # with multiprocessing.Pool() as pool:
-        #     rules.extend([x[0] for x in pool.map(ponerg_parallel, ck) if x != []])
-
-        # for item in ck:
-        #     rules.extend(ponerg(item, classes, class_support_count_dict, min_conf, transactions_df))
-        k_freq_itemsets, previous_itemset_array = apriori_mlx.apriori_of_size_k(
-            itemsets_df, previous_itemset_array, min_support=min_support, k=k + 2)
-        if k_freq_itemsets.empty:
-            frequent_itemsets.append(None)
+    while freq_itemsets[k] is not None and len(freq_itemsets[k]) > 0:
+        k_freq_itemsets_x_c, previous_itemset_arr = apriori_mlx.apriori_of_size_k(
+            transactions_per_c, previous_itemset_arr, min_support=min_support, k=k + 2)
+        if not k_freq_itemsets_x_c.empty:
+            k_freq_itemsets_x_c = k_freq_itemsets_x_c.tolist()
+            for item in k_freq_itemsets_x_c:
+                rules.extend(ponerg(item, c, len(transactions_per_c), min_conf, corr, transactions_df))
+            freq_itemsets.append(k_freq_itemsets_x_c)
         else:
-            k_freq_itemsets = k_freq_itemsets.tolist()
-            for item in k_freq_itemsets:
-                rules.extend(ponerg(item, classes, class_support_count_dict, min_conf, corr, transactions_df))
-            frequent_itemsets.append(k_freq_itemsets)
+            freq_itemsets.append(None)
         k += 1
-    return rules
 
 
 def _greater_than_items(item_set, one_itemset_item):

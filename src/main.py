@@ -18,8 +18,8 @@ if __name__ == '__main__':
     # min_transaction_size = min(len(transaction) for transaction in training_set)
     # max_transaction_size = max(len(transaction) for transaction in training_set)
 
-    min_support = 0.0115
-    min_conf = 0.05
+    min_support = 0.014
+    min_conf = 0.06
     corr = 0.001
     print(f"supp = {min_support},  conf = {min_conf}, corr = {corr}")
 
@@ -84,6 +84,7 @@ if __name__ == '__main__':
     print(f"Rules: {len(rules)}")
     print(f"Max length of freq itemsets (k): {len(rules[-1]['antecedent'])}")
     print(f"Avg rule conf: {round(sum(rule['confidence'] for rule in rules) / len(rules), 3)}")
+    print(f"Max rule conf: {round(sorted_rules[0]['confidence'], 3)}")
     print(f"Min rule conf: {round(sorted_rules[-1]['confidence'], 3)}")
 
     # pr = np.expand_dims(np.array(PCR), axis=1)

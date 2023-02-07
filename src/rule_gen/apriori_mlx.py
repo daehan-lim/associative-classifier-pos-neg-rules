@@ -49,7 +49,7 @@ def _support(_x, _n_rows, _is_sparse):
     return np.array(out).reshape(-1)
 
 
-def apriori_of_size_1(df, min_support=0.5):
+def apriori_of_size_1(df, min_support):
     X = df.values
     support_series = _support(X, X.shape[0], _is_sparse=False)
     ary_col_idx = np.arange(X.shape[1])
