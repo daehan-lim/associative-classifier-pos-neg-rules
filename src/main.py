@@ -19,8 +19,10 @@ if __name__ == '__main__':
     # max_transaction_size = max(len(transaction) for transaction in training_set)
 
     min_support = 0.0115
-    min_conf = 0.0
-    corr = 0.05
+    min_conf = 0.05
+    corr = 0.001
+    print(f"supp = {min_support},  conf = {min_conf}, corr = {corr}")
+
     rules = rule_generation.classification_rule_generation(
         transactions=training_set, classes=[frozenset(['0']), frozenset(['1'])], min_support=min_support,
         corr=corr, min_conf=min_conf)
@@ -35,7 +37,6 @@ if __name__ == '__main__':
     y_true, y_pred = np.array(real_classes), np.array(predicted_classes)
     accuracy = 100 * np.sum(y_true == y_pred) / len(y_true)
 
-    print(f"supp = {min_support},  conf = {min_conf}, corr = {corr}")
 
     TP = np.sum(np.logical_and(y_pred == 1, y_true == 1))
     TN = np.sum(np.logical_and(y_pred == 0, y_true == 0))
