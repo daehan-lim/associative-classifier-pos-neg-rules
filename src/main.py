@@ -19,7 +19,7 @@ if __name__ == '__main__':
     # max_transaction_size = max(len(transaction) for transaction in training_set)
 
     min_support = 0.0115
-    min_conf = 1.06
+    min_conf = 0.05
     corr = 0.001
     print(f"supp = {min_support},  conf = {min_conf}, corr = {corr}")
 
