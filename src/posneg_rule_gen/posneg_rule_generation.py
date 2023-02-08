@@ -3,7 +3,7 @@ from util import util
 import timeit
 
 
-def ponerg(itemset, c, class_supp_count, min_conf, corr, transactions_df):
+def ponerg(itemset, c, class_supp_count, min_conf, transactions_df):
     rules = []
     i_and_c_supp_count = util.get_item_support_count_df(itemset | c, transactions_df)
     i_supp_count = util.get_item_support_count_df(itemset, transactions_df)

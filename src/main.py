@@ -18,14 +18,14 @@ if __name__ == '__main__':
     # min_transaction_size = min(len(transaction) for transaction in training_set)
     # max_transaction_size = max(len(transaction) for transaction in training_set)
 
-    min_support = 0.014
-    min_conf = 0.06
+    min_support = 0.0111
+    min_conf = 0.05
     corr = 0.001
-    print(f"supp = {min_support},  conf = {min_conf}, corr = {corr}")
+    print(f"supp = {min_support},  conf = {min_conf}, ")
 
     rules = rule_generation.classification_rule_generation(
-        transactions=training_set, classes=[frozenset(['0']), frozenset(['1'])], min_support=min_support,
-        corr=corr, min_conf=min_conf)
+        transactions=training_set, classes=[frozenset(['0']), frozenset(['1'])], m_min_support=min_support,
+        m_min_conf=min_conf)
     sorted_rules = sorted(rules, key=lambda d: abs(d['confidence']), reverse=True)
 
     real_classes = []
