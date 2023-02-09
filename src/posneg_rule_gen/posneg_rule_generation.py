@@ -7,15 +7,14 @@ def ponerg(itemset, c, class_supp_count, min_conf, transactions_df):
     rules = []
     i_and_c_supp_count = util.get_item_support_count_df(itemset | c, transactions_df)
     i_supp_count = util.get_item_support_count_df(itemset, transactions_df)
-    lift = get_lift(i_and_c_supp_count, i_supp_count, class_supp_count, len(transactions_df))
-    # r = correlation(itemset, c, transactions_df, i_supp_count, i_and_c_supp_count,
-    #                 class_supp_count_dict[c])
+    # lift = get_lift(i_and_c_supp_count, i_supp_count, class_supp_count, len(transactions_df))
+    r = correlation(itemset, c, transactions_df, i_supp_count, i_and_c_supp_count, class_supp_count)
     c_str, = c
-    if lift > 1:
+    if r > 0.001:
         i_and_not_c_supp_count = util.get_support_count_i_and_not_c(itemset, c_str, transactions_df)
         not_c_supp_count = util.get_item_support_count_df(c, transactions_df, negated=True)
         if (conf := confidence(i_and_c_supp_count, i_supp_count)) >= min_conf:
-            rules.append({'antecedent': itemset, 'consequent': c_str, 'confidence': conf, 'lift': lift})
+            rules.append({'antecedent': itemset, 'consequent': c_str, 'confidence': conf})
 
     return rules
 

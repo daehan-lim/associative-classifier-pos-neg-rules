@@ -1,8 +1,12 @@
-from sklearn.metrics import classification_report
+from matplotlib import pyplot as plt
+from sklearn import metrics
+from sklearn.metrics import classification_report, roc_curve
 import csv
 import timeit
 import numpy as np
 from tabulate import tabulate
+from util import util
+from sklearn.metrics import average_precision_score
 
 from classification import classification
 from rule_gen import rule_generation
@@ -19,7 +23,7 @@ if __name__ == '__main__':
     # min_transaction_size = min(len(transaction) for transaction in training_set)
     # max_transaction_size = max(len(transaction) for transaction in training_set)
 
-    min_support = 0.0111
+    min_support = 0.02
     min_conf = 0.05
     corr = 0.001
     print(f"supp = {min_support},  conf = {min_conf}, ")
@@ -31,10 +35,13 @@ if __name__ == '__main__':
 
     real_classes = []
     predicted_classes = []
+    predicted_probs = []
+    transactions_df = util.convert_trans_to_df(test_set)
     for transaction in test_set:
         real_classes.append(int(transaction[-1]))
         object_o = frozenset([item for item in transaction[:-1]])
         predicted_classes.append(classification.classification(object_o, sorted_rules, 0.1))
+        predicted_probs.append(util.get_item_support_count_df(frozenset([item for item in transaction]), transactions_df))
     y_true, y_pred = np.array(real_classes), np.array(predicted_classes)
     accuracy = 100 * np.sum(y_true == y_pred) / len(y_true)
 
@@ -74,7 +81,6 @@ if __name__ == '__main__':
     # print(f"# of classes predicted as '-1': {np.count_nonzero(y_pred == -1)}")
     # print(f"Correctly Predicted as 0: {np.sum(np.logical_and(y_pred == 0, y_true == 0))}")
     # print(f"Correctly Predicted as 1: {np.sum(np.logical_and(y_pred == 1, y_true == 1))}")
-    print(classification_report(y_true, y_pred))
     print(f"Precision considering -1 class: {round(precision_w_unclass, 3)}")
     print(f"Recall considering -1 class: {round(recall_w_unclass, 3)}")
     print(f"F1 (harmonic mean) considering -1 class: {round(F1_w_unclass, 3)}")
@@ -88,6 +94,20 @@ if __name__ == '__main__':
     print(f"Avg rule conf: {round(sum(rule['confidence'] for rule in rules) / len(rules), 3)}")
     print(f"Max rule conf: {round(sorted_rules[0]['confidence'], 3)}")
     print(f"Min rule conf: {round(sorted_rules[-1]['confidence'], 3)}")
+    print(classification_report(y_true, y_pred))
+    # PR AUC is the average of precision scores calculated for each recall threshold.
+    print(f"PR AUC: {round(average_precision_score(y_true, predicted_probs), 3)}")
+
+    fprs, tprs, thresholds = roc_curve(y_true, predicted_probs)
+
+    plt.plot(fprs, tprs, label='ROC curve (area = %.2f)' % metrics.auc(fprs, tprs))
+    plt.plot([0, 1], [0, 1], linestyle='--', lw=2, color='r', label='Random guess')
+    plt.title('ROC curve')
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
+    plt.grid()
+    plt.legend()
+    plt.show()
 
     # pr = np.expand_dims(np.array(PCR), axis=1)
     # print(timeit.timeit(lambda: rule_generation.classification_rule_generation(), number=1))
