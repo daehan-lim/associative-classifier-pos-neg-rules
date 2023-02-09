@@ -1,3 +1,4 @@
+from sklearn.metrics import classification_report
 import csv
 import timeit
 import numpy as np
@@ -73,6 +74,7 @@ if __name__ == '__main__':
     # print(f"# of classes predicted as '-1': {np.count_nonzero(y_pred == -1)}")
     # print(f"Correctly Predicted as 0: {np.sum(np.logical_and(y_pred == 0, y_true == 0))}")
     # print(f"Correctly Predicted as 1: {np.sum(np.logical_and(y_pred == 1, y_true == 1))}")
+    print(classification_report(y_true, y_pred))
     print(f"Precision considering -1 class: {round(precision_w_unclass, 3)}")
     print(f"Recall considering -1 class: {round(recall_w_unclass, 3)}")
     print(f"F1 (harmonic mean) considering -1 class: {round(F1_w_unclass, 3)}")
