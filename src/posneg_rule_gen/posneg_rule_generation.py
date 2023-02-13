@@ -7,13 +7,16 @@ def ponerg(itemset, c, class_supp_count, min_conf, transactions_df):
     rules = []
     i_and_c_supp_count = util.get_item_support_count_df(itemset | c, transactions_df)
     i_supp_count = util.get_item_support_count_df(itemset, transactions_df)
-    # lift = get_lift(i_and_c_supp_count, i_supp_count, class_supp_count, len(transactions_df))
-    r = correlation(itemset, c, transactions_df, i_supp_count, i_and_c_supp_count, class_supp_count)
+    lift = get_lift(i_and_c_supp_count, i_supp_count, class_supp_count, len(transactions_df))
+    # r = correlation(itemset, c, transactions_df, i_supp_count, i_and_c_supp_count, class_supp_count)
     c_str, = c
-    if r > 0.001:
+    if lift > 1:
         i_and_not_c_supp_count = util.get_support_count_i_and_not_c(itemset, c_str, transactions_df)
         not_c_supp_count = util.get_item_support_count_df(c, transactions_df, negated=True)
-        if (conf := confidence(i_and_c_supp_count, i_supp_count)) >= min_conf:
+        # if (conf := confidence(i_and_c_supp_count, i_supp_count)) >= min_conf:
+        #     rules.append({'antecedent': itemset, 'consequent': c_str, 'confidence': conf})
+        if (conf := confidence_selection(i_and_c_supp_count, i_supp_count, class_supp_count,
+                                         i_and_not_c_supp_count, not_c_supp_count)) >= min_conf:
             rules.append({'antecedent': itemset, 'consequent': c_str, 'confidence': conf})
 
     return rules
@@ -70,6 +73,6 @@ def confidence_selection(i_and_c_supp_count, i_supp_count, class_supp_count, i_a
     class_supp = i_and_c_supp_count / class_supp_count
     css = i_and_not_c_supp_count / not_c_supp_count
     # result = not_i_and_not_c_supp_count / i_and_not_c_supp_count #ML
-    # result = conf * (class_supp / css)
-    result = class_supp / css
+    result = conf * (class_supp / css)
+    # result = class_supp / css
     return result
