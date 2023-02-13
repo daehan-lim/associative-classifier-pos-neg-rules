@@ -13,10 +13,10 @@ from rule_gen import rule_generation
 
 if __name__ == '__main__':
 
-    with open('../data/training_dataset.csv', 'r') as file:
+    with open('../data/training_set_norm.csv', 'r') as file:
         training_set = [list(filter(None, row)) for row in csv.reader(file)]
 
-    with open('../data/test_dataset.csv', 'r') as file:
+    with open('../data/test_set_norm.csv', 'r') as file:
         test_set = [list(filter(None, row)) for row in csv.reader(file)]
 
     # avg_transaction_size = sum(len(transaction) for transaction in training_set) / len(training_set)
@@ -41,7 +41,7 @@ if __name__ == '__main__':
         real_classes.append(int(transaction[-1]))
         object_o = frozenset([item for item in transaction[:-1]])
         predicted_classes.append(classification.classification(object_o, sorted_rules, 0.1))
-        predicted_probs.append(util.get_item_support_count_df(frozenset([item for item in transaction]), transactions_df))
+        # predicted_probs.append(util.get_item_support_count_df(frozenset([item for item in transaction]), transactions_df))
     y_true, y_pred = np.array(real_classes), np.array(predicted_classes)
     accuracy = 100 * np.sum(y_true == y_pred) / len(y_true)
 
@@ -74,20 +74,13 @@ if __name__ == '__main__':
     recall_w_unclass = TP / (TP + FN + NO_P)
     F1_w_unclass = 2 * recall_w_unclass * precision_w_unclass / (recall_w_unclass + precision_w_unclass)
     print(tabulate(confusion_matrix, headers='firstrow', tablefmt='fancy_grid'))
-    # print(f"# of classes predicted as '0': {np.count_nonzero(y_pred == 0)}  "
-    #       f"out of {np.count_nonzero(y_true == 0)} in real set")
-    # print(f"# of classes predicted as '1': {np.count_nonzero(y_pred == 1)}  "
-    #       f"out of {np.count_nonzero(y_true == 1)} in real set")
-    # print(f"# of classes predicted as '-1': {np.count_nonzero(y_pred == -1)}")
-    # print(f"Correctly Predicted as 0: {np.sum(np.logical_and(y_pred == 0, y_true == 0))}")
-    # print(f"Correctly Predicted as 1: {np.sum(np.logical_and(y_pred == 1, y_true == 1))}")
-    print(f"Precision considering -1 class: {round(precision_w_unclass, 3)}")
-    print(f"Recall considering -1 class: {round(recall_w_unclass, 3)}")
-    print(f"F1 (harmonic mean) considering -1 class: {round(F1_w_unclass, 3)}")
+    # print(f"Precision considering -1 class: {round(precision_w_unclass, 3)}")
+    # print(f"Recall considering -1 class: {round(recall_w_unclass, 3)}")
+    # print(f"F1 (harmonic mean) considering -1 class: {round(F1_w_unclass, 3)}")
     print(f"Precision: {round(precision, 3)}")
     print(f"Recall: {round(recall, 3)}")
     print(f"F1 (harmonic mean): {round(F1, 3)}")
-    print(f"F1 mean: {round(2 * F1 * F1_w_unclass / (F1 + F1_w_unclass), 3)}")
+    # print(f"F1 mean: {round(2 * F1 * F1_w_unclass / (F1 + F1_w_unclass), 3)}")
     print(f"Accuracy: {accuracy}%")
     print(f"Rules: {len(rules)}")
     print(f"Max length of freq itemsets (k): {len(rules[-1]['antecedent'])}")
@@ -96,18 +89,18 @@ if __name__ == '__main__':
     print(f"Min rule conf: {round(sorted_rules[-1]['confidence'], 3)}")
     print(classification_report(y_true, y_pred))
     # PR AUC is the average of precision scores calculated for each recall threshold.
-    print(f"PR AUC: {round(average_precision_score(y_true, predicted_probs), 3)}")
-
-    fprs, tprs, thresholds = roc_curve(y_true, predicted_probs)
-
-    plt.plot(fprs, tprs, label='ROC curve (area = %.2f)' % metrics.auc(fprs, tprs))
-    plt.plot([0, 1], [0, 1], linestyle='--', lw=2, color='r', label='Random guess')
-    plt.title('ROC curve')
-    plt.xlabel('False Positive Rate')
-    plt.ylabel('True Positive Rate')
-    plt.grid()
-    plt.legend()
-    plt.show()
+    # print(f"PR AUC: {round(average_precision_score(y_true, predicted_probs), 3)}")
+    #
+    # fprs, tprs, thresholds = roc_curve(y_true, predicted_probs)
+    #
+    # plt.plot(fprs, tprs, label='ROC curve (area = %.2f)' % metrics.auc(fprs, tprs))
+    # plt.plot([0, 1], [0, 1], linestyle='--', lw=2, color='r', label='Random guess')
+    # plt.title('ROC curve')
+    # plt.xlabel('False Positive Rate')
+    # plt.ylabel('True Positive Rate')
+    # plt.grid()
+    # plt.legend()
+    # plt.show()
 
     # pr = np.expand_dims(np.array(PCR), axis=1)
     # print(timeit.timeit(lambda: rule_generation.classification_rule_generation(), number=1))
