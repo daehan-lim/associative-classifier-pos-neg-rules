@@ -3,7 +3,6 @@ import pandas as pd
 from posneg_rule_gen.posneg_rule_generation import ponerg
 from rule_gen import apriori_mlx
 from util import util
-import itertools
 import timeit
 
 class_c = None
@@ -17,7 +16,6 @@ def classification_rule_generation(transactions, classes, m_min_support, m_min_c
     rules = []
     m_transactions_df = util.convert_trans_to_df(transactions)
     for c in classes:
-        m_class_c = c
         class_label, = c
         transactions_per_c = pd.DataFrame(
             m_transactions_df[m_transactions_df[class_label]].reset_index(drop=True).drop(['1', '0'], axis=1))
@@ -35,8 +33,6 @@ def add_rules_per_c(rules, c, transactions_per_c, m_min_support, m_min_conf, m_t
     min_conf = m_min_conf
     transactions_df = m_transactions_df
     class_c = c
-
-
 
     f1_per_c, previous_itemset_arr = apriori_mlx.apriori_of_size_1(transactions_per_c, min_support=min_support)
     f1_per_c = f1_per_c.tolist()
@@ -66,7 +62,7 @@ def add_rules_per_c(rules, c, transactions_per_c, m_min_support, m_min_conf, m_t
 def ponerg_parallel(item):
     return ponerg(item, class_c, class_supp_count, min_conf, transactions_df)
 
-
+'''
 def _greater_than_items(item_set, one_itemset_item):
     for set_item in item_set:
         if one_itemset_item <= set_item:
@@ -89,3 +85,4 @@ def _generate_ck_merge(k_freq_itemsets, one_freq_itemsets):
                 if _greater_than_items(k_itemset, one_itemset_item):
                     ck.append(k_itemset | one_itemset)
     return ck
+'''
