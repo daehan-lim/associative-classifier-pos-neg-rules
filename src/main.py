@@ -23,11 +23,10 @@ def main():
     corr = 0.001
     print(f"supp = {min_support},  conf = {min_conf}, \n")
 
-    rules = rule_generation.classification_rule_generation(
-        transactions=training_set, classes=[frozenset(['0']), frozenset(['1'])], m_min_support=min_support,
-        m_min_conf=min_conf)
+    rules_0, rules_1 = rule_generation.classification_rule_generation(transactions=training_set,
+                                                                      m_min_support=min_support, m_min_conf=min_conf)
 
-    sorted_rules = sorted(rules, key=lambda d: d['confidence'], reverse=True)
+    sorted_rules = sorted(rules_0 + rules_1, key=lambda d: d['confidence'], reverse=True)
 
     y_test, y_pred = predict(test_set, sorted_rules)
 
@@ -68,9 +67,11 @@ def main():
     print(f"F1 (harmonic mean): {round(F1, 3)}")
     # print(f"F1 mean: {round(2 * F1 * F1_w_unclass / (F1 + F1_w_unclass), 3)}")
     print(f"Accuracy: {round(accuracy, 3)}%")
-    print(f"Rules: {len(rules)}")
-    print(f"Max length of freq itemsets (k): {len(rules[-1]['antecedent'])}")
-    print(f"Avg rule conf: {round(sum(rule['confidence'] for rule in rules) / len(rules), 3)}")
+    print(f"Total Rules: {len(sorted_rules)}")
+    print(f"Rules with class 0: {len(rules_0)}")
+    print(f"Rules with class 1: {len(rules_1)}")
+    print(f"Max length of freq itemsets (k): {len(rules_1[-1]['antecedent'])}")
+    print(f"Avg rule conf: {round(sum(rule['confidence'] for rule in sorted_rules) / len(sorted_rules), 3)}")
     print(f"Max rule conf: {round(sorted_rules[0]['confidence'], 3)}")
     print(f"Min rule conf: {round(sorted_rules[-1]['confidence'], 3)}\n")
     print(classification_report(y_test, y_pred, zero_division=0))

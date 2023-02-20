@@ -13,15 +13,20 @@ class_supp_count = -1
 
 
 @util.timeit
-def classification_rule_generation(transactions, classes, m_min_support, m_min_conf):
-    rules = []
+def classification_rule_generation(transactions, m_min_support, m_min_conf):
+    rules_0 = []
+    rules_1 = []
     m_transactions_df = util.convert_trans_to_df(transactions)
-    for c in classes:
-        class_label, = c
-        transactions_per_c = pd.DataFrame(
-            m_transactions_df[m_transactions_df[class_label]].reset_index(drop=True).drop(['1', '0'], axis=1))
-        add_rules_per_c(rules, c, transactions_per_c, m_min_support, m_min_conf, m_transactions_df)
-    return rules
+
+    transactions_c0 = pd.DataFrame(
+        m_transactions_df[m_transactions_df['0']].reset_index(drop=True).drop(['1', '0'], axis=1))
+    add_rules_per_c(rules_0, frozenset(['0']), transactions_c0, m_min_support, m_min_conf, m_transactions_df)
+
+    transactions_c1 = pd.DataFrame(
+        m_transactions_df[m_transactions_df['1']].reset_index(drop=True).drop(['1', '0'], axis=1))
+    add_rules_per_c(rules_1, frozenset(['1']), transactions_c1, m_min_support, m_min_conf, m_transactions_df)
+
+    return rules_0, rules_1
 
 
 @util.timeit
