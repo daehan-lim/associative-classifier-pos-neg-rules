@@ -14,7 +14,6 @@ def ponerg(itemset, c, class_supp_count, min_conf, transactions_df):
         i_and_not_c_supp_count = util.get_support_count_i_and_not_c(itemset, c_str, transactions_df)
         not_c_supp_count = util.get_item_support_count_df(c, transactions_df, negated=True)
         # if (conf := confidence(i_and_c_supp_count, i_supp_count)) >= min_conf:
-        #     rules.append({'antecedent': itemset, 'consequent': c_str, 'confidence': conf})
         if (conf := confidence_selection(i_and_c_supp_count, i_supp_count, class_supp_count,
                                          i_and_not_c_supp_count, not_c_supp_count)) >= min_conf:
             rules.append({'antecedent': itemset, 'consequent': c_str, 'confidence': conf})
@@ -46,7 +45,7 @@ def correlation(itemset, c, transactions_df, f1_plus, f11, f_plus_1):
 
     if f_plus_0 * f_plus_1 * f1_plus * f0_plus == 0:
         return 0
-    N = 20000
+    N = len(transactions_df)
     # corr1 = (f11 * f00 - f10 * f01) / math.sqrt(f_plus_0 * f_plus_1 * f1_plus * f0_plus)
     # corr2 =  (N * f11 - f1_plus * f_plus_1) / math.sqrt(f_plus_0 * f_plus_1 * f1_plus * f0_plus)
     corr = (N * f11 - f1_plus * f_plus_1) / math.sqrt(f1_plus * (N - f1_plus) * f_plus_1 * (N - f_plus_1))
