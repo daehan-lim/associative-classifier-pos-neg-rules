@@ -2,11 +2,9 @@ from sklearn.metrics import classification_report
 import csv
 import numpy as np
 from tabulate import tabulate
-from util import util
-import timeit
-
 from classification import classification
 from rule_gen import rule_generation
+from util import util
 
 if __name__ == '__main__':
 
@@ -28,28 +26,28 @@ if __name__ == '__main__':
     rules = rule_generation.classification_rule_generation(
         transactions=training_set, classes=[frozenset(['0']), frozenset(['1'])], m_min_support=min_support,
         m_min_conf=min_conf)
+
     sorted_rules = sorted(rules, key=lambda d: d['confidence'], reverse=True)
 
-    real_classes = []
-    predicted_classes = []
-    transactions_df = util.convert_trans_to_df(test_set)
+    y_test = []
+    y_pred = []
     for transaction in test_set:
-        real_classes.append(int(transaction[-1]))
+        y_test.append(int(transaction[-1]))
         object_o = frozenset([item for item in transaction[:-1]])
-        predicted_classes.append(classification.classification(object_o, sorted_rules, 0.1))
-    y_true, y_pred = np.array(real_classes), np.array(predicted_classes)
-    accuracy = 100 * np.sum(y_true == y_pred) / len(y_true)
+        y_pred.append(classification.classification(object_o, sorted_rules, 0.1))
+    y_test, y_pred = np.array(y_test), np.array(y_pred)
+    accuracy = 100 * np.sum(y_test == y_pred) / len(y_test)
 
-    TP = np.sum(np.logical_and(y_pred == 1, y_true == 1))
-    TN = np.sum(np.logical_and(y_pred == 0, y_true == 0))
+    TP = np.sum(np.logical_and(y_pred == 1, y_test == 1))
+    TN = np.sum(np.logical_and(y_pred == 0, y_test == 0))
     # Predicted a label of 1 (Alive), but the true label is 0.
-    FP = np.sum(np.logical_and(y_pred == 1, y_true == 0))
+    FP = np.sum(np.logical_and(y_pred == 1, y_test == 0))
     # Predicted a label of 0 (Dead), but the true label is 1.
-    FN = np.sum(np.logical_and(y_pred == 0, y_true == 1))
+    FN = np.sum(np.logical_and(y_pred == 0, y_test == 1))
     # Predicted as -1 when actual class = 1 (positive)
-    NO_P = np.sum(np.logical_and(y_pred == -1, y_true == 1))
+    NO_P = np.sum(np.logical_and(y_pred == -1, y_test == 1))
     # Predicted as -1 when actual class = 0
-    NO_N = np.sum(np.logical_and(y_pred == -1, y_true == 0))
+    NO_N = np.sum(np.logical_and(y_pred == -1, y_test == 0))
 
     confusion_matrix = [
         ["1=died  0=alive", "Pred class = '1'", "Pred class = '0'", "Pred c = '-1'", 'Total actual c'],
@@ -82,7 +80,7 @@ if __name__ == '__main__':
     print(f"Avg rule conf: {round(sum(rule['confidence'] for rule in rules) / len(rules), 3)}")
     print(f"Max rule conf: {round(sorted_rules[0]['confidence'], 3)}")
     print(f"Min rule conf: {round(sorted_rules[-1]['confidence'], 3)}")
-    print(classification_report(y_true, y_pred, zero_division=0))
+    print(classification_report(y_test, y_pred, zero_division=0))
 
     # pr = np.expand_dims(np.array(PCR), axis=1)
     # print(timeit.timeit(lambda: rule_generation.classification_rule_generation(), number=1))
