@@ -21,7 +21,7 @@ if __name__ == '__main__':
     min_support = 0.03
     min_conf = 0.05
     corr = 0.001
-    print(f"supp = {min_support},  conf = {min_conf}, ")
+    print(f"supp = {min_support},  conf = {min_conf}, \n")
 
     rules = rule_generation.classification_rule_generation(
         transactions=training_set, classes=[frozenset(['0']), frozenset(['1'])], m_min_support=min_support,
@@ -74,12 +74,12 @@ if __name__ == '__main__':
     print(f"Recall: {round(recall, 3)}")
     print(f"F1 (harmonic mean): {round(F1, 3)}")
     # print(f"F1 mean: {round(2 * F1 * F1_w_unclass / (F1 + F1_w_unclass), 3)}")
-    print(f"Accuracy: {accuracy}%")
+    print(f"Accuracy: {round(accuracy, 3)}%")
     print(f"Rules: {len(rules)}")
     print(f"Max length of freq itemsets (k): {len(rules[-1]['antecedent'])}")
     print(f"Avg rule conf: {round(sum(rule['confidence'] for rule in rules) / len(rules), 3)}")
     print(f"Max rule conf: {round(sorted_rules[0]['confidence'], 3)}")
-    print(f"Min rule conf: {round(sorted_rules[-1]['confidence'], 3)}")
+    print(f"Min rule conf: {round(sorted_rules[-1]['confidence'], 3)}\n")
     print(classification_report(y_test, y_pred, zero_division=0))
 
     # pr = np.expand_dims(np.array(PCR), axis=1)
