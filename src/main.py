@@ -1,12 +1,9 @@
-from matplotlib import pyplot as plt
-from sklearn import metrics
-from sklearn.metrics import classification_report, roc_curve
+from sklearn.metrics import classification_report
 import csv
-import timeit
 import numpy as np
 from tabulate import tabulate
 from util import util
-from sklearn.metrics import average_precision_score
+import timeit
 
 from classification import classification
 from rule_gen import rule_generation
@@ -41,7 +38,6 @@ if __name__ == '__main__':
         real_classes.append(int(transaction[-1]))
         object_o = frozenset([item for item in transaction[:-1]])
         predicted_classes.append(classification.classification(object_o, sorted_rules, 0.1))
-        # predicted_probs.append(util.get_item_support_count_df(frozenset([item for item in transaction]), transactions_df))
     y_true, y_pred = np.array(real_classes), np.array(predicted_classes)
     accuracy = 100 * np.sum(y_true == y_pred) / len(y_true)
 
