@@ -12,6 +12,7 @@ transactions_df = None
 class_supp_count = -1
 
 
+@util.timeit
 def classification_rule_generation(transactions, classes, m_min_support, m_min_conf):
     rules = []
     m_transactions_df = util.convert_trans_to_df(transactions)
@@ -23,6 +24,7 @@ def classification_rule_generation(transactions, classes, m_min_support, m_min_c
     return rules
 
 
+@util.timeit
 def add_rules_per_c(rules, c, transactions_per_c, m_min_support, m_min_conf, m_transactions_df):
     global min_support
     global min_conf
