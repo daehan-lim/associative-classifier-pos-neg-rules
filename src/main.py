@@ -6,19 +6,19 @@ from classification import classification
 from rule_gen import rule_generation
 from util import util
 
-if __name__ == '__main__':
 
-    with open('../data/training_set_norm.csv', 'r') as file:
+def main():
+    with open('../data/training_set_big_h.csv', 'r') as file:
         training_set = [list(filter(None, row)) for row in csv.reader(file)]
 
-    with open('../data/test_set_norm.csv', 'r') as file:
+    with open('../data/test_set_big_h.csv', 'r') as file:
         test_set = [list(filter(None, row)) for row in csv.reader(file)]
 
     # avg_transaction_size = sum(len(transaction) for transaction in training_set) / len(training_set)
     # min_transaction_size = min(len(transaction) for transaction in training_set)
     # max_transaction_size = max(len(transaction) for transaction in training_set)
 
-    min_support = 0.03
+    min_support = 0.1
     min_conf = 0.05
     corr = 0.001
     print(f"supp = {min_support},  conf = {min_conf}, \n")
@@ -29,20 +29,11 @@ if __name__ == '__main__':
 
     sorted_rules = sorted(rules, key=lambda d: d['confidence'], reverse=True)
 
-    y_test = []
-    y_pred = []
-    for transaction in test_set:
-        y_test.append(int(transaction[-1]))
-        object_o = frozenset([item for item in transaction[:-1]])
-        y_pred.append(classification.classification(object_o, sorted_rules, 0.1))
-    y_test, y_pred = np.array(y_test), np.array(y_pred)
-    accuracy = 100 * np.sum(y_test == y_pred) / len(y_test)
+    y_test, y_pred = predict(test_set, sorted_rules)
 
     TP = np.sum(np.logical_and(y_pred == 1, y_test == 1))
     TN = np.sum(np.logical_and(y_pred == 0, y_test == 0))
-    # Predicted a label of 1 (Alive), but the true label is 0.
     FP = np.sum(np.logical_and(y_pred == 1, y_test == 0))
-    # Predicted a label of 0 (Dead), but the true label is 1.
     FN = np.sum(np.logical_and(y_pred == 0, y_test == 1))
     # Predicted as -1 when actual class = 1 (positive)
     NO_P = np.sum(np.logical_and(y_pred == -1, y_test == 1))
@@ -60,13 +51,15 @@ if __name__ == '__main__':
          str(FN + TN) + "\n(Total pred as '0')",
          str(NO_P + NO_N) + "\n(Total pred as '-1')", str(len(test_set))],
     ]
+    print(tabulate(confusion_matrix, headers='firstrow', tablefmt='fancy_grid'))
+
     precision = TP / (TP + FP)
     recall = TP / (TP + FN)
     F1 = 2 * recall * precision / (recall + precision)
-    precision_w_unclass = TP / (TP + FP + NO_N)
-    recall_w_unclass = TP / (TP + FN + NO_P)
-    F1_w_unclass = 2 * recall_w_unclass * precision_w_unclass / (recall_w_unclass + precision_w_unclass)
-    print(tabulate(confusion_matrix, headers='firstrow', tablefmt='fancy_grid'))
+    accuracy = 100 * np.sum(y_test == y_pred) / len(y_test)
+    # precision_w_unclass = TP / (TP + FP + NO_N)
+    # recall_w_unclass = TP / (TP + FN + NO_P)
+    # F1_w_unclass = 2 * recall_w_unclass * precision_w_unclass / (recall_w_unclass + precision_w_unclass)
     # print(f"Precision considering -1 class: {round(precision_w_unclass, 3)}")
     # print(f"Recall considering -1 class: {round(recall_w_unclass, 3)}")
     # print(f"F1 (harmonic mean) considering -1 class: {round(F1_w_unclass, 3)}")
@@ -84,3 +77,18 @@ if __name__ == '__main__':
 
     # pr = np.expand_dims(np.array(PCR), axis=1)
     # print(timeit.timeit(lambda: rule_generation.classification_rule_generation(), number=1))
+
+
+@util.timeit
+def predict(test_set, sorted_rules):
+    y_test = []
+    y_pred = []
+    for transaction in test_set:
+        y_test.append(int(transaction[-1]))
+        object_o = frozenset([item for item in transaction[:-1]])
+        y_pred.append(classification.classification(object_o, sorted_rules, 0.1))
+    return np.array(y_test), np.array(y_pred)
+
+
+if __name__ == '__main__':
+    main()
