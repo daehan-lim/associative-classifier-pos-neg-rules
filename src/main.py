@@ -18,8 +18,8 @@ def main():
     # min_transaction_size = min(len(transaction) for transaction in training_set)
     # max_transaction_size = max(len(transaction) for transaction in training_set)
 
-    min_support = 0.1
-    min_conf = 0.05
+    min_support = 0.2
+    min_conf = 0.1
     corr = 0.001
     print(f"supp = {min_support},  conf = {min_conf}, \n")
 
@@ -28,7 +28,7 @@ def main():
 
     sorted_rules = sorted(rules_0 + rules_1, key=lambda d: d['confidence'], reverse=True)
 
-    y_test, y_pred = predict(test_set, sorted_rules)
+    y_test, y_pred, not_classified = predict(test_set, sorted_rules)
 
     TP = np.sum(np.logical_and(y_pred == 1, y_test == 1))
     TN = np.sum(np.logical_and(y_pred == 0, y_test == 0))
@@ -62,6 +62,7 @@ def main():
     # print(f"Precision considering -1 class: {round(precision_w_unclass, 3)}")
     # print(f"Recall considering -1 class: {round(recall_w_unclass, 3)}")
     # print(f"F1 (harmonic mean) considering -1 class: {round(F1_w_unclass, 3)}")
+    print(f"Pred as -1: {not_classified}")
     print(f"Precision: {round(precision, 3)}")
     print(f"Recall: {round(recall, 3)}")
     print(f"F1 (harmonic mean): {round(F1, 3)}")
@@ -88,7 +89,10 @@ def predict(test_set, sorted_rules):
         y_test.append(int(transaction[-1]))
         object_o = frozenset([item for item in transaction[:-1]])
         y_pred.append(classification.classification(object_o, sorted_rules, 0.1))
-    return np.array(y_test), np.array(y_pred)
+    y_test, y_pred = np.array(y_test), np.array(y_pred)
+    not_classified = np.sum(y_pred == -1)
+    y_pred[y_pred == -1] = 0
+    return y_test, y_pred, not_classified
 
 
 if __name__ == '__main__':
