@@ -1,3 +1,5 @@
+import time
+
 import pandas as pd
 from mlxtend.preprocessing import TransactionEncoder
 
@@ -7,6 +9,20 @@ def convert_trans_to_df(transaction):
     te_ary = te.fit_transform(transaction)
     data_df = pd.DataFrame(te_ary, columns=te.columns_)
     return data_df
+
+
+def timeit(func):
+    """
+    Decorator for measuring function's running time.
+    """
+    def measure_time(*args, **kw):
+        start_time = time.time()
+        result = func(*args, **kw)
+        print("Processing time of %s(): %.2f seconds."
+              % (func.__qualname__, time.time() - start_time))
+        return result
+
+    return measure_time
 
 
 def get_item_support_count_df(itemset: frozenset, df, negated=False):
