@@ -34,21 +34,15 @@ def main():
     TN = np.sum(np.logical_and(y_pred == 0, y_test == 0))
     FP = np.sum(np.logical_and(y_pred == 1, y_test == 0))
     FN = np.sum(np.logical_and(y_pred == 0, y_test == 1))
-    # Predicted as -1 when actual class = 1 (positive)
-    NO_P = np.sum(np.logical_and(y_pred == -1, y_test == 1))
-    # Predicted as -1 when actual class = 0
-    NO_N = np.sum(np.logical_and(y_pred == -1, y_test == 0))
 
     confusion_matrix = [
-        ["1=died  0=alive", "Pred class = '1'", "Pred class = '0'", "Pred c = '-1'", 'Total actual c'],
+        ["1=died  0=alive", "Pred class = '1'", "Pred class = '0'", 'Total actual c'],
         ["Actual class = '1'", str(TP) + "\n(TP)", str(FN) + "\n(FN)",
-         str(NO_P) + "\n(Pred as -1, actual = 1)", str(TP + FN + NO_P) + "\n(Total actual c= '1')"],
+         str(TP + FN) + "\n(Total actual c= '1')"],
         ["Actual class = '0'", str(FP) + "\n(FP)", str(TN) + "\n(TN)",
-         str(NO_N) + "\n(Pred as -1, actual = 0)", str(FP + TN + NO_N) + "\n(Total actual c= '0')"],
-        ["Total pred c",
-         str(TP + FP) + "\n(Total pred as '1')",
-         str(FN + TN) + "\n(Total pred as '0')",
-         str(NO_P + NO_N) + "\n(Total pred as '-1')", str(len(test_set))],
+         str(FP + TN) + "\n(Total actual c= '0')"],
+        ["Total pred c", str(TP + FP) + "\n(Total pred as '1')", str(FN + TN) + "\n(Total pred as '0')",
+         str(len(test_set))],
     ]
     print(tabulate(confusion_matrix, headers='firstrow', tablefmt='fancy_grid'))
 
@@ -56,17 +50,10 @@ def main():
     recall = TP / (TP + FN)
     F1 = 2 * recall * precision / (recall + precision)
     accuracy = 100 * np.sum(y_test == y_pred) / len(y_test)
-    # precision_w_unclass = TP / (TP + FP + NO_N)
-    # recall_w_unclass = TP / (TP + FN + NO_P)
-    # F1_w_unclass = 2 * recall_w_unclass * precision_w_unclass / (recall_w_unclass + precision_w_unclass)
-    # print(f"Precision considering -1 class: {round(precision_w_unclass, 3)}")
-    # print(f"Recall considering -1 class: {round(recall_w_unclass, 3)}")
-    # print(f"F1 (harmonic mean) considering -1 class: {round(F1_w_unclass, 3)}")
     print(f"Pred as -1: {not_classified}")
     print(f"Precision: {round(precision, 3)}")
     print(f"Recall: {round(recall, 3)}")
     print(f"F1 (harmonic mean): {round(F1, 3)}")
-    # print(f"F1 mean: {round(2 * F1 * F1_w_unclass / (F1 + F1_w_unclass), 3)}")
     print(f"Accuracy: {round(accuracy, 3)}%")
     print(f"Total Rules: {len(sorted_rules)}")
     print(f"Rules with class 0: {len(rules_0)}")
