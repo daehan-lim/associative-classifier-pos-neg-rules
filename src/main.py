@@ -32,7 +32,6 @@ if __name__ == '__main__':
 
     real_classes = []
     predicted_classes = []
-    predicted_probs = []
     transactions_df = util.convert_trans_to_df(test_set)
     for transaction in test_set:
         real_classes.append(int(transaction[-1]))
@@ -83,20 +82,7 @@ if __name__ == '__main__':
     print(f"Avg rule conf: {round(sum(rule['confidence'] for rule in rules) / len(rules), 3)}")
     print(f"Max rule conf: {round(sorted_rules[0]['confidence'], 3)}")
     print(f"Min rule conf: {round(sorted_rules[-1]['confidence'], 3)}")
-    print(classification_report(y_true, y_pred))
-    # PR AUC is the average of precision scores calculated for each recall threshold.
-    # print(f"PR AUC: {round(average_precision_score(y_true, predicted_probs), 3)}")
-    #
-    # fprs, tprs, thresholds = roc_curve(y_true, predicted_probs)
-    #
-    # plt.plot(fprs, tprs, label='ROC curve (area = %.2f)' % metrics.auc(fprs, tprs))
-    # plt.plot([0, 1], [0, 1], linestyle='--', lw=2, color='r', label='Random guess')
-    # plt.title('ROC curve')
-    # plt.xlabel('False Positive Rate')
-    # plt.ylabel('True Positive Rate')
-    # plt.grid()
-    # plt.legend()
-    # plt.show()
+    print(classification_report(y_true, y_pred, zero_division=0))
 
     # pr = np.expand_dims(np.array(PCR), axis=1)
     # print(timeit.timeit(lambda: rule_generation.classification_rule_generation(), number=1))
