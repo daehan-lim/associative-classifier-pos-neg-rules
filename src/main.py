@@ -31,7 +31,7 @@ if __name__ == '__main__':
     rules = rule_generation.classification_rule_generation(
         transactions=training_set, classes=[frozenset(['0']), frozenset(['1'])], m_min_support=min_support,
         m_min_conf=min_conf)
-    sorted_rules = sorted(rules, key=lambda d: abs(d['confidence']), reverse=True)
+    sorted_rules = sorted(rules, key=lambda d: d['confidence'], reverse=True)
 
     real_classes = []
     predicted_classes = []

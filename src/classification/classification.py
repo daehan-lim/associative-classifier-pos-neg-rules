@@ -10,7 +10,7 @@ def classification(object_o, rules_set, confidence_margin):
         if (rule['antecedent']).issubset(object_o):
             if count == 0:
                 count += 1
-                first_rule_confidence = abs(rule['confidence'])
+                first_rule_confidence = rule['confidence']
                 matching_rules.append(rule)
             elif abs(rule['confidence']) > first_rule_confidence - confidence_margin:
                 matching_rules.append(rule)
