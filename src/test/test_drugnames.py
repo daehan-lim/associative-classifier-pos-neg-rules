@@ -2,7 +2,7 @@ import csv
 import numpy as np
 
 records = []
-with open('../../data/drugnames_train_norm.csv', 'r') as file:
+with open('../../data/drugnames_all.csv', 'r') as file:
     for row in csv.reader(file):
         records.append(list(filter(None, row)))
 drug_names = np.array(records).flatten().tolist()
