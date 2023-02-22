@@ -64,6 +64,7 @@ def main():
     print(f"Max rule conf: {round(sorted_rules[0]['confidence'], 3)}")
     print(f"Min rule conf: {round(sorted_rules[-1]['confidence'], 3)}\n")
     print(classification_report(y_test, y_pred, zero_division=0))
+    print()
 
     # pr = np.expand_dims(np.array(PCR), axis=1)
     # print(timeit.timeit(lambda: rule_generation.classification_rule_generation(), number=1))
