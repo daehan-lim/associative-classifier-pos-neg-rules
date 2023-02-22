@@ -51,7 +51,7 @@ def classification_rule_generation(transactions, m_min_support, m_min_conf):
             freq_itemsets.append(None)
         k += 1
 
-    return rules
+    return rules, freq_itemsets
 
 
 def ponerg_parallel(item):

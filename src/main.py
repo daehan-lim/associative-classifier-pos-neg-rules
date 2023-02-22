@@ -24,7 +24,7 @@ def main():
     corr = 0.001
     print(f"supp = {min_support},  conf = {min_conf}, \n")
 
-    rules = rule_generation.classification_rule_generation(transactions=training_set,
+    rules, freq_itemsets = rule_generation.classification_rule_generation(transactions=training_set,
                                                            m_min_support=min_support, m_min_conf=min_conf)
     rules_0 = [rule for rule in rules if rule['consequent'] == '0']
     rules_1 = [rule for rule in rules if rule['consequent'] == '1']
@@ -61,10 +61,24 @@ def main():
     print(f"Total Rules: {len(sorted_rules)}")
     print(f"Rules with class 0: {len(rules_0)}")
     print(f"Rules with class 1: {len(rules_1)}")
-    print(f"Max length of freq itemsets (k): {len(rules_1[-1]['antecedent'])}")
     print(f"Avg rule conf: {round(sum(rule['confidence'] for rule in sorted_rules) / len(sorted_rules), 3)}")
     print(f"Max rule conf: {round(sorted_rules[0]['confidence'], 3)}")
     print(f"Min rule conf: {round(sorted_rules[-1]['confidence'], 3)}\n")
+    sorted_0 = [rule for rule in sorted_rules if rule['consequent'] == '0']
+    sorted_1 = [rule for rule in sorted_rules if rule['consequent'] == '1']
+    print(f"Avg conf for c0 rules: {round(sum(rule['confidence'] for rule in sorted_0) / len(sorted_0), 3)}")
+    print(f"Max conf for c0 rules: {round(sorted_0[0]['confidence'], 3)}")
+    print(f"Min conf for c0 rules: {round(sorted_0[-1]['confidence'], 3)}")
+    print(f"Avg conf for c1 rules: {round(sum(rule['confidence'] for rule in sorted_1) / len(sorted_1), 3)}")
+    print(f"Max conf for c1 rules: {round(sorted_1[0]['confidence'], 3)}")
+    print(f"Min conf for c1 rules: {round(sorted_1[-1]['confidence'], 3)}")
+    print(f"Max length of freq itemsets (k): {len(freq_itemsets) - 1}")
+    print(f"Length of f1: {len(freq_itemsets[0])}")
+    print(f"Length of f2: {len(freq_itemsets[1])}")
+    print(f"Length of f3: {len(freq_itemsets[2])}")
+    print(f"Length of f4: {len(freq_itemsets[3])}")
+    print(f"Length of f5: {len(freq_itemsets[4])}")
+    print(f"Length of last fk: {len(freq_itemsets[-2])}\n")
     print(classification_report(y_test, y_pred, zero_division=0))
     print()
 
