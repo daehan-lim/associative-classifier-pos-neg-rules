@@ -19,15 +19,17 @@ def main():
     # min_transaction_size = min(len(transaction) for transaction in training_set)
     # max_transaction_size = max(len(transaction) for transaction in training_set)
 
-    min_support = 0.2
-    min_conf = 0.1
+    min_support = 0.13
+    min_conf = 0.07
     corr = 0.001
     print(f"supp = {min_support},  conf = {min_conf}, \n")
 
-    rules_0, rules_1 = rule_generation.classification_rule_generation(transactions=training_set,
-                                                                      m_min_support=min_support, m_min_conf=min_conf)
+    rules = rule_generation.classification_rule_generation(transactions=training_set,
+                                                           m_min_support=min_support, m_min_conf=min_conf)
+    rules_0 = [rule for rule in rules if rule['consequent'] == '0']
+    rules_1 = [rule for rule in rules if rule['consequent'] == '1']
 
-    sorted_rules = sorted(rules_0 + rules_1, key=lambda d: d['confidence'], reverse=True)
+    sorted_rules = sorted(rules, key=lambda d: d['confidence'], reverse=True)
 
     y_test, y_pred, not_classified = predict(test_set, sorted_rules)
 

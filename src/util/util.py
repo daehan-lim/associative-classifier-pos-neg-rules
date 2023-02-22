@@ -63,7 +63,6 @@ def get_support_count_i_and_not_c(itemset: frozenset, class_str, df):
     return support
 
 
-'''
 def get_support_count_dict_df(ck, transactions_df):
     item_support_count = {}
     for item in ck:
@@ -71,6 +70,7 @@ def get_support_count_dict_df(ck, transactions_df):
     return item_support_count
 
 
+'''
 def get_support_count_dict(ck, transactions):
     item_support_count = {}
     for transaction in transactions:
