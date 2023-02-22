@@ -7,6 +7,7 @@ from rule_gen import rule_generation
 from util import util
 
 
+@util.timeit
 def main():
     with open('../data/training_set_big_h.csv', 'r') as file:
         training_set = [list(filter(None, row)) for row in csv.reader(file)]
