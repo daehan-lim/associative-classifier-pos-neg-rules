@@ -1,4 +1,4 @@
-from sklearn.metrics import classification_report
+from sklearn.metrics import classification_report, roc_auc_score
 import csv
 import numpy as np
 from tabulate import tabulate
@@ -19,7 +19,7 @@ def main():
     # min_transaction_size = min(len(transaction) for transaction in training_set)
     # max_transaction_size = max(len(transaction) for transaction in training_set)
 
-    min_support = 0.13
+    min_support = 0.07
     min_conf = 0.07
     corr = 0.001
     print(f"supp = {min_support},  conf = {min_conf}, \n")
@@ -57,6 +57,7 @@ def main():
     print(f"Precision: {round(precision, 3)}")
     print(f"Recall: {round(recall, 3)}")
     print(f"F1 (harmonic mean): {round(F1, 3)}")
+    print('roc auc: %.3f' % roc_auc_score(y_test, y_pred))
     print(f"Accuracy: {round(accuracy, 3)}%")
     print(f"Total Rules: {len(sorted_rules)}")
     print(f"Rules with class 0: {len(rules_0)}")
