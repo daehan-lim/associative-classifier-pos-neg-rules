@@ -75,11 +75,14 @@ def main():
     print(f"Min conf for c1 rules: {round(sorted_1[-1]['confidence'], 3)}")
     print(f"Max length of freq itemsets (k): {len(freq_itemsets) - 1}")
     print(f"Length of f1: {len(freq_itemsets[0])}")
-    print(f"Length of f2: {len(freq_itemsets[1])}")
-    print(f"Length of f3: {len(freq_itemsets[2])}")
-    print(f"Length of f4: {len(freq_itemsets[3])}")
-    print(f"Length of f5: {len(freq_itemsets[4])}")
-    print(f"Length of last fk: {len(freq_itemsets[-2])}\n")
+    try:
+        print(f"Length of f2: {len(freq_itemsets[1])}")
+        print(f"Length of f3: {len(freq_itemsets[2])}")
+        print(f"Length of f4: {len(freq_itemsets[3])}")
+        print(f"Length of f5: {len(freq_itemsets[4])}")
+        print(f"Length of last fk: {len(freq_itemsets[-2])}\n")
+    except TypeError:
+        pass
     print(classification_report(y_test, y_pred, zero_division=0))
     print()
 
