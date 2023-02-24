@@ -3,7 +3,7 @@ import pandas as pd
 from posneg_rule_gen.posneg_rule_generation import ponerg
 from rule_gen import apriori_mlx
 from util import util
-import timeit
+from mlutil import utilities
 
 classes = None
 min_support = -1
@@ -12,7 +12,7 @@ transactions_df = None
 class_support_count_dict = None
 
 
-@util.timeit
+@utilities.timeit
 def classification_rule_generation(transactions, m_min_support, m_min_conf):
     global min_support
     global min_conf

@@ -4,10 +4,10 @@ import numpy as np
 from tabulate import tabulate
 from classification import classification
 from rule_gen import rule_generation
-from util import util
+from daehan_mlutil import utilities
 
 
-@util.timeit
+@utilities.timeit
 def main():
     with open('../data/training_set_big_h.csv', 'r') as file:
         training_set = [list(filter(None, row)) for row in csv.reader(file)]
@@ -90,7 +90,7 @@ def main():
     # print(timeit.timeit(lambda: rule_generation.classification_rule_generation(), number=1))
 
 
-@util.timeit
+@utilities.timeit
 def predict(test_set, sorted_rules):
     y_test = []
     y_pred = []
