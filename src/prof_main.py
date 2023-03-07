@@ -141,17 +141,188 @@ for seed in range(10):
             cp_attr_contained_freq_items[:, i] = 0
             c_per_rule[i] = -1
 
+
     # --------------------------------------------------------------------------------------
-    # first rule; roc auc
-    print('first rule')
+    # # first rule; roc auc
+    # print('first rule')
+    # print(f"freq items: {len(frequent_items)}")
+    # print(f"Rules for class 0: {(c_per_rule == 0).sum()}; Rules for class 1: {(c_per_rule == 1).sum()}")
+    # print(f"Avg conf for class 0: {conf[c_per_rule == 0].mean()}; Avg conf for class 1: {conf[c_per_rule == 1].mean()}")
+    #
+    # te_0_ary = transactions_te_0.values.astype('int')
+    # te_1_ary = transactions_te_1.values.astype('int')
+    #
+    # # first rule used
+    # y_0 = np.matmul(te_0_ary, cp_attr_contained_freq_items)
+    # y_1 = np.matmul(te_1_ary, cp_attr_contained_freq_items)
+    # # Each element in the matrix indicates the count of how many times the corresponding
+    # # frequent itemset occurred in the transactions of the corresponding class.
+    #
+    # pred = np.zeros((y_0.shape[0] + y_1.shape[0], 2))
+    # no_rules_x_c0 = 0
+    # no_rules_x_c1 = 0
+    # '''
+    # no_rules_x_c0 and no_rules_x_c1 are variables that keep track of the number of cases where no rule applies for each class.
+    # In the code, they are initialized to 0 before the for-loops, and then updated within the loops based on
+    # whether or not a rule applies to a given transaction. If no rule applies, the corresponding count is incremented.
+    # '''
+    # for i in range(y_0.shape[0]):
+    #     maxp = -1
+    #     '''
+    #      maxp is a variable that stores the maximum confidence value for a rule that satisfies certain conditions.
+    #      In the first for loop, maxp is the maximum confidence value among rules that belong to class 0 and contain
+    #      all the items in the current transaction. In the second for loop, maxp is the maximum confidence value among
+    #      rules that belong to class 1 and contain all the items in the current transaction.
+    #      If no rule satisfies the conditions, maxp remains -1.
+    #     '''
+    #     for j in range(y_0.shape[1]):
+    #         if c_per_rule[j] == 0 and y_0[i, j] >= item_len[j]:
+    #             maxp = max(maxp, conf[j])
+    #     if maxp == -1:
+    #         no_rules_x_c0 = no_rules_x_c0 + 1
+    #     else:
+    #         pred[i, 0] = maxp
+    #
+    #     maxp = -1
+    #     for j in range(y_0.shape[1]):
+    #         if c_per_rule[j] == 1 and y_0[i, j] >= item_len[j]:
+    #             maxp = max(maxp, conf[j])
+    #
+    #     if maxp == -1:
+    #         no_rules_x_c1 = no_rules_x_c1 + 1
+    #     else:
+    #         pred[i, 1] = maxp
+    # print(f"using class 0: {y_0.shape[0], no_rules_x_c0, no_rules_x_c1}")
+    #
+    # no_rules_x_c0 = 0
+    # no_rules_x_c1 = 0
+    # # keep track of the number of cases where no rule applies for each class.
+    #
+    # for i in range(y_1.shape[0]):
+    #     maxp = -1
+    #     for j in range(y_1.shape[1]):
+    #         if c_per_rule[j] == 0 and y_1[i, j] >= item_len[j]:
+    #             maxp = max(maxp, conf[j])
+    #     if maxp == -1:
+    #         no_rules_x_c0 = no_rules_x_c0 + 1
+    #     else:
+    #         pred[i + y_0.shape[0], 0] = maxp
+    #
+    #     maxp = -1
+    #     for j in range(y_1.shape[1]):
+    #         if c_per_rule[j] == 1 and y_1[i, j] >= item_len[j]:
+    #             maxp = max(maxp, conf[j])
+    #
+    #     if maxp == -1:
+    #         no_rules_x_c1 = no_rules_x_c1 + 1
+    #     else:
+    #         pred[i + y_0.shape[0], 1] = maxp
+    #
+    # print(f"using class 1: {y_1.shape[0], no_rules_x_c0, no_rules_x_c1}")
+    #
+    # y = np.concatenate((np.zeros(te_0_ary.shape[0]), np.ones(te_1_ary.shape[0])), axis=0)
+    # auc1 = roc_auc_score(y, pred[:, 1])
+    # auc_sum += auc1
+    # print(f"\nauc for class 1: {auc1}")
+    # y = np.concatenate((np.zeros(te_0_ary.shape[0]), np.ones(te_1_ary.shape[0])), axis=0)
+    # auc0 = roc_auc_score(y, -pred[:, 0])
+    # print(f"auc for class 0: {auc0}")
+    #
+    #
+    #
+    #
+    # # f1, first rule used for training data
+    # y_00 = np.matmul(tr_0_ary, cp_attr_contained_freq_items)
+    # y_01 = np.matmul(tr_1_ary, cp_attr_contained_freq_items)
+    # # Each element in the matrix indicates the count of how many times the corresponding
+    # # frequent itemset occurred in the transactions of the corresponding class.
+    #
+    # pred0 = np.zeros(y_00.shape[0] + y_01.shape[0])
+    # no_rules_x_c0 = 0
+    # no_rules_x_c1 = 0
+    # for i in range(y_00.shape[0]):
+    #     maxp = -1
+    #     for j in range(y_00.shape[1]):
+    #         if c_per_rule[j] == 1 and y_00[i, j] >= item_len[j]:
+    #             maxp = max(maxp, conf[j])
+    #
+    #     if maxp == -1:
+    #         no_rules_x_c1 = no_rules_x_c1 + 1
+    #     else:
+    #         pred0[i] = maxp
+    #
+    # no_rules_x_c0 = 0
+    # no_rules_x_c1 = 0
+    # for i in range(y_01.shape[0]):
+    #
+    #     maxp = -1
+    #     for j in range(y_01.shape[1]):
+    #         if c_per_rule[j] == 1 and y_01[i, j] >= item_len[j]:
+    #             maxp = max(maxp, conf[j])
+    #
+    #     if maxp == -1:
+    #         no_rules_x_c1 = no_rules_x_c1 + 1
+    #     else:
+    #         pred0[i + y_00.shape[0]] = maxp
+    #
+    # y0 = np.concatenate((np.zeros(tr_0_ary.shape[0]), np.ones(tr_1_ary.shape[0])), axis=0)
+    #
+    # z_1 = pred0[y0 == 1]
+    # m = np.mean(z_1)
+    # s = np.std(z_1)
+    # th = m
+    #
+    # pred_y = np.zeros(pred.shape[0], dtype=int)
+    # for i in range(pred.shape[0]):
+    #     if pred[i, 1] >= th:
+    #         pred_y[i] = 1
+    #
+    # # print(f1_score(y, pred_y))
+    # TP = 0
+    # FP = 0
+    # FN = 0
+    # TN = 0
+    # for i in range(pred.shape[0]):
+    #     if y[i] == 1 and pred_y[i] == 1:
+    #         TP = TP + 1
+    #     elif y[i] == 1 and pred_y[i] == 0:
+    #         FN = FN + 1
+    #     elif y[i] == 0 and pred_y[i] == 1:
+    #         FP = FP + 1
+    #     else:
+    #         TN = TN + 1
+    #
+    # f1 = (2 * TP) / (2 * TP + FP + FN)
+    # f1_sum += f1
+    # print('pre:', TP / (TP + FP), 'rec:', TP / (TP + FN))
+    # print('f1:', f1)
+    #
+    # confusion_matrix = [
+    #     ["1=died  0=alive", "Pred class = '1'", "Pred class = '0'", 'Total actual c'],
+    #     ["Actual class = '1'", str(TP) + "\n(TP)", str(FN) + "\n(FN)",
+    #      str(TP + FN) + "\n(Total actual c= '1')"],
+    #     ["Actual class = '0'", str(FP) + "\n(FP)", str(TN) + "\n(TN)",
+    #      str(FP + TN) + "\n(Total actual c= '0')"],
+    #     ["Total pred c", str(TP + FP) + "\n(Total pred as '1')", str(FN + TN) + "\n(Total pred as '0')",
+    #      str(pd.concat([transactions_te_0, transactions_te_1]).shape[0])],
+    # ]
+    # print(tabulate(confusion_matrix, headers='firstrow', tablefmt='fancy_grid'))
+    # print(classification_report(y, pred_y, zero_division=0))
+
+
+
+
+    # --------------------------------------------------------------------------------------
+    # all rules; roc auc
+    print('all rules')
     print(f"freq items: {len(frequent_items)}")
-    print(f"Rules for class 0: {(c_per_rule == 0).sum()}; Rules for class 1: {(c_per_rule == 1).sum()}")
-    print(f"Avg conf for class 0: {conf[c_per_rule == 0].mean()}; Avg conf for class 1: {conf[c_per_rule == 1].mean()}")
+    print(f"Rules for class 0: {(c_per_rule == 0).sum()} Rules for class 1: {(c_per_rule == 1).sum()}")
+    print(f"Avg conf for class 0: {conf[c_per_rule == 0].mean()}, Avg conf for class 1: {conf[c_per_rule == 1].mean()}")
 
     te_0_ary = transactions_te_0.values.astype('int')
     te_1_ary = transactions_te_1.values.astype('int')
 
-    # first rule used
+    # all matched rules  used
     y_0 = np.matmul(te_0_ary, cp_attr_contained_freq_items)
     y_1 = np.matmul(te_1_ary, cp_attr_contained_freq_items)
     # Each element in the matrix indicates the count of how many times the corresponding
@@ -160,63 +331,55 @@ for seed in range(10):
     pred = np.zeros((y_0.shape[0] + y_1.shape[0], 2))
     no_rules_x_c0 = 0
     no_rules_x_c1 = 0
-    '''
-    no_rules_x_c0 and no_rules_x_c1 are variables that keep track of the number of cases where no rule applies for each class. 
-    In the code, they are initialized to 0 before the for-loops, and then updated within the loops based on 
-    whether or not a rule applies to a given transaction. If no rule applies, the corresponding count is incremented.
-    '''
+
     for i in range(y_0.shape[0]):
-        maxp = -1
-        '''
-         maxp is a variable that stores the maximum confidence value for a rule that satisfies certain conditions. 
-         In the first for loop, maxp is the maximum confidence value among rules that belong to class 0 and contain 
-         all the items in the current transaction. In the second for loop, maxp is the maximum confidence value among 
-         rules that belong to class 1 and contain all the items in the current transaction. 
-         If no rule satisfies the conditions, maxp remains -1.
-        '''
+        cnt = 0
         for j in range(y_0.shape[1]):
             if c_per_rule[j] == 0 and y_0[i, j] >= item_len[j]:
-                maxp = max(maxp, conf[j])
-        if maxp == -1:
+                pred[i, 0] = pred[i, 0] + conf[j]
+                cnt = cnt + 1
+        if cnt == 0:
             no_rules_x_c0 = no_rules_x_c0 + 1
         else:
-            pred[i, 0] = maxp
+            pred[i, 0] = pred[i, 0] / cnt
 
-        maxp = -1
+        cnt = 0
         for j in range(y_0.shape[1]):
             if c_per_rule[j] == 1 and y_0[i, j] >= item_len[j]:
-                maxp = max(maxp, conf[j])
+                pred[i, 1] = pred[i, 1] + conf[j]
+                cnt = cnt + 1
 
-        if maxp == -1:
+        if cnt == 0:
             no_rules_x_c1 = no_rules_x_c1 + 1
         else:
-            pred[i, 1] = maxp
+            pred[i, 1] = pred[i, 1] / cnt
     print(f"using class 0: {y_0.shape[0], no_rules_x_c0, no_rules_x_c1}")
 
     no_rules_x_c0 = 0
     no_rules_x_c1 = 0
-    # keep track of the number of cases where no rule applies for each class.
-
     for i in range(y_1.shape[0]):
-        maxp = -1
+        cnt = 0
+        x = 0
         for j in range(y_1.shape[1]):
             if c_per_rule[j] == 0 and y_1[i, j] >= item_len[j]:
-                maxp = max(maxp, conf[j])
-        if maxp == -1:
+                x = x + conf[j]
+                cnt = cnt + 1
+        if cnt == 0:
             no_rules_x_c0 = no_rules_x_c0 + 1
         else:
-            pred[i + y_0.shape[0], 0] = maxp
+            pred[i + y_0.shape[0], 0] = x / cnt
 
-        maxp = -1
+        cnt = 0
+        x = 0
         for j in range(y_1.shape[1]):
             if c_per_rule[j] == 1 and y_1[i, j] >= item_len[j]:
-                maxp = max(maxp, conf[j])
+                x = x + conf[j]
+                cnt = cnt + 1
 
-        if maxp == -1:
+        if cnt == 0:
             no_rules_x_c1 = no_rules_x_c1 + 1
         else:
-            pred[i + y_0.shape[0], 1] = maxp
-
+            pred[i + y_0.shape[0], 1] = x / cnt
     print(f"using class 1: {y_1.shape[0], no_rules_x_c0, no_rules_x_c1}")
 
     y = np.concatenate((np.zeros(te_0_ary.shape[0]), np.ones(te_1_ary.shape[0])), axis=0)
@@ -227,7 +390,9 @@ for seed in range(10):
     auc0 = roc_auc_score(y, -pred[:, 0])
     print(f"auc for class 0: {auc0}")
 
-    # f1, first rule used for training data (div)
+
+
+    # f1, all rules used for training data
     y_00 = np.matmul(tr_0_ary, cp_attr_contained_freq_items)
     y_01 = np.matmul(tr_1_ary, cp_attr_contained_freq_items)
     # Each element in the matrix indicates the count of how many times the corresponding
@@ -237,29 +402,31 @@ for seed in range(10):
     no_rules_x_c0 = 0
     no_rules_x_c1 = 0
     for i in range(y_00.shape[0]):
-        maxp = -1
+        cnt = 0
         for j in range(y_00.shape[1]):
             if c_per_rule[j] == 1 and y_00[i, j] >= item_len[j]:
-                maxp = max(maxp, conf[j])
+                pred0[i] = pred0[i] + conf[j]
+                cnt = cnt + 1
 
-        if maxp == -1:
+        if cnt == 0:
             no_rules_x_c1 = no_rules_x_c1 + 1
         else:
-            pred0[i] = maxp
+            pred0[i] = pred0[i] / cnt
 
     no_rules_x_c0 = 0
     no_rules_x_c1 = 0
     for i in range(y_01.shape[0]):
 
-        maxp = -1
+        cnt = 0
         for j in range(y_01.shape[1]):
             if c_per_rule[j] == 1 and y_01[i, j] >= item_len[j]:
-                maxp = max(maxp, conf[j])
+                pred0[i + y_00.shape[0]] = pred0[i + y_00.shape[0]] + conf[j]
+                cnt = cnt + 1
 
-        if maxp == -1:
+        if (cnt == 0):
             no_rules_x_c1 = no_rules_x_c1 + 1
         else:
-            pred0[i + y_00.shape[0]] = maxp
+            pred0[i + y_00.shape[0]] = pred0[i + y_00.shape[0]] / cnt
 
     y0 = np.concatenate((np.zeros(tr_0_ary.shape[0]), np.ones(tr_1_ary.shape[0])), axis=0)
 
@@ -274,7 +441,6 @@ for seed in range(10):
             pred_y[i] = 1
 
     # print(f1_score(y, pred_y))
-
     TP = 0
     FP = 0
     FN = 0
@@ -305,9 +471,6 @@ for seed in range(10):
     ]
     print(tabulate(confusion_matrix, headers='firstrow', tablefmt='fancy_grid'))
     print(classification_report(y, pred_y, zero_division=0))
-
-    # --------------------------------------------------------------------------------------
-    # all rules; roc auc
 
 print("\n\nAvg")
 print(f"Roc auc (class 1): {auc_sum / 10}")
