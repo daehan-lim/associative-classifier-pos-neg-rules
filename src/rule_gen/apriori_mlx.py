@@ -144,7 +144,6 @@ def apriori_of_size_1(df, min_support):
 
 
 def apriori_of_size_k(df, previous_itemset_array, min_support=0.5, k=2, low_memory=False):
-    print(f"k: {k}")
     transactions_series = df.values
     rows_count = float(transactions_series.shape[0])
 
