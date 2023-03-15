@@ -13,7 +13,7 @@ start_time = time.time()
 with open('../data/dataset.csv', 'r') as file:
     data_set = [list(filter(None, row)) for row in csv.reader(file)]
 
-min_supp = 0.09
+min_supp = 0.02
 te = TransactionEncoder()
 te_ary = te.fit_transform(data_set)
 m_transactions = pd.DataFrame(te_ary, columns=te.columns_)
@@ -23,7 +23,6 @@ transactions_0 = pd.DataFrame(
 transactions_1 = pd.DataFrame(
     m_transactions[m_transactions['1']].reset_index(drop=True).drop(['1', '0'], axis=1))
 
-# seeds [0, 10, 35, 42, 123, 456, 789, 101112, 131415, 161718]
 auc_sum = 0
 f1_sum = 0
 for seed in range(10):
@@ -33,7 +32,6 @@ for seed in range(10):
     indices = list(range(0, len(transactions_0)))
     random.shuffle(indices)
     transactions_te_0 = transactions_0.iloc[indices[:417], :]
-    # transactions_tr_00 = transactions_0.iloc[indices[417:810],:]
     transactions_tr_0 = transactions_0.iloc[indices[417:], :]
 
     indices = list(range(0, len(transactions_1)))
@@ -41,10 +39,8 @@ for seed in range(10):
     transactions_te_1 = transactions_1.iloc[indices[:43], :]
     transactions_tr_1 = transactions_1.iloc[indices[43:], :]
 
-    tr_0_ary = transactions_tr_0.values.astype('int')
-    tr_1_ary = transactions_tr_1.values.astype('int')
-
-    # tr_00_ary=(transactions_tr_00.values).astype('int')
+    transactions_tr_0_intarray = transactions_tr_0.values.astype('int')
+    transactions_tr_1_intarray = transactions_tr_1.values.astype('int')
 
     transactions_tr = pd.concat([transactions_tr_0, transactions_tr_1])
 
@@ -59,89 +55,89 @@ for seed in range(10):
         attributes_contained_in_freq_items[freq_itemsets_matrix[i], i] = 1
 
     # --------------------------------------------------------------------------------------
-    # # lift
-    # print('lift')
-    # cp_attr_contained_freq_items = copy.deepcopy(attributes_contained_in_freq_items)
-    # freq_count_per_trans_0 = np.matmul(tr_0_ary, attributes_contained_in_freq_items)
-    # freq_count_per_trans_1 = np.matmul(tr_1_ary, attributes_contained_in_freq_items)
-    # # Each element in the matrix indicates the count of how many times the corresponding
-    # # frequent itemset occurred in the transactions of the corresponding class.
-    #
-    # item_len = np.sum(attributes_contained_in_freq_items, axis=0)  # item length
-    # cls0 = np.zeros(freq_itemsets_count)  # frequent_items['support']
-    # cls1 = np.zeros(freq_itemsets_count)
-    # p = np.zeros(freq_itemsets_count)
-    # conf = np.zeros(freq_itemsets_count)
-    # c_per_rule = np.zeros(freq_itemsets_count, dtype=int)
-    # cnt = 0
-    # for i in range(freq_count_per_trans_0.shape[1]):
-    #     cls0[i] = (freq_count_per_trans_0[:, i] >= item_len[i]).sum() / freq_count_per_trans_0.shape[0]
-    #     cls1[i] = (freq_count_per_trans_1[:, i] >= item_len[i]).sum() / freq_count_per_trans_1.shape[0]
-    #     p[i] = ((freq_count_per_trans_0[:, i] >= item_len[i]).sum() + (
-    #             freq_count_per_trans_1[:, i] >= item_len[i]).sum()) / (
-    #                    freq_count_per_trans_0.shape[0] + freq_count_per_trans_1.shape[0])
-    #
-    #     '''
-    #     p: proportion of transactions in which the corresponding frequent itemset appears
-    #     it is calculated as the sum of the number of transactions containing the itemset
-    #     in both classes (0 and 1) divided by the total number of transactions.
-    #
-    #     cls0[i]/p[i] is the ratio of the number of transactions in which the itemset appears in class 0
-    #     to the total number of transactions in which the itemset appears, regardless of the class.
-    #     The confidence score indicates the likelihood that the rule's consequent will be present in transactions that
-    #     contain its antecedent.
-    #
-    #     The line elif cls0[i]/p[i]<1 and cls1[i]/p[i]>1: is checking whether the confidence of the association rule
-    #     in question is greater for class 1 than class 0, and whether that confidence is greater than 1.
-    #     If the confidence of the rule is less for class 0 than class 1, but the confidence for class 1 is greater than 1,
-    #     then the rule is said to have a "class 1" association, meaning that it is more strongly associated with class 1.
-    #     In this case, indc[i] is set to 1, indicating that the rule has a class 1 association,
-    #     and conf[i] is set to the ratio of the support of the rule in class 1 to the overall support of the rule
-    #     in both classes.
-    #     '''
-    #
-    #     if cls0[i] / p[i] > 1:
-    #         c_per_rule[i] = 0
-    #         conf[i] = cls0[i] / p[i]
-    #         cnt = cnt + 1
-    #     elif cls0[i] / p[i] < 1 and cls1[i] / p[i] > 1:
-    #         c_per_rule[i] = 1
-    #         conf[i] = cls1[i] / p[i]
-    #         cnt = cnt + 1
-    #     else:
-    #         conf[i] = 0
-    #         cp_attr_contained_freq_items[:, i] = 0
-    #         c_per_rule[i] = -1
-
-    # 1-ccs/cls
-    print('1-ccs/cls')
+    # lift
+    print('lift')
     cp_attr_contained_freq_items = copy.deepcopy(attributes_contained_in_freq_items)
-    freq_count_per_trans_0 = np.matmul(tr_0_ary, attributes_contained_in_freq_items)  # x_00
-    freq_count_per_trans_1 = np.matmul(tr_1_ary, attributes_contained_in_freq_items)  # x_01
+    freq_count_per_trans_0 = np.matmul(transactions_tr_0_intarray, attributes_contained_in_freq_items)
+    freq_count_per_trans_1 = np.matmul(transactions_tr_1_intarray, attributes_contained_in_freq_items)
     # Each element in the matrix indicates the count of how many times the corresponding
     # frequent itemset occurred in the transactions of the corresponding class.
 
     item_len = np.sum(attributes_contained_in_freq_items, axis=0)  # item length
     cls0 = np.zeros(freq_itemsets_count)  # frequent_items['support']
     cls1 = np.zeros(freq_itemsets_count)
+    p = np.zeros(freq_itemsets_count)
     conf = np.zeros(freq_itemsets_count)
     c_per_rule = np.zeros(freq_itemsets_count, dtype=int)
     cnt = 0
     for i in range(freq_count_per_trans_0.shape[1]):
         cls0[i] = (freq_count_per_trans_0[:, i] >= item_len[i]).sum() / freq_count_per_trans_0.shape[0]
         cls1[i] = (freq_count_per_trans_1[:, i] >= item_len[i]).sum() / freq_count_per_trans_1.shape[0]
-        if cls1[i] / cls0[i] < 1:
+        p[i] = ((freq_count_per_trans_0[:, i] >= item_len[i]).sum() + (
+                freq_count_per_trans_1[:, i] >= item_len[i]).sum()) / (
+                       freq_count_per_trans_0.shape[0] + freq_count_per_trans_1.shape[0])
+
+        '''
+        p: proportion of transactions in which the corresponding frequent itemset appears
+        it is calculated as the sum of the number of transactions containing the itemset
+        in both classes (0 and 1) divided by the total number of transactions.
+
+        cls0[i]/p[i] is the ratio of the number of transactions in which the itemset appears in class 0
+        to the total number of transactions in which the itemset appears, regardless of the class.
+        The confidence score indicates the likelihood that the rule's consequent will be present in transactions that
+        contain its antecedent.
+
+        The line elif cls0[i]/p[i]<1 and cls1[i]/p[i]>1: is checking whether the confidence of the association rule
+        in question is greater for class 1 than class 0, and whether that confidence is greater than 1.
+        If the confidence of the rule is less for class 0 than class 1, but the confidence for class 1 is greater than 1,
+        then the rule is said to have a "class 1" association, meaning that it is more strongly associated with class 1.
+        In this case, indc[i] is set to 1, indicating that the rule has a class 1 association,
+        and conf[i] is set to the ratio of the support of the rule in class 1 to the overall support of the rule
+        in both classes.
+        '''
+
+        if cls0[i] / p[i] > 1:
             c_per_rule[i] = 0
-            conf[i] = 1 - cls1[i] / cls0[i]
+            conf[i] = cls0[i] / p[i]
             cnt = cnt + 1
-        elif cls1[i] / cls0[i] > 1:
+        elif cls0[i] / p[i] < 1 and cls1[i] / p[i] > 1:
             c_per_rule[i] = 1
-            conf[i] = 1 - cls0[i] / cls1[i]
+            conf[i] = cls1[i] / p[i]
             cnt = cnt + 1
         else:
             conf[i] = 0
             cp_attr_contained_freq_items[:, i] = 0
             c_per_rule[i] = -1
+
+    # # 1-ccs/cls
+    # print('1-ccs/cls')
+    # cp_attr_contained_freq_items = copy.deepcopy(attributes_contained_in_freq_items)
+    # freq_count_per_trans_0 = np.matmul(transactions_tr_0_intarray, attributes_contained_in_freq_items)  # x_00
+    # freq_count_per_trans_1 = np.matmul(transactions_tr_1_intarray, attributes_contained_in_freq_items)  # x_01
+    # # Each element in the matrix indicates the count of how many times the corresponding
+    # # frequent itemset occurred in the transactions of the corresponding class.
+    #
+    # item_len = np.sum(attributes_contained_in_freq_items, axis=0)  # item length
+    # cls0 = np.zeros(freq_itemsets_count)  # frequent_items['support']
+    # cls1 = np.zeros(freq_itemsets_count)
+    # conf = np.zeros(freq_itemsets_count)
+    # c_per_rule = np.zeros(freq_itemsets_count, dtype=int)
+    # cnt = 0
+    # for i in range(freq_count_per_trans_0.shape[1]):
+    #     cls0[i] = (freq_count_per_trans_0[:, i] >= item_len[i]).sum() / freq_count_per_trans_0.shape[0]
+    #     cls1[i] = (freq_count_per_trans_1[:, i] >= item_len[i]).sum() / freq_count_per_trans_1.shape[0]
+    #     if cls1[i] / cls0[i] < 1:
+    #         c_per_rule[i] = 0
+    #         conf[i] = 1 - cls1[i] / cls0[i]
+    #         cnt = cnt + 1
+    #     elif cls1[i] / cls0[i] > 1:
+    #         c_per_rule[i] = 1
+    #         conf[i] = 1 - cls0[i] / cls1[i]
+    #         cnt = cnt + 1
+    #     else:
+    #         conf[i] = 0
+    #         cp_attr_contained_freq_items[:, i] = 0
+    #         c_per_rule[i] = -1
 
 
     # --------------------------------------------------------------------------------------
@@ -234,8 +230,8 @@ for seed in range(10):
 
 
     # f1, first rule used for training data
-    y_00 = np.matmul(tr_0_ary, cp_attr_contained_freq_items)
-    y_01 = np.matmul(tr_1_ary, cp_attr_contained_freq_items)
+    y_00 = np.matmul(transactions_tr_0_intarray, cp_attr_contained_freq_items)
+    y_01 = np.matmul(transactions_tr_1_intarray, cp_attr_contained_freq_items)
     # Each element in the matrix indicates the count of how many times the corresponding
     # frequent itemset occurred in the transactions of the corresponding class.
 
@@ -267,7 +263,7 @@ for seed in range(10):
         else:
             pred0[i + y_00.shape[0]] = maxp
 
-    y0 = np.concatenate((np.zeros(tr_0_ary.shape[0]), np.ones(tr_1_ary.shape[0])), axis=0)
+    y0 = np.concatenate((np.zeros(transactions_tr_0_intarray.shape[0]), np.ones(transactions_tr_1_intarray.shape[0])), axis=0)
 
     z_1 = pred0[y0 == 1]
     m = np.mean(z_1)
@@ -395,8 +391,8 @@ for seed in range(10):
     #
     #
     # # f1, all rules used for training data
-    # y_00 = np.matmul(tr_0_ary, cp_attr_contained_freq_items)
-    # y_01 = np.matmul(tr_1_ary, cp_attr_contained_freq_items)
+    # y_00 = np.matmul(transactions_tr_0_intarray, cp_attr_contained_freq_items)
+    # y_01 = np.matmul(transactions_tr_1_intarray, cp_attr_contained_freq_items)
     # # Each element in the matrix indicates the count of how many times the corresponding
     # # frequent itemset occurred in the transactions of the corresponding class.
     #
@@ -430,7 +426,7 @@ for seed in range(10):
     #     else:
     #         pred0[i + y_00.shape[0]] = pred0[i + y_00.shape[0]] / cnt
     #
-    # y0 = np.concatenate((np.zeros(tr_0_ary.shape[0]), np.ones(tr_1_ary.shape[0])), axis=0)
+    # y0 = np.concatenate((np.zeros(transactions_tr_0_intarray.shape[0]), np.ones(transactions_tr_1_intarray.shape[0])), axis=0)
     #
     # z_1 = pred0[y0 == 1]
     # m = np.mean(z_1)

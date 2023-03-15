@@ -32,7 +32,6 @@ for seed in range(10):
     indices = list(range(0, len(transactions_0)))
     random.shuffle(indices)
     transactions_te_0 = transactions_0.iloc[indices[:417], :]
-    # transactions_tr_00 = transactions_0.iloc[indices[417:810],:]
     transactions_tr_0 = transactions_0.iloc[indices[417:], :]
 
     indices = list(range(0, len(transactions_1)))
@@ -40,10 +39,8 @@ for seed in range(10):
     transactions_te_1 = transactions_1.iloc[indices[:43], :]
     transactions_tr_1 = transactions_1.iloc[indices[43:], :]
 
-    tr_0_ary = transactions_tr_0.values.astype('int')
-    tr_1_ary = transactions_tr_1.values.astype('int')
-
-    # tr_00_ary=(transactions_tr_00.values).astype('int')
+    transactions_tr_0_intarray = transactions_tr_0.values.astype('int')
+    transactions_tr_1_intarray = transactions_tr_1.values.astype('int')
 
     transactions_tr = pd.concat([transactions_tr_0, transactions_tr_1])
 
@@ -61,8 +58,8 @@ for seed in range(10):
     # lift
     print('lift')
     cp_attr_contained_freq_items = copy.deepcopy(attributes_contained_in_freq_items)
-    freq_count_per_trans_0 = np.matmul(tr_0_ary, attributes_contained_in_freq_items)
-    freq_count_per_trans_1 = np.matmul(tr_1_ary, attributes_contained_in_freq_items)
+    freq_count_per_trans_0 = np.matmul(transactions_tr_0_intarray, attributes_contained_in_freq_items)
+    freq_count_per_trans_1 = np.matmul(transactions_tr_1_intarray, attributes_contained_in_freq_items)
     # Each element in the matrix indicates the count of how many times the corresponding
     # frequent itemset occurred in the transactions of the corresponding class.
 
@@ -115,8 +112,8 @@ for seed in range(10):
     # # 1-ccs/cls
     # print('1-ccs/cls')
     # cp_attr_contained_freq_items = copy.deepcopy(attributes_contained_in_freq_items)
-    # freq_count_per_trans_0 = np.matmul(tr_0_ary, attributes_contained_in_freq_items)  # x_00
-    # freq_count_per_trans_1 = np.matmul(tr_1_ary, attributes_contained_in_freq_items)  # x_01
+    # freq_count_per_trans_0 = np.matmul(transactions_tr_0_intarray, attributes_contained_in_freq_items)  # x_00
+    # freq_count_per_trans_1 = np.matmul(transactions_tr_1_intarray, attributes_contained_in_freq_items)  # x_01
     # # Each element in the matrix indicates the count of how many times the corresponding
     # # frequent itemset occurred in the transactions of the corresponding class.
     #
@@ -233,8 +230,8 @@ for seed in range(10):
 
 
     # f1, first rule used for training data
-    y_00 = np.matmul(tr_0_ary, cp_attr_contained_freq_items)
-    y_01 = np.matmul(tr_1_ary, cp_attr_contained_freq_items)
+    y_00 = np.matmul(transactions_tr_0_intarray, cp_attr_contained_freq_items)
+    y_01 = np.matmul(transactions_tr_1_intarray, cp_attr_contained_freq_items)
     # Each element in the matrix indicates the count of how many times the corresponding
     # frequent itemset occurred in the transactions of the corresponding class.
 
@@ -266,7 +263,7 @@ for seed in range(10):
         else:
             pred0[i + y_00.shape[0]] = maxp
 
-    y0 = np.concatenate((np.zeros(tr_0_ary.shape[0]), np.ones(tr_1_ary.shape[0])), axis=0)
+    y0 = np.concatenate((np.zeros(transactions_tr_0_intarray.shape[0]), np.ones(transactions_tr_1_intarray.shape[0])), axis=0)
 
     z_1 = pred0[y0 == 1]
     m = np.mean(z_1)
@@ -394,8 +391,8 @@ for seed in range(10):
     #
     #
     # # f1, all rules used for training data
-    # y_00 = np.matmul(tr_0_ary, cp_attr_contained_freq_items)
-    # y_01 = np.matmul(tr_1_ary, cp_attr_contained_freq_items)
+    # y_00 = np.matmul(transactions_tr_0_intarray, cp_attr_contained_freq_items)
+    # y_01 = np.matmul(transactions_tr_1_intarray, cp_attr_contained_freq_items)
     # # Each element in the matrix indicates the count of how many times the corresponding
     # # frequent itemset occurred in the transactions of the corresponding class.
     #
@@ -429,7 +426,7 @@ for seed in range(10):
     #     else:
     #         pred0[i + y_00.shape[0]] = pred0[i + y_00.shape[0]] / cnt
     #
-    # y0 = np.concatenate((np.zeros(tr_0_ary.shape[0]), np.ones(tr_1_ary.shape[0])), axis=0)
+    # y0 = np.concatenate((np.zeros(transactions_tr_0_intarray.shape[0]), np.ones(transactions_tr_1_intarray.shape[0])), axis=0)
     #
     # z_1 = pred0[y0 == 1]
     # m = np.mean(z_1)
