@@ -115,9 +115,12 @@ def main():
 def predict(test_set, sorted_rules):
     y_test = test_set.apply(lambda row: 0 if row['0'] else 1, axis=1).tolist()
     objects = test_set.drop(['1', '0'], axis=1).apply(lambda row: frozenset(row.index[row]), axis=1).tolist()
-    predictions = [classification.classify(object_o, sorted_rules, 0.1) for object_o in objects]
-    y_pred = [prediction['pred'] for prediction in predictions]
-    scores = [prediction['score'] for prediction in predictions]
+    y_pred = []
+    scores = []
+    for object_o in objects:
+        m_y_pred, score = classification.classify(object_o, sorted_rules, 0.1)
+        y_pred.append(m_y_pred)
+        scores.append(score)
     y_test, y_pred = np.array(y_test), np.array(y_pred)
     not_classified = np.sum(y_pred == -1)
     y_pred[y_pred == -1] = 0

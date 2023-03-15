@@ -5,9 +5,8 @@ from collections import defaultdict
 def classify(object_o, rules_set, confidence_margin):
     for rule in rules_set:
         if (rule['antecedent']).issubset(object_o):
-            return {'pred': int(rule['consequent']), 'score': rule['confidence']}
-    return {'pred': -1, 'score': 0}
-
+            return int(rule['consequent']), rule['confidence']
+    return -1, 0
 
     # # Using confidence margin
     # def classify(object_o, rules_set, confidence_margin):
@@ -45,7 +44,6 @@ def classify(object_o, rules_set, confidence_margin):
     #     predicted_class = [c for c, conf in avg_conf_by_group.items() if conf == max_confidence][0]
     #
     # return int(predicted_class)
-
 
 # #Every rule that matches object
 # def classification(object_o, rules_set, confidence_margin):
