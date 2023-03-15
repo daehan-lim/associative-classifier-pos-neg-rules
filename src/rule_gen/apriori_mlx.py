@@ -44,6 +44,85 @@ def generate_new_combinations(old_combinations):
             yield item
 
 
+def generate_new_combinations_low_memory(old_combinations, X, min_support, is_sparse=False):
+    """
+    Generator of all combinations based on the last state of Apriori algorithm
+    Parameters
+    -----------
+    old_combinations: np.array
+        All combinations with enough support in the last step
+        Combinations are represented by a matrix.
+        Number of columns is equal to the combination size
+        of the previous step.
+        Each row represents one combination
+        and contains item type ids in the ascending order
+        ```
+               0        1
+        0      15       20
+        1      15       22
+        2      17       19
+        ```
+
+    X: np.array or scipy sparse matrix
+      The allowed values are either 0/1 or True/False.
+      For example,
+
+    ```
+        0     True False  True  True False  True
+        1     True False  True False False  True
+        2     True False  True False False False
+        3     True  True False False False False
+        4    False False  True  True  True  True
+        5    False False  True False  True  True
+        6    False False  True False  True False
+        7     True  True False False False False
+    ```
+
+    min_support : float (default: 0.5)
+      A float between 0 and 1 for minumum support of the itemsets returned.
+      The support is computed as the fraction
+      `transactions_where_item(s)_occur / total_transactions`.
+
+    is_sparse : bool True if X is sparse
+
+    Returns
+    -----------
+    Generator of all combinations from the last step x items
+    from the previous step. Every combination contains the
+    number of transactions where this item occurs, followed
+    by item type ids in the ascending order.
+    No combination other than generated
+    do not have a chance to get enough support
+
+    Examples
+    -----------
+    For usage examples, please see
+    http://rasbt.github.io/mlxtend/user_guide/frequent_patterns/generate_new_combinations/
+
+    """
+
+    items_types_in_previous_step = np.unique(old_combinations.flatten())
+    rows_count = X.shape[0]
+    threshold = min_support * rows_count
+    for old_combination in old_combinations:
+        max_combination = old_combination[-1]
+        mask = items_types_in_previous_step > max_combination
+        valid_items = items_types_in_previous_step[mask]
+        old_tuple = tuple(old_combination)
+        if is_sparse:
+            mask_rows = X[:, old_tuple].toarray().all(axis=1)
+            X_cols = X[:, valid_items].toarray()
+            supports = X_cols[mask_rows].sum(axis=0)
+        else:
+            mask_rows = X[:, old_tuple].all(axis=1)
+            supports = X[mask_rows][:, valid_items].sum(axis=0)
+        valid_indices = (supports >= threshold).nonzero()[0]
+        for index in valid_indices:
+            yield supports[index]
+            yield from old_tuple
+            yield valid_items[index]
+
+
 def _support(_x, _n_rows, _is_sparse):
     out = np.sum(_x, axis=0) / _n_rows
     return np.array(out).reshape(-1)
@@ -64,23 +143,34 @@ def apriori_of_size_1(df, min_support):
     return itemsets, itemset_array
 
 
-def apriori_of_size_k(df, previous_itemset_array, min_support=0.5, k=2):
+def apriori_of_size_k(df, previous_itemset_array, min_support=0.5, k=2, low_memory=False):
+    print(f"k: {k}")
     transactions_series = df.values
     rows_count = float(transactions_series.shape[0])
 
-    combin = generate_new_combinations(previous_itemset_array)
-    combin = np.fromiter(combin, dtype=np.int16)
-    combin = combin.reshape(-1, k)
+    if low_memory:
+        combin = generate_new_combinations_low_memory(previous_itemset_array, transactions_series, min_support)
+        # slightly faster than creating an array from a list of tuples
+        combin = np.fromiter(combin, dtype=np.int16)
+        combin = combin.reshape(-1, k + 1)
 
-    if combin.size == 0:
-        return pd.DataFrame(), None
-    _bools = np.all(transactions_series[:, combin], axis=2)
-    support_series = _support(np.array(_bools), rows_count, False)
-    _mask = (support_series >= min_support).reshape(-1)
-    if any(_mask):
-        itemset_array = np.array(combin[_mask])
+        if combin.size == 0:
+            return pd.DataFrame(), None
+        itemset_array = combin[:, 1:]
     else:
-        return pd.DataFrame(), None
+        combin = generate_new_combinations(previous_itemset_array)
+        combin = np.fromiter(combin, dtype=np.int16)
+        combin = combin.reshape(-1, k)
+
+        if combin.size == 0:
+            return pd.DataFrame(), None
+        _bools = np.all(transactions_series[:, combin], axis=2)
+        support_series = _support(np.array(_bools), rows_count, False)
+        _mask = (support_series >= min_support).reshape(-1)
+        if any(_mask):
+            itemset_array = np.array(combin[_mask])
+        else:
+            return pd.DataFrame(), None
 
     itemsets = pd.Series([frozenset(i) for i in itemset_array], dtype="object")
 

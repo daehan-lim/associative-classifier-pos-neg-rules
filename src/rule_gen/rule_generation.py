@@ -37,7 +37,7 @@ def classification_rule_generation(transactions, m_min_support, m_min_conf):
     k = 0
     while freq_itemsets[k] is not None and len(freq_itemsets[k]) > 0:
         k_freq_itemsets, previous_itemset_arr = apriori_mlx.apriori_of_size_k(
-            X_df, previous_itemset_arr, min_support=min_support, k=k + 2)
+            X_df, previous_itemset_arr, min_support=min_support, k=k + 2, low_memory=True)
         if not k_freq_itemsets.empty:
             k_freq_itemsets = k_freq_itemsets.tolist()
             # for item in k_freq_itemsets_x_c:
