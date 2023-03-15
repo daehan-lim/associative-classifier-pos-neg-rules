@@ -15,13 +15,6 @@ def main():
     with open('../data/dataset.csv', 'r') as file:
         dataset = [list(filter(None, row)) for row in csv.reader(file)]
 
-    # with open('../data/test_set_big_h.csv', 'r') as file:
-    #     test_set = [list(filter(None, row)) for row in csv.reader(file)]
-
-    # avg_transaction_size = sum(len(transaction) for transaction in training_set) / len(training_set)
-    # min_transaction_size = min(len(transaction) for transaction in training_set)
-    # max_transaction_size = max(len(transaction) for transaction in training_set)
-
     min_support = 0.05
     print(f"supp = {min_support} \n")
     transactions_df = util.convert_trans_to_df(dataset)
@@ -106,9 +99,6 @@ def main():
         pass
     print(classification_report(y_test, y_pred, zero_division=0))
     print()
-
-    # pr = np.expand_dims(np.array(PCR), axis=1)
-    # print(timeit.timeit(lambda: rule_generation.classification_rule_generation(), number=1))
 
 
 @utilities.timeit
