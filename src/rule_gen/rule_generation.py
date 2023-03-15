@@ -3,7 +3,7 @@ import pandas as pd
 from posneg_rule_gen.posneg_rule_generation import ponerg
 from rule_gen import apriori_mlx
 from util import util
-from mlutil import utilities
+from daehan_mlutil import utilities
 
 classes = None
 min_support = -1
