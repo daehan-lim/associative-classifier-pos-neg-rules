@@ -8,12 +8,13 @@ from mlxtend.frequent_patterns import apriori
 from sklearn.metrics import roc_auc_score, classification_report
 from tabulate import tabulate
 import time
+from rule_gen import apriori_mlx
 
 start_time = time.time()
 with open('../data/dataset.csv', 'r') as file:
     data_set = [list(filter(None, row)) for row in csv.reader(file)]
 
-min_supp = 0.02
+min_supp = 0.05
 te = TransactionEncoder()
 te_ary = te.fit_transform(data_set)
 m_transactions = pd.DataFrame(te_ary, columns=te.columns_)
@@ -44,7 +45,7 @@ for seed in range(10):
 
     transactions_tr = pd.concat([transactions_tr_0, transactions_tr_1])
 
-    frequent_items = apriori(transactions_tr, min_support=min_supp)
+    frequent_items = apriori_mlx.apriori(transactions_tr, min_support=min_supp, low_memory=True)
 
     attributes_count = transactions_tr.shape[1]  # number of attributes
     freq_itemsets_count = len(frequent_items)  # number of frequent items
