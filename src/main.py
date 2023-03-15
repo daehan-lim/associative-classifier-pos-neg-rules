@@ -48,7 +48,7 @@ def main():
 
         sorted_rules = sorted(rules, key=lambda d: d['confidence'], reverse=True)
 
-        y_test, y_pred, scores, not_classified = predict(test_set, sorted_rules)
+        y_test, y_pred, scores = predict(test_set, training_set, sorted_rules)
 
         TP = np.sum(np.logical_and(y_pred == 1, y_test == 1))
         TN = np.sum(np.logical_and(y_pred == 0, y_test == 0))
@@ -73,7 +73,7 @@ def main():
         roc_auc = roc_auc_score(y_test, scores)
         auc_sum += roc_auc
         accuracy = 100 * np.sum(y_test == y_pred) / len(y_test)
-        print(f"Pred as -1: {not_classified}")
+        # print(f"Pred as -1: {not_classified}")
         print(f"Precision: {round(precision, 3)}")
         print(f"Recall: {round(recall, 3)}")
         print(f"F1: {round(F1, 6)}")
@@ -112,19 +112,20 @@ def main():
 
 
 @utilities.timeit
-def predict(test_set, sorted_rules):
+def predict(test_set, training_set, sorted_rules):
+    training_transactions_1 = training_set[training_set['1']].drop(['1', '0'], axis=1).apply(
+        lambda row: frozenset(row.index[row]), axis=1).tolist()
+    scores_training = [classification.classify(object_o, sorted_rules, 0.1) for object_o in training_transactions_1]
+    mean = np.mean(scores_training)
+
+    test_transactions = test_set.drop(['1', '0'], axis=1).apply(lambda row: frozenset(row.index[row]), axis=1).tolist()
+    scores_test = [classification.predict_proba(object_o, sorted_rules) for object_o in test_transactions]
+    scores_test = np.array(scores_test)
     y_test = test_set.apply(lambda row: 0 if row['0'] else 1, axis=1).tolist()
-    objects = test_set.drop(['1', '0'], axis=1).apply(lambda row: frozenset(row.index[row]), axis=1).tolist()
-    y_pred = []
-    scores = []
-    for object_o in objects:
-        m_y_pred, score = classification.classify(object_o, sorted_rules, 0.1)
-        y_pred.append(m_y_pred)
-        scores.append(score)
-    y_test, y_pred = np.array(y_test), np.array(y_pred)
-    not_classified = np.sum(y_pred == -1)
-    y_pred[y_pred == -1] = 0
-    return y_test, y_pred, scores, not_classified
+    y_test = np.array(y_test)
+    y_pred = np.zeros(len(scores_test), dtype=int)
+    y_pred[scores_test >= mean] = 1
+    return y_test, y_pred, scores_test
 
 
 if __name__ == '__main__':
