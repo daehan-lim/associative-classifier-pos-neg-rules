@@ -118,10 +118,10 @@ def main():
     print("\n\nAvg")
     print(f"Roc auc (class 1): {auc_sum / 10}")
     print(f"f1: {f1_sum / 10}")
-    print(f"Precision: {precision_sum}")
-    print(f"Recall: {recall_sum}")
-    print(f"Accuracy: {accuracy_sum}")
-    print(f"Total rules: {rules_count_sum}")
+    print(f"Precision: {precision_sum / 10}")
+    print(f"Recall: {recall_sum / 10}")
+    print(f"Accuracy: {accuracy_sum / 10}")
+    print(f"Total rules: {rules_count_sum / 10}")
 
 
 @utilities.timeit
