@@ -6,7 +6,7 @@ def predict_proba(object_o, rules_set):
     for rule in rules_set:
         if (rule['antecedent']).issubset(object_o):
             return rule['confidence']
-    return 0
+    return -1
 
 # First rule that matches object
 def classify(object_o, rules_set, confidence_margin):

@@ -23,6 +23,7 @@ def main():
     recall_sum = 0
     accuracy_sum = 0
     rules_count_sum = 0
+    not_classified_sum = 0
 
     for seed in range(10):
         print(f"\n\nseed: {seed}")
@@ -53,7 +54,7 @@ def main():
 
         sorted_rules = sorted(rules, key=lambda d: d['confidence'], reverse=True)
 
-        y_test, y_pred, scores = predict(test_set, training_set, sorted_rules)
+        y_test, y_pred, scores, not_classified = predict(test_set, training_set, sorted_rules)
 
         TP = np.sum(np.logical_and(y_pred == 1, y_test == 1))
         TN = np.sum(np.logical_and(y_pred == 0, y_test == 0))
@@ -81,8 +82,9 @@ def main():
         auc_sum += roc_auc
         accuracy = 100 * np.sum(y_test == y_pred) / len(y_test)
         accuracy_sum += accuracy
+        not_classified_sum += not_classified
         rules_count_sum += len(sorted_rules)
-        # print(f"Pred as -1: {not_classified}")
+        print(f"Pred as -1: {not_classified}")
         print(f"Precision: {round(precision, 3)}")
         print(f"Recall: {round(recall, 3)}")
         print(f"F1: {round(F1, 6)}")
@@ -96,21 +98,22 @@ def main():
         print(f"Min rule conf: {round(sorted_rules[-1]['confidence'], 3)}\n")
         sorted_0 = [rule for rule in sorted_rules if rule['consequent'] == '0']
         sorted_1 = [rule for rule in sorted_rules if rule['consequent'] == '1']
-        print(f"Avg conf for c0 rules: {round(sum(rule['confidence'] for rule in sorted_0) / len(sorted_0), 3)}")
-        print(f"Max conf for c0 rules: {round(sorted_0[0]['confidence'], 3)}")
-        print(f"Min conf for c0 rules: {round(sorted_0[-1]['confidence'], 3)}")
-        print(f"Avg conf for c1 rules: {round(sum(rule['confidence'] for rule in sorted_1) / len(sorted_1), 3)}")
-        print(f"Max conf for c1 rules: {round(sorted_1[0]['confidence'], 3)}")
-        print(f"Min conf for c1 rules: {round(sorted_1[-1]['confidence'], 3)}")
-        print(f"Max length of freq itemsets (k): {len(freq_itemsets) - 1}")
-        print(f"Length of f1: {len(freq_itemsets[0])}")
+        # noinspection PyBroadException
         try:
+            print(f"Avg conf for c0 rules: {round(sum(rule['confidence'] for rule in sorted_0) / len(sorted_0), 3)}")
+            print(f"Max conf for c0 rules: {round(sorted_0[0]['confidence'], 3)}")
+            print(f"Min conf for c0 rules: {round(sorted_0[-1]['confidence'], 3)}")
+            print(f"Avg conf for c1 rules: {round(sum(rule['confidence'] for rule in sorted_1) / len(sorted_1), 3)}")
+            print(f"Max conf for c1 rules: {round(sorted_1[0]['confidence'], 3)}")
+            print(f"Min conf for c1 rules: {round(sorted_1[-1]['confidence'], 3)}")
+            print(f"Max length of freq itemsets (k): {len(freq_itemsets) - 1}")
+            print(f"Length of f1: {len(freq_itemsets[0])}")
             print(f"Length of f2: {len(freq_itemsets[1])}")
             print(f"Length of f3: {len(freq_itemsets[2])}")
             print(f"Length of f4: {len(freq_itemsets[3])}")
             print(f"Length of f5: {len(freq_itemsets[4])}")
             print(f"Length of last fk: {len(freq_itemsets[-2])}\n")
-        except TypeError:
+        except Exception:
             pass
         print(classification_report(y_test, y_pred, zero_division=0))
         print()
@@ -122,6 +125,7 @@ def main():
     print(f"Recall: {recall_sum / 10}")
     print(f"Accuracy: {accuracy_sum / 10}")
     print(f"Total rules: {rules_count_sum / 10}")
+    print(f"Not classified: {not_classified_sum / 10}")
 
 
 @utilities.timeit
@@ -129,16 +133,19 @@ def predict(test_set, training_set, sorted_rules):
     training_transactions_1 = training_set[training_set['1']].drop(['1', '0'], axis=1).apply(
         lambda row: frozenset(row.index[row]), axis=1).tolist()
     scores_training = [classification.predict_proba(object_o, sorted_rules) for object_o in training_transactions_1]
+    scores_training[scores_training == -1] = 0
     mean = np.mean(scores_training)
 
     test_transactions = test_set.drop(['1', '0'], axis=1).apply(lambda row: frozenset(row.index[row]), axis=1).tolist()
     scores_test = [classification.predict_proba(object_o, sorted_rules) for object_o in test_transactions]
     scores_test = np.array(scores_test)
+    not_classified = np.sum(scores_test == -1)
+    scores_test[scores_test == -1] = 0
     y_test = test_set.apply(lambda row: 0 if row['0'] else 1, axis=1).tolist()
     y_test = np.array(y_test, dtype=np.uint8)
     y_pred = np.zeros(len(scores_test), dtype=np.uint8)
     y_pred[scores_test >= mean] = 1
-    return y_test, y_pred, scores_test
+    return y_test, y_pred, scores_test, not_classified
 
 
 if __name__ == '__main__':
