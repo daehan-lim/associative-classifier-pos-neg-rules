@@ -19,6 +19,11 @@ def main():
     transactions_df = util.convert_trans_to_df(dataset)
     auc_sum = 0
     f1_sum = 0
+    precision_sum = 0
+    recall_sum = 0
+    accuracy_sum = 0
+    rules_count_sum = 0
+
     for seed in range(10):
         print(f"\n\nseed: {seed}")
         print(f"min_supp: {min_support}")
@@ -67,12 +72,16 @@ def main():
         print(tabulate(confusion_matrix, headers='firstrow', tablefmt='fancy_grid'))
 
         precision = TP / (TP + FP)
+        precision_sum += precision
         recall = TP / (TP + FN)
+        recall_sum += recall
         F1 = 2 * recall * precision / (recall + precision)
         f1_sum += F1
         roc_auc = roc_auc_score(y_test, scores)
         auc_sum += roc_auc
         accuracy = 100 * np.sum(y_test == y_pred) / len(y_test)
+        accuracy_sum += accuracy
+        rules_count_sum += len(sorted_rules)
         # print(f"Pred as -1: {not_classified}")
         print(f"Precision: {round(precision, 3)}")
         print(f"Recall: {round(recall, 3)}")
@@ -109,6 +118,10 @@ def main():
     print("\n\nAvg")
     print(f"Roc auc (class 1): {auc_sum / 10}")
     print(f"f1: {f1_sum / 10}")
+    print(f"Precision: {precision_sum}")
+    print(f"Recall: {recall_sum}")
+    print(f"Accuracy: {accuracy_sum}")
+    print(f"Total rules: {rules_count_sum}")
 
 
 @utilities.timeit
