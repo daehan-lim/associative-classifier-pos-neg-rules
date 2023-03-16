@@ -122,8 +122,8 @@ def predict(test_set, training_set, sorted_rules):
     scores_test = [classification.predict_proba(object_o, sorted_rules) for object_o in test_transactions]
     scores_test = np.array(scores_test)
     y_test = test_set.apply(lambda row: 0 if row['0'] else 1, axis=1).tolist()
-    y_test = np.array(y_test)
-    y_pred = np.zeros(len(scores_test), dtype=int)
+    y_test = np.array(y_test, dtype=np.uint8)
+    y_pred = np.zeros(len(scores_test), dtype=np.uint8)
     y_pred[scores_test >= mean] = 1
     return y_test, y_pred, scores_test
 
