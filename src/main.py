@@ -115,7 +115,7 @@ def main():
 def predict(test_set, training_set, sorted_rules):
     training_transactions_1 = training_set[training_set['1']].drop(['1', '0'], axis=1).apply(
         lambda row: frozenset(row.index[row]), axis=1).tolist()
-    scores_training = [classification.classify(object_o, sorted_rules, 0.1) for object_o in training_transactions_1]
+    scores_training = [classification.predict_proba(object_o, sorted_rules) for object_o in training_transactions_1]
     mean = np.mean(scores_training)
 
     test_transactions = test_set.drop(['1', '0'], axis=1).apply(lambda row: frozenset(row.index[row]), axis=1).tolist()
