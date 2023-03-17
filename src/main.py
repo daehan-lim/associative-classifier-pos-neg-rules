@@ -10,12 +10,13 @@ from daehan_mlutil import utilities
 from util import util
 
 
+# noinspection PyBroadException
 @utilities.timeit
 def main():
     with open('../data/dataset.csv', 'r') as file:
         dataset = [list(filter(None, row)) for row in csv.reader(file)]
 
-    min_support = 0.06
+    min_support = 0.04
     transactions_df = util.convert_trans_to_df(dataset)
     auc_sum = 0
     f1_sum = 0
@@ -98,7 +99,6 @@ def main():
         print(f"Min rule conf: {round(sorted_rules[-1]['confidence'], 3)}\n")
         sorted_0 = [rule for rule in sorted_rules if rule['consequent'] == '0']
         sorted_1 = [rule for rule in sorted_rules if rule['consequent'] == '1']
-        # noinspection PyBroadException
         try:
             print(f"Avg conf for c0 rules: {round(sum(rule['confidence'] for rule in sorted_0) / len(sorted_0), 3)}")
             print(f"Max conf for c0 rules: {round(sorted_0[0]['confidence'], 3)}")
@@ -106,6 +106,9 @@ def main():
             print(f"Avg conf for c1 rules: {round(sum(rule['confidence'] for rule in sorted_1) / len(sorted_1), 3)}")
             print(f"Max conf for c1 rules: {round(sorted_1[0]['confidence'], 3)}")
             print(f"Min conf for c1 rules: {round(sorted_1[-1]['confidence'], 3)}")
+        except Exception:
+            pass
+        try:
             print(f"Max length of freq itemsets (k): {len(freq_itemsets) - 1}")
             print(f"Length of f1: {len(freq_itemsets[0])}")
             print(f"Length of f2: {len(freq_itemsets[1])}")
@@ -132,12 +135,11 @@ def main():
 def predict(test_set, training_set, sorted_rules):
     training_transactions_1 = training_set[training_set['1']].drop(['1', '0'], axis=1).apply(
         lambda row: frozenset(row.index[row]), axis=1).tolist()
-    scores_training = [classification.predict_proba(object_o, sorted_rules) for object_o in training_transactions_1]
-    scores_training[scores_training == -1] = 0
+    scores_training = [classification.predict_proba(object_o, sorted_rules, True) for object_o in training_transactions_1]
     mean = np.mean(scores_training)
 
     test_transactions = test_set.drop(['1', '0'], axis=1).apply(lambda row: frozenset(row.index[row]), axis=1).tolist()
-    scores_test = [classification.predict_proba(object_o, sorted_rules) for object_o in test_transactions]
+    scores_test = [classification.predict_proba(object_o, sorted_rules, False) for object_o in test_transactions]
     scores_test = np.array(scores_test)
     not_classified = np.sum(scores_test == -1)
     scores_test[scores_test == -1] = 0

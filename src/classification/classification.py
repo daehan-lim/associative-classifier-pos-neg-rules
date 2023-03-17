@@ -2,11 +2,12 @@ from collections import defaultdict
 
 
 # First rule that matches object
-def predict_proba(object_o, rules_set):
+def predict_proba(object_o, rules_set, training):
     for rule in rules_set:
         if (rule['antecedent']).issubset(object_o):
             return rule['confidence']
-    return -1
+    return -1 if not training else 0
+
 
 # First rule that matches object
 def classify(object_o, rules_set, confidence_margin):
