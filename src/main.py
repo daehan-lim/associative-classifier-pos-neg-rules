@@ -16,7 +16,7 @@ def main():
     with open('../data/dataset.csv', 'r') as file:
         dataset = [list(filter(None, row)) for row in csv.reader(file)]
 
-    min_support = 0.04
+    min_support = 0.06
     transactions_df = util.convert_trans_to_df(dataset)
     auc_sum = 0
     f1_sum = 0
@@ -37,13 +37,13 @@ def main():
 
         indices = list(range(0, len(transactions_0)))
         random.shuffle(indices)
-        test_set_0 = transactions_0.iloc[indices[:417], :].reset_index(drop=True)
-        training_set_0 = transactions_0.iloc[indices[417:], :].reset_index(drop=True)
+        test_set_0 = transactions_0.iloc[indices[:417], :]
+        training_set_0 = transactions_0.iloc[indices[417:], :]
 
         indices = list(range(0, len(transactions_1)))
         random.shuffle(indices)
-        test_set_1 = transactions_1.iloc[indices[:43], :].reset_index(drop=True)
-        training_set_1 = transactions_1.iloc[indices[43:], :].reset_index(drop=True)
+        test_set_1 = transactions_1.iloc[indices[:43], :]
+        training_set_1 = transactions_1.iloc[indices[43:], :]
 
         training_set = pd.concat([training_set_0, training_set_1])
         test_set = pd.concat([test_set_0, test_set_1])
