@@ -6,14 +6,14 @@ def ponerg(itemset, classes, class_supp_count_dict, transactions_df):
     rules = []
     for c in classes:
         c_str, = c
-        # cls = util.get_item_support_count_df(itemset | c, transactions_df) / class_supp_count_dict[c]
-        # p = util.get_item_support_count_df(itemset, transactions_df) / len(transactions_df)
-        # if (conf := cls / p) > 1:  # same as get_lift
-        i_and_c_supp_count = util.get_item_support_count_df(itemset | c, transactions_df)
-        i_supp_count = util.get_item_support_count_df(itemset, transactions_df)
-        r = correlation(itemset, c, transactions_df, i_supp_count, i_and_c_supp_count,
-                        class_supp_count_dict[c])
-        if (conf := r) > 0.05:
+        # i_and_c_supp_count = util.get_item_support_count_df(itemset | c, transactions_df)
+        # i_supp_count = util.get_item_support_count_df(itemset, transactions_df)
+        # r = correlation(itemset, c, transactions_df, i_supp_count, i_and_c_supp_count,
+        #                 class_supp_count_dict[c])
+        # if (conf := r) > 0.3:
+        cls = util.get_item_support_count_df(itemset | c, transactions_df) / class_supp_count_dict[c]
+        p = util.get_item_support_count_df(itemset, transactions_df) / len(transactions_df)
+        if (conf := cls / p) > 1:  # same as get_lift
             rules.append({'antecedent': itemset, 'consequent': c_str, 'confidence': conf})
             break
     return rules
