@@ -321,3 +321,5 @@ poetry.toml
 /data/training_cba8.num
 /data/training_cba9.csv
 /data/training_cba9.num
+/data/dataset_cpar1.csv
+/data/dataset_cpar1.num
