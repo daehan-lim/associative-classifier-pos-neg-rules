@@ -162,53 +162,55 @@ for myseed in range(10):
     te_0_ary = transactions_te_0.values.astype('int')
     te_1_ary = transactions_te_1.values.astype('int')
 
-    y_0 = np.matmul(te_0_ary, attributes_contained_in_freq_items)
-    y_1 = np.matmul(te_1_ary, attributes_contained_in_freq_items)
+    freq_count_per_test_0 = np.matmul(te_0_ary, attributes_contained_in_freq_items)
+    freq_count_per_test_1 = np.matmul(te_1_ary, attributes_contained_in_freq_items)
+    # Each element in the matrix indicates the count of how many times the corresponding
+    # frequent itemset occurred in the transactions of the corresponding class.
 
-    pred = np.zeros((y_0.shape[0] + y_1.shape[0], 2))
+    pred = np.zeros((freq_count_per_test_0.shape[0] + freq_count_per_test_1.shape[0], 2))
 
     ###############
     # best k rules for each class to be used
-    for i in range(y_0.shape[0]):
+    for i in range(freq_count_per_test_0.shape[0]):
 
         cnt = 0
-        for j in range(y_0.shape[1]):
+        for j in range(freq_count_per_test_0.shape[1]):
             if indc[j] == 0:
-                if cnt < bestk and y_0[i, j] >= item_len[j]:
+                if cnt < bestk and freq_count_per_test_0[i, j] >= item_len[j]:
                     pred[i, 0] = pred[i, 0] + conf[j]
                     cnt = cnt + 1
                 elif cnt >= bestk:
                     break
         cnt = 0
-        for j in range(y_0.shape[1]):
+        for j in range(freq_count_per_test_0.shape[1]):
             if indc[j] == 1:
-                if cnt < bestk and y_0[i, j] >= item_len[j]:
+                if cnt < bestk and freq_count_per_test_0[i, j] >= item_len[j]:
                     pred[i, 1] = pred[i, 1] + conf[j]
                     cnt = cnt + 1
                 elif cnt >= bestk:
                     break
 
-    for i in range(y_1.shape[0]):
+    for i in range(freq_count_per_test_1.shape[0]):
 
         cnt = 0
-        for j in range(y_1.shape[1]):
+        for j in range(freq_count_per_test_1.shape[1]):
             if indc[j] == 0:
-                if cnt < bestk and y_1[i, j] >= item_len[j]:
-                    pred[i + y_0.shape[0], 0] = pred[i + y_0.shape[0], 0] + conf[j]
+                if cnt < bestk and freq_count_per_test_1[i, j] >= item_len[j]:
+                    pred[i + freq_count_per_test_0.shape[0], 0] = pred[i + freq_count_per_test_0.shape[0], 0] + conf[j]
                     cnt = cnt + 1
                 elif cnt >= bestk:
                     break
         cnt = 0
-        for j in range(y_1.shape[1]):
+        for j in range(freq_count_per_test_1.shape[1]):
             if indc[j] == 1:
-                if cnt < bestk and y_1[i, j] >= item_len[j]:
-                    pred[i + y_0.shape[0], 1] = pred[i + y_0.shape[0], 1] + conf[j]
+                if cnt < bestk and freq_count_per_test_1[i, j] >= item_len[j]:
+                    pred[i + freq_count_per_test_0.shape[0], 1] = pred[i + freq_count_per_test_0.shape[0], 1] + conf[j]
                     cnt = cnt + 1
                 elif cnt >= bestk:
                     break
 
     y = np.concatenate((np.zeros(te_0_ary.shape[0]), np.ones(te_1_ary.shape[0])), axis=0)
-    pred_y = np.zeros(y_0.shape[0] + y_1.shape[0], dtype=int)
+    pred_y = np.zeros(freq_count_per_test_0.shape[0] + freq_count_per_test_1.shape[0], dtype=int)
 
     for i in range(pred.shape[0]):
         if pred[i, 0] >= pred[i, 1]:
