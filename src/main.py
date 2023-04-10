@@ -118,6 +118,7 @@ def main():
         print(f"F1: {round(F1, 6)}")
         print(f"roc auc: {roc_auc}")
         print(f"Accuracy: {round(accuracy, 3)}%")
+        print(f"Number of freq itemsets: {freq_itemsets_count}")
         print(f"Total Rules: {len(sorted_rules)}")
         print(f"Rules with class 0: {len(rules_0)}")
         print(f"Rules with class 1: {len(rules_1)}")
@@ -135,7 +136,6 @@ def main():
             print(f"Min conf for c1 rules: {round(sorted_1[-1]['confidence'], 3)}")
         except Exception:
             pass
-        print(f"Number of freq itemsets: {freq_itemsets_count}")
         print(classification_report(y_test, y_pred, zero_division=0))
         print()
 
