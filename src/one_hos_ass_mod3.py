@@ -5,7 +5,7 @@ import pandas as pd
 from mlxtend.preprocessing import TransactionEncoder
 import random
 from mlxtend.frequent_patterns import apriori
-from sklearn.metrics import roc_auc_score
+from sklearn.metrics import roc_auc_score, accuracy_score
 from sklearn.metrics import f1_score
 import math
 import warnings
@@ -146,7 +146,7 @@ for myseed in range(10):
         if 2 * TP + FN + FP > 0:
             f1[i] = 2 * TP / (2 * TP + FN + FP)
 
-    ss = math.floor(freq_itemsets_count * 0.38)
+    ss = math.floor(freq_itemsets_count * 0.1)
     # ss = 0
     t = np.argmax(f1[ss:])
 
@@ -222,6 +222,9 @@ for myseed in range(10):
     pre.append(f1_score(y, pred_y))
     print('auc: ', roc_auc_score(y, pred[:, 1]))
     pre.append(roc_auc_score(y, pred[:, 1]))
+    accuracy = accuracy_score(y, pred_y)
+    print('accuracy: ', accuracy)
+    pre.append(accuracy)
 
     result.append(pre)
 
