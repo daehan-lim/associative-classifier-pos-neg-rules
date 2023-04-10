@@ -47,7 +47,7 @@ for myseed in range(10):
     transactions_tr = pd.concat([transactions_tr_0, transactions_tr_1])
 
     # frequent_items = apriori(transactions_tr, min_support=0.1)
-    frequent_items = apriori_mlx.apriori(transactions_tr, min_support=0.06, low_memory=True)
+    frequent_items = apriori(transactions_tr, min_support=0.1)
     print(transactions_tr.shape, len(frequent_items))
 
     attributes_count = transactions_tr.shape[1]  # number of attributes
