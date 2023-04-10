@@ -1,7 +1,6 @@
 import math
 import random
 import time
-
 import pandas as pd
 from sklearn.metrics import classification_report, roc_auc_score
 import csv
@@ -11,11 +10,13 @@ from classification import classification
 from rule_gen import rule_generation
 from daehan_mlutil import utilities
 from util import util
+import warnings
 
 
 # noinspection PyBroadException
 @utilities.timeit
 def main():
+    warnings.simplefilter(action='ignore', category=FutureWarning)
     with open('../data/dataset.csv', 'r') as file:
         dataset = [list(filter(None, row)) for row in csv.reader(file)]
 
@@ -60,7 +61,8 @@ def main():
         start_time_pred = time.time()
         freq_itemsets_count = sum([len(sublist) for sublist in freq_itemsets[:-1]])
         sorted_rules = sorted_rules[:math.floor(freq_itemsets_count * 0.1) + 1]
-        test_transactions = test_set.drop(['1', '0'], axis=1).apply(lambda row: frozenset(row.index[row]),                                                    axis=1).tolist()
+        test_transactions = test_set.drop(['1', '0'], axis=1).apply(lambda row: frozenset(row.index[row]),
+                                                                    axis=1).tolist()
         y_test = test_set.apply(lambda row: 0 if row['0'] else 1, axis=1).tolist()
         y_test = np.array(y_test, dtype=np.uint8)
         scores = [classification.predict_proba_prune(object_o, sorted_rules) for object_o in test_transactions]
@@ -168,7 +170,6 @@ def predict(test_set, training_set, sorted_rules):
     y_pred[scores_test >= mean] = 1
     return y_test, y_pred, scores_test, not_classified
 '''
-
 
 if __name__ == '__main__':
     main()
