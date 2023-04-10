@@ -8,15 +8,14 @@ import numpy as np
 from tabulate import tabulate
 from classification import classification
 from rule_gen import rule_generation
-from daehan_mlutil import utilities
 from util import util
 import warnings
 
 
 # noinspection PyBroadException
-@utilities.timeit
-def main():
+if __name__ == '__main__':
     warnings.simplefilter(action='ignore', category=FutureWarning)
+    start_time = time.time()
     with open('../data/dataset.csv', 'r') as file:
         dataset = [list(filter(None, row)) for row in csv.reader(file)]
 
@@ -67,14 +66,6 @@ def main():
         y_test = np.array(y_test, dtype=np.uint8)
         scores = [classification.predict_proba_prune(object_o, sorted_rules) for object_o in test_transactions]
         scores = np.array(scores)
-        # y_pred = np.zeros(len(y_test), dtype=int)
-        # for i in range(scores.shape[0]):
-        #     if scores[i, 0] == 0 and scores[i, 1] == 0:
-        #         y_pred[i] = -1
-        #     elif scores[i, 0] >= scores[i, 1]:
-        #         y_pred[i] = 0
-        #     else:
-        #         y_pred[i] = 1
         y_pred = np.where(scores[:, 0] >= scores[:, 1], 0, 1)
         y_pred[(scores[:, 0] == 0) & (scores[:, 1] == 0)] = -1
         not_classified = np.sum(y_pred == -1)
@@ -83,8 +74,6 @@ def main():
         time_min = time_sec / 60
         print("\nProcessing time of %s: %.2f seconds (%.2f minutes)."
               % ("Predict", time.time() - start_time_pred, time_min))
-
-        # y_test, y_pred, scores, not_classified = predict(test_set, training_set, sorted_rules)
 
         TP = np.sum(np.logical_and(y_pred == 1, y_test == 1))
         TN = np.sum(np.logical_and(y_pred == 0, y_test == 0))
@@ -150,26 +139,7 @@ def main():
     print(f"Total rules: {rules_count_sum / 10}")
     print(f"Not classified: {not_classified_sum / 10}")
 
-
-'''
-@utilities.timeit
-def predict(test_set, training_set, sorted_rules):
-    training_transactions_1 = training_set[training_set['1']].drop(['1', '0'], axis=1).apply(
-        lambda row: frozenset(row.index[row]), axis=1).tolist()
-    scores_training = [classification.predict_proba(object_o, sorted_rules, True) for object_o in training_transactions_1]
-    mean = np.mean(scores_training)
-
-    test_transactions = test_set.drop(['1', '0'], axis=1).apply(lambda row: frozenset(row.index[row]), axis=1).tolist()
-    scores_test = [classification.predict_proba(object_o, sorted_rules, False) for object_o in test_transactions]
-    scores_test = np.array(scores_test)
-    not_classified = np.sum(scores_test == -1)
-    scores_test[scores_test == -1] = 0
-    y_test = test_set.apply(lambda row: 0 if row['0'] else 1, axis=1).tolist()
-    y_test = np.array(y_test, dtype=np.uint8)
-    y_pred = np.zeros(len(scores_test), dtype=np.uint8)
-    y_pred[scores_test >= mean] = 1
-    return y_test, y_pred, scores_test, not_classified
-'''
-
-if __name__ == '__main__':
-    main()
+    time_sec = time.time() - start_time
+    time_min = time_sec / 60
+    print("\nProcessing time of %s: %.2f seconds (%.2f minutes)."
+          % ("whole code", time.time() - start_time, time_min))
