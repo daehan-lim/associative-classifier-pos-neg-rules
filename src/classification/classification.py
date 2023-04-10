@@ -1,8 +1,41 @@
 from collections import defaultdict
 
 
+def predict_proba_prune(object_o, rules_set):
+    scores = [0, 0]
+    count_0 = 0
+    count_1 = 0
+    for rule in rules_set:
+        if (rule['antecedent']).issubset(object_o):
+            if count_0 < 3 and rule['consequent'] == '0':
+                count_0 += 1
+                scores[0] += rule['confidence']
+            elif count_1 < 3 and rule['consequent'] == '1':
+                count_1 += 1
+                scores[1] += rule['confidence']
+        elif count_0 >= 3 and count_1 >= 3:
+            break
+    return scores
+
+
+'''
+def predict_proba(object_o, rules_set, training):
+    for rule in rules_set:
+        if (rule['antecedent']).issubset(object_o):
+            return rule['confidence']
+    return -1 if not training else 0
+'''
+
+'''
+# First rule that matches object
+def classify(object_o, rules_set, confidence_margin):
+    for rule in rules_set:
+        if (rule['antecedent']).issubset(object_o):
+            return int(rule['consequent']), rule['confidence']
+    return -1, 0
+
 # Using confidence margin
-def classification(object_o, rules_set, confidence_margin):
+def classify(object_o, rules_set, confidence_margin):
     matching_rules = []
     count = 0
     first_rule_confidence = None
@@ -20,6 +53,30 @@ def classification(object_o, rules_set, confidence_margin):
     if len(matching_rules) == 0:
         return -1
 
+# Divide the set S into subsets based on category
+rules_by_class = defaultdict(list)
+for rule in matching_rules:
+    rules_by_class[rule['consequent'].replace('!', '')].append(rule)
+
+# Calculate the average confidence score for each category
+avg_conf_by_group = dict()
+for rule_group in rules_by_class:
+    avg_conf_by_group[rule_group] = sum(rule['confidence'] for rule in rules_by_class[rule_group]) / len(
+        rules_by_class[rule_group])
+
+predicted_class = -1
+# Assign the new object to the class with the highest confidence score
+if (max_confidence := max(avg_conf_by_group.values())) > 0:
+    predicted_class = [c for c, conf in avg_conf_by_group.items() if conf == max_confidence][0]
+
+return int(predicted_class)
+
+#Every rule that matches object
+def classification(object_o, rules_set, confidence_margin):
+    matching_rules = [rule for rule in rules_set if (rule['antecedent']).issubset(object_o)]
+    if len(matching_rules) == 0:
+        return 0
+
     # Divide the set S into subsets based on category
     rules_by_class = defaultdict(list)
     for rule in matching_rules:
@@ -31,42 +88,10 @@ def classification(object_o, rules_set, confidence_margin):
         avg_conf_by_group[rule_group] = sum(rule['confidence'] for rule in rules_by_class[rule_group]) / len(
             rules_by_class[rule_group])
 
-    predicted_class = -1
+    predicted_class = 0
     # Assign the new object to the class with the highest confidence score
     if (max_confidence := max(avg_conf_by_group.values())) > 0:
         predicted_class = [c for c, conf in avg_conf_by_group.items() if conf == max_confidence][0]
 
     return int(predicted_class)
-
-
-# #Every rule that matches object
-# def classification(object_o, rules_set, confidence_margin):
-#     matching_rules = [rule for rule in rules_set if (rule['antecedent']).issubset(object_o)]
-#     if len(matching_rules) == 0:
-#         return 0
-#
-#     # Divide the set S into subsets based on category
-#     rules_by_class = defaultdict(list)
-#     for rule in matching_rules:
-#         rules_by_class[rule['consequent'].replace('!', '')].append(rule)
-#
-#     # Calculate the average confidence score for each category
-#     avg_conf_by_group = dict()
-#     for rule_group in rules_by_class:
-#         avg_conf_by_group[rule_group] = sum(rule['confidence'] for rule in rules_by_class[rule_group]) / len(
-#             rules_by_class[rule_group])
-#
-#     predicted_class = 0
-#     # Assign the new object to the class with the highest confidence score
-#     if (max_confidence := max(avg_conf_by_group.values())) > 0:
-#         predicted_class = [c for c, conf in avg_conf_by_group.items() if conf == max_confidence][0]
-#
-#     return int(predicted_class)
-
-
-# #First rule that matches object
-# def classification(object_o, rules_set, confidence_margin):
-#     for rule in rules_set:
-#         if (rule['antecedent']).issubset(object_o):
-#             return int(rule['consequent'])
-#     return 0
+'''

@@ -7,23 +7,20 @@ from daehan_mlutil import utilities
 
 classes = None
 min_support = -1
-min_conf = -1
 transactions_df = None
 class_support_count_dict = None
 
 
 @utilities.timeit
-def classification_rule_generation(transactions, m_min_support, m_min_conf):
+def classification_rule_generation(transactions, m_min_support):
     global min_support
-    global min_conf
     global transactions_df
     global class_support_count_dict
     global classes
     min_support = m_min_support
-    min_conf = m_min_conf
 
     rules = []
-    transactions_df = util.convert_trans_to_df(transactions)
+    transactions_df = transactions
     X_df = pd.DataFrame(transactions_df.drop(['1', '0'], axis=1))
     classes = [frozenset(['0']), frozenset(['1'])]
     class_support_count_dict = util.get_support_count_dict_df(classes, transactions_df)
@@ -32,7 +29,7 @@ def classification_rule_generation(transactions, m_min_support, m_min_conf):
     f1 = f1.tolist()
     freq_itemsets = [f1]
     for item in f1:
-        rules.extend(ponerg(item, classes, class_support_count_dict, min_conf, transactions_df))
+        rules.extend(ponerg(item, classes, class_support_count_dict, transactions_df))
 
     k = 0
     while freq_itemsets[k] is not None and len(freq_itemsets[k]) > 0:
@@ -41,7 +38,7 @@ def classification_rule_generation(transactions, m_min_support, m_min_conf):
         if not k_freq_itemsets.empty:
             k_freq_itemsets = k_freq_itemsets.tolist()
             # for item in k_freq_itemsets_x_c:
-            #     rules.extend(ponerg(item, c, len(transactions_per_c), min_conf, transactions_df))
+            #     rules.extend(ponerg(item, c, len(transactions_per_c), transactions_df))
             with multiprocessing.Pool() as pool:
                 result = pool.map(ponerg_parallel, k_freq_itemsets)
             rules_to_extend = [x[0] for x in result if x != []]
@@ -55,7 +52,7 @@ def classification_rule_generation(transactions, m_min_support, m_min_conf):
 
 
 def ponerg_parallel(item):
-    return ponerg(item, classes, class_support_count_dict, min_conf, transactions_df)
+    return ponerg(item, classes, class_support_count_dict, transactions_df)
 
 
 '''
