@@ -1,4 +1,7 @@
+import math
 import random
+import time
+
 import pandas as pd
 from sklearn.metrics import classification_report, roc_auc_score
 import csv
@@ -16,7 +19,7 @@ def main():
     with open('../data/dataset.csv', 'r') as file:
         dataset = [list(filter(None, row)) for row in csv.reader(file)]
 
-    min_support = 0.06
+    min_support = 0.1
     transactions_df = util.convert_trans_to_df(dataset)
     auc_sum = 0
     f1_sum = 0
@@ -52,10 +55,34 @@ def main():
                                                                               m_min_support=min_support)
         rules_0 = [rule for rule in rules if rule['consequent'] == '0']
         rules_1 = [rule for rule in rules if rule['consequent'] == '1']
-
         sorted_rules = sorted(rules, key=lambda d: d['confidence'], reverse=True)
 
-        y_test, y_pred, scores, not_classified = predict(test_set, training_set, sorted_rules)
+        start_time_pred = time.time()
+        freq_itemsets_count = sum([len(sublist) for sublist in freq_itemsets[:-1]])
+        sorted_rules = sorted_rules[:math.floor(freq_itemsets_count * 0.1) + 1]
+        test_transactions = test_set.drop(['1', '0'], axis=1).apply(lambda row: frozenset(row.index[row]),                                                    axis=1).tolist()
+        y_test = test_set.apply(lambda row: 0 if row['0'] else 1, axis=1).tolist()
+        y_test = np.array(y_test, dtype=np.uint8)
+        scores = [classification.predict_proba_prune(object_o, sorted_rules) for object_o in test_transactions]
+        scores = np.array(scores)
+        # y_pred = np.zeros(len(y_test), dtype=int)
+        # for i in range(scores.shape[0]):
+        #     if scores[i, 0] == 0 and scores[i, 1] == 0:
+        #         y_pred[i] = -1
+        #     elif scores[i, 0] >= scores[i, 1]:
+        #         y_pred[i] = 0
+        #     else:
+        #         y_pred[i] = 1
+        y_pred = np.where(scores[:, 0] >= scores[:, 1], 0, 1)
+        y_pred[(scores[:, 0] == 0) & (scores[:, 1] == 0)] = -1
+        not_classified = np.sum(y_pred == -1)
+        y_pred[y_pred == -1] = 0
+        time_sec = time.time() - start_time_pred
+        time_min = time_sec / 60
+        print("\nProcessing time of %s: %.2f seconds (%.2f minutes)."
+              % ("Predict", time.time() - start_time_pred, time_min))
+
+        # y_test, y_pred, scores, not_classified = predict(test_set, training_set, sorted_rules)
 
         TP = np.sum(np.logical_and(y_pred == 1, y_test == 1))
         TN = np.sum(np.logical_and(y_pred == 0, y_test == 0))
@@ -79,7 +106,7 @@ def main():
         recall_sum += recall
         F1 = 2 * recall * precision / (recall + precision)
         f1_sum += F1
-        roc_auc = roc_auc_score(y_test, scores)
+        roc_auc = roc_auc_score(y_test, scores[:, 1])
         auc_sum += roc_auc
         accuracy = 100 * np.sum(y_test == y_pred) / len(y_test)
         accuracy_sum += accuracy
@@ -108,16 +135,7 @@ def main():
             print(f"Min conf for c1 rules: {round(sorted_1[-1]['confidence'], 3)}")
         except Exception:
             pass
-        try:
-            print(f"Max length of freq itemsets (k): {len(freq_itemsets) - 1}")
-            print(f"Length of f1: {len(freq_itemsets[0])}")
-            print(f"Length of f2: {len(freq_itemsets[1])}")
-            print(f"Length of f3: {len(freq_itemsets[2])}")
-            print(f"Length of f4: {len(freq_itemsets[3])}")
-            print(f"Length of f5: {len(freq_itemsets[4])}")
-            print(f"Length of last fk: {len(freq_itemsets[-2])}\n")
-        except Exception:
-            pass
+        print(f"Number of freq itemsets: {freq_itemsets_count}")
         print(classification_report(y_test, y_pred, zero_division=0))
         print()
 
@@ -131,6 +149,7 @@ def main():
     print(f"Not classified: {not_classified_sum / 10}")
 
 
+'''
 @utilities.timeit
 def predict(test_set, training_set, sorted_rules):
     training_transactions_1 = training_set[training_set['1']].drop(['1', '0'], axis=1).apply(
@@ -148,6 +167,7 @@ def predict(test_set, training_set, sorted_rules):
     y_pred = np.zeros(len(scores_test), dtype=np.uint8)
     y_pred[scores_test >= mean] = 1
     return y_test, y_pred, scores_test, not_classified
+'''
 
 
 if __name__ == '__main__':

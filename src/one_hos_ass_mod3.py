@@ -230,4 +230,4 @@ for myseed in range(10):
 
 result.append(np.mean(result, axis=0))
 table = pd.DataFrame(result)
-table.to_csv('../random3.csv')
+table.to_csv('../one_hos_results.csv')

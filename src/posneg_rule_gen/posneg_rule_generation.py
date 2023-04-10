@@ -4,18 +4,24 @@ from util import util
 
 def ponerg(itemset, classes, class_supp_count_dict, transactions_df):
     rules = []
-    for c in classes:
-        c_str, = c
-        # i_and_c_supp_count = util.get_item_support_count_df(itemset | c, transactions_df)
-        # i_supp_count = util.get_item_support_count_df(itemset, transactions_df)
-        # r = correlation(itemset, c, transactions_df, i_supp_count, i_and_c_supp_count,
-        #                 class_supp_count_dict[c])
-        # if (conf := r) > 0.3:
-        cls = util.get_item_support_count_df(itemset | c, transactions_df) / class_supp_count_dict[c]
-        p = util.get_item_support_count_df(itemset, transactions_df) / len(transactions_df)
-        if (conf := cls / p) > 1:  # same as get_lift
-            rules.append({'antecedent': itemset, 'consequent': c_str, 'confidence': conf})
-            break
+    cls0 = util.get_item_support_count_df(itemset | classes[0], transactions_df) / class_supp_count_dict[classes[0]]
+    cls1 = util.get_item_support_count_df(itemset | classes[1], transactions_df) / class_supp_count_dict[classes[1]]
+    if cls0 >= cls1:
+        rules.append({'antecedent': itemset, 'consequent': '0', 'confidence': 1 - cls1 / cls0})
+    else:
+        rules.append({'antecedent': itemset, 'consequent': '1', 'confidence': 1 - cls0 / cls1})
+    # for c in classes:
+    #     c_str, = c
+    #     # i_and_c_supp_count = util.get_item_support_count_df(itemset | c, transactions_df)
+    #     # i_supp_count = util.get_item_support_count_df(itemset, transactions_df)
+    #     # r = correlation(itemset, c, transactions_df, i_supp_count, i_and_c_supp_count,
+    #     #                 class_supp_count_dict[c])
+    #     # if (conf := r) > 0.3:
+    #     cls = util.get_item_support_count_df(itemset | c, transactions_df) / class_supp_count_dict[c]
+    #     p = util.get_item_support_count_df(itemset, transactions_df) / len(transactions_df)
+    #     if (conf := cls / p) > 1:  # same as get_lift
+    #         rules.append({'antecedent': itemset, 'consequent': c_str, 'confidence': conf})
+    #         break
     return rules
     # if lift > 1:
     #     i_and_not_c_supp_count = util.get_support_count_i_and_not_c(itemset, c_str, transactions_df)
