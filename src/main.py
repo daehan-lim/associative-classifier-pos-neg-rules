@@ -6,9 +6,7 @@ from sklearn.metrics import classification_report, roc_auc_score
 import csv
 import numpy as np
 from tabulate import tabulate
-from classification import classification
-from rule_gen import rule_generation
-from util import util
+import model
 import warnings
 
 
@@ -19,8 +17,8 @@ if __name__ == '__main__':
     with open('../data/dataset.csv', 'r') as file:
         dataset = [list(filter(None, row)) for row in csv.reader(file)]
 
-    min_support = 0.1
-    transactions_df = util.convert_trans_to_df(dataset)
+    min_support = 0.2
+    transactions_df = model.convert_trans_to_df(dataset)
     auc_sum = 0
     f1_sum = 0
     precision_sum = 0
@@ -51,8 +49,7 @@ if __name__ == '__main__':
         training_set = pd.concat([training_set_0, training_set_1])
         test_set = pd.concat([test_set_0, test_set_1])
 
-        rules, freq_itemsets = rule_generation.classification_rule_generation(transactions=training_set,
-                                                                              m_min_support=min_support)
+        rules, freq_itemsets = model.train(transactions=training_set, m_min_support=min_support)
         rules_0 = [rule for rule in rules if rule['consequent'] == '0']
         rules_1 = [rule for rule in rules if rule['consequent'] == '1']
         sorted_rules = sorted(rules, key=lambda d: d['confidence'], reverse=True)
@@ -64,7 +61,7 @@ if __name__ == '__main__':
                                                                     axis=1).tolist()
         y_test = test_set.apply(lambda row: 0 if row['0'] else 1, axis=1).tolist()
         y_test = np.array(y_test, dtype=np.uint8)
-        scores = [classification.predict_proba_prune(object_o, sorted_rules) for object_o in test_transactions]
+        scores = [model.predict_proba(object_o, sorted_rules) for object_o in test_transactions]
         scores = np.array(scores)
         y_pred = np.where(scores[:, 0] >= scores[:, 1], 0, 1)
         y_pred[(scores[:, 0] == 0) & (scores[:, 1] == 0)] = -1
