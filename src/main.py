@@ -59,7 +59,7 @@ if __name__ == '__main__':
 
         start_time_pred = time.time()
         freq_itemsets_count = sum([len(sublist) for sublist in freq_itemsets[:-1]])
-        sorted_rules = sorted_rules[:math.floor(freq_itemsets_count * 0.1) + 1]
+        sorted_rules = sorted_rules[:math.floor(freq_itemsets_count * min_support) + 1]
         test_transactions = test_set.drop(['1', '0'], axis=1).apply(lambda row: frozenset(row.index[row]),
                                                                     axis=1).tolist()
         y_test = test_set.apply(lambda row: 0 if row['0'] else 1, axis=1).tolist()

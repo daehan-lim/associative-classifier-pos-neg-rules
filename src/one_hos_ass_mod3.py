@@ -1,4 +1,6 @@
 import csv
+
+import mpldatacursor
 import numpy as np
 import copy
 import pandas as pd
@@ -46,8 +48,8 @@ for myseed in range(10):
 
     transactions_tr = pd.concat([transactions_tr_0, transactions_tr_1])
 
-    # frequent_items = apriori(transactions_tr, min_support=0.1)
-    frequent_items = apriori(transactions_tr, min_support=0.1)
+    frequent_items = apriori(transactions_tr, min_support=0.2)
+    # frequent_items = apriori_mlx.apriori(transactions_tr, min_support=0.06, low_memory=True)
     print(transactions_tr.shape, len(frequent_items))
 
     attributes_count = transactions_tr.shape[1]  # number of attributes
@@ -146,6 +148,14 @@ for myseed in range(10):
         if 2 * TP + FN + FP > 0:
             f1[i] = 2 * TP / (2 * TP + FN + FP)
 
+    import matplotlib.pyplot as plt
+
+    plt.plot(f1)
+    plt.xlabel('Rule index')
+    plt.ylabel('F1 score')
+    plt.title('F1 scores for frequent itemsets')
+    mpldatacursor.datacursor(display='single')
+    plt.show()
     ss = math.floor(freq_itemsets_count * 0.1)
     # ss = 0
     t = np.argmax(f1[ss:])

@@ -2,18 +2,19 @@ from collections import defaultdict
 
 
 def predict_proba_prune(object_o, rules_set):
+    best_k = 3
     scores = [0, 0]
     count_0 = 0
     count_1 = 0
     for rule in rules_set:
         if (rule['antecedent']).issubset(object_o):
-            if count_0 < 3 and rule['consequent'] == '0':
+            if count_0 < best_k and rule['consequent'] == '0':
                 count_0 += 1
                 scores[0] += rule['confidence']
-            elif count_1 < 3 and rule['consequent'] == '1':
+            elif count_1 < best_k and rule['consequent'] == '1':
                 count_1 += 1
                 scores[1] += rule['confidence']
-        elif count_0 >= 3 and count_1 >= 3:
+        elif count_0 >= best_k and count_1 >= best_k:
             break
     return scores
 
