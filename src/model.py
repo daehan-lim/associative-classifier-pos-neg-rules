@@ -36,12 +36,12 @@ def train(transactions, m_min_support):
             X_df, previous_itemset_arr, min_support=min_support, k=k + 2, low_memory=True)
         if not k_freq_itemsets.empty:
             k_freq_itemsets = k_freq_itemsets.tolist()
-            # for item in k_freq_itemsets_x_c:
-            #     rules.extend(ponerg(item, c, len(transactions_per_c), transactions_df))
-            with multiprocessing.Pool() as pool:
-                result = pool.map(get_rules_per_item_parallel, k_freq_itemsets)
-            rules_to_extend = [x[0] for x in result if x != []]
-            rules.extend(rules_to_extend)
+            for item in k_freq_itemsets:
+                rules.extend(get_rules_per_item(item, classes, class_support_count_dict, transactions_df))
+            # with multiprocessing.Pool() as pool:
+            #     result = pool.map(get_rules_per_item_parallel, k_freq_itemsets)
+            # rules_to_extend = [x[0] for x in result if x != []]
+            # rules.extend(rules_to_extend)
             freq_itemsets.append(k_freq_itemsets)
         else:
             freq_itemsets.append(None)
