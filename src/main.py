@@ -26,6 +26,7 @@ if __name__ == '__main__':
     accuracy_sum = 0
     rules_count_sum = 0
     not_classified_sum = 0
+    freq_itemsets_count_sum = 0
 
     for seed in range(10):
         print(f"\n\nseed: {seed}")
@@ -56,6 +57,7 @@ if __name__ == '__main__':
 
         start_time_pred = time.time()
         freq_itemsets_count = sum([len(sublist) for sublist in freq_itemsets[:-1]])
+        freq_itemsets_count_sum += freq_itemsets_count
         sorted_rules = sorted_rules[:math.floor(freq_itemsets_count * min_support) + 1]
         test_transactions = test_set.drop(['1', '0'], axis=1).apply(lambda row: frozenset(row.index[row]),
                                                                     axis=1).tolist()
@@ -133,7 +135,8 @@ if __name__ == '__main__':
     print(f"Precision: {precision_sum / 10}")
     print(f"Recall: {recall_sum / 10}")
     print(f"Accuracy: {accuracy_sum / 10}")
-    print(f"Total rules: {rules_count_sum / 10}")
+    print(f"Total rules: {freq_itemsets_count_sum / 10}")
+    print(f"Selected rules: {rules_count_sum / 10}")
     print(f"Not classified: {not_classified_sum / 10}")
 
     time_sec = time.time() - start_time
