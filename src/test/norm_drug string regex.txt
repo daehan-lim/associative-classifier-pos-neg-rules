@@ -1,0 +1,1078 @@
+original=0.4 ML SYRINGE : ENOXAPARIN SODIUM 40 MG/0.4ML SC SOLN, norm=enoxaparin
+original=0.5 ML - INFLUENZA VAC SPLIT QUAD 0.5 ML IM SUSP, norm=INFLUENZA VAC SPLIT QUAD
+original=0.5 ML PLAS CONT : ALBUTEROL SULFATE (5 MG/ML) 0.5% IN NEBU, norm=albuterol
+original=0.9%NACL 1,000 ML, norm=sodium chloride
+original=1000 ML  -  DEXTROSE 5 % IV SOLN, norm=glucose
+original=1000 ML  -  DEXTROSE-NACL 5-0.45 % IV SOLN, norm=glucose
+original=1000 ML FLEX CONT : DEXTROSE-NACL 5-0.45 % IV SOLN, norm=glucose
+original=1000 ML FLEX CONT: DEXTROSE-NACL 5-0.45 % IV SOLN, norm=glucose
+original=1000 ML FLEX CONT : DEXTROSE-NACL 5-0.9 % IV SOLN, norm=glucose
+original=1000 ML FLEX CONT: DEXTROSE-NACL 5-0.9 % IV SOLN, norm=glucose
+original=1000 ML FLEX CONT: LACTATED RINGERS IV SOLN, norm=lactate
+original=1000 ML FLEX CONT : SODIUM CHLORIDE 0.45 % IV SOLN, norm=sodium chloride
+original=1000 ML FLEX CONT : SODIUM CHLORIDE 0.9 % IV SOLN, norm=sodium chloride
+original=1000 ML FLEX CONT: SODIUM CHLORIDE 0.9 % IV SOLN, norm=sodium chloride
+original=1000 ML  -  KCL IN DEXTROSE-NACL 20-5-0.45 MEQ/L-%-% IV SOLN, norm=glucose
+original=1000 ML  -  LACTATED RINGERS IV SOLN, norm=lactate
+original=1000 ML : LACTATED RINGERS IV SOLN, norm=lactate
+original=1000 ML  -  POTASSIUM CHLORIDE IN NACL 20-0.9 MEQ/L-% IV SOLN, norm=potassium chloride
+original=1000 ML  -  SODIUM CHLORIDE 0.9 % IV SOLN, norm=sodium chloride
+original=100 ML BAG CUSTOM NDC : INSULIN INFUSION, norm=insulin, regular, human
+original=100 ML FLEX CONT : ALBUMIN HUMAN 25 % IV SOLN, norm=albumin human, USP
+original=100 ML FLEX CONT : MAGNESIUM SULFATE IN D5W 10-5 MG/ML-% IV SOLN, norm=magnesium sulfate
+original=100 ML FLEX CONT : SODIUM CHLORIDE 0.9 % IV SOLN, norm=sodium chloride
+original=100 ML GLASS CONT : IOPAMIDOL 61 % IV SOLN, norm=iopamidol
+original=100 ML GLASS CONT : IOPAMIDOL 76 % IV SOLN, norm=iopamidol
+original=100 ML  -  MAGNESIUM SULFATE IN D5W 10-5 MG/ML-% IV SOLN, norm=magnesium sulfate
+original=100 ML  -  METRONIDAZOLE IN NACL 5-0.79 MG/ML-% IV SOLN, norm=metronidazole
+original=100 ML NDC : DEXMEDETOMIDINE HCL IN NACL 400 MCG/100ML IV SOLN, norm=dexmedetomidine
+original=100 ML PLAS CONT : POTASSIUM CHLORIDE 10 MEQ/100ML IV SOLN, norm=potassium chloride
+original=100 ML  -  POTASSIUM CHLORIDE 20 MEQ/100ML IV SOLN, norm=potassium chloride
+original=100 ML: POTASSIUM CHLORIDE 20 MEQ/100ML IV SOLN, norm=potassium chloride
+original=100 ML  -  PROPOFOL 10 MG/ML IV EMUL, norm=propofol
+original=100 ML VIAL : PROPOFOL 10 MG/ML IV EMUL, norm=propofol
+original=10 ML  -  ATROPINE SULFATE 0.1 MG/ML IJ SOLN, norm=atropine
+original=10 ML  -  CALCIUM GLUCONATE 10 % IV SOLN, norm=calcium gluconate
+original=10 ML CUP : DOCUSATE SODIUM 50 MG/5ML PO LIQD, norm=docusate
+original=10 ML CUP : MAGNESIUM HYDROXIDE 2400 MG/10ML PO SUSP, norm=magnesium hydroxide
+original=10 ML  -  HEPARIN SODIUM (PORCINE) 1000 UNIT/ML IJ SOLN, norm=heparin
+original=10 ML  -  INSULIN GLARGINE 100 UNIT/ML SC SOLN, norm=insulin glargine
+original=10 ML  -  MAGNESIUM SULFATE 50 % IJ SOLN, norm=magnesium sulfate
+original=10 ML  -  NICARDIPINE HCL 2.5 MG/ML IV SOLN, norm=nicardipine
+original=10 ML  -  POTASSIUM CHLORIDE 2 MEQ/ML IV SOLN, norm=potassium chloride
+original=10 ML VIAL : CALCIUM CHLORIDE 10 % IV SOLN, norm=calcium chloride
+original=10 ML VIAL : CALCIUM GLUCONATE 10 % IV SOLN, norm=calcium gluconate
+original=10 ML VIAL : HEPARIN SODIUM (PORCINE) 1000 UNIT/ML IJ SOLN, norm=heparin
+original=10 ML VIAL: INFUVITE IV INJ, norm=thiamine
+original=10 ML VIAL : INSULIN ASPART 100 UNIT/ML SC SOLN, norm=insulin aspart, human
+original=10 ML VIAL: INSULIN ASPART 100 UNIT/ML SC SOLN, norm=insulin aspart, human
+original=10 ML VIAL : INSULIN GLARGINE 100 UNIT/ML SC SOLN, norm=insulin glargine
+original=10 ML VIAL: INSULIN GLARGINE 100 UNIT/ML SC SOLN, norm=insulin glargine
+original=10 ML VIAL : INSULIN REGULAR HUMAN 100 UNIT/ML IJ SOLN, norm=insulin, regular, human
+original=10 ML VIAL: INSULIN REGULAR HUMAN 100 UNIT/ML IJ SOLN, norm=insulin, regular, human
+original=150 ML FLEX CONT : LEVOFLOXACIN IN D5W 5 MG/ML IV SOLN, norm=levofloxacin
+original=150 ML FLEX CONT : SODIUM CHLORIDE 0.9 % IV SOLN, norm=sodium chloride
+original=150 ML : LEVOFLOXACIN IN D5W 750 MG/150ML IV SOLN, norm=levofloxacin
+original=15 ML CUP : CHLORHEXIDINE GLUCONATE 0.12 % MT SOLN, norm=chlorhexidine
+original=15 ML VIAL : SODIUM PHOSPHATE 3 MMOLE/ML IV SOLN, norm=sodium phosphate, monobasic
+original=1 EACH PACKAGE CUSTOM NDC : METOPROLOL TARTRATE 12.5 MG PO TABS (HALF-TAB), norm=metoprolol
+original=1 EACH VIAL : ALTEPLASE 2 MG IJ SOLR, norm=alteplase
+original=1 EACH VIAL : CEFEPIME HCL 1 GM IJ SOLR, norm=cefepime
+original=1 EACH VIAL : CEFTRIAXONE SODIUM 1 G IJ SOLR, norm=ceftriaxone
+original=1 ML CRTRDG-NDL : HYDROMORPHONE HCL PF 1 MG/ML IJ SOLN, norm=hydromorphone
+original=1 ML CRTRDG-NDL : LORAZEPAM 2 MG/ML IJ SOLN, norm=lorazepam
+original=1 ML CRTRDG-NDL : MORPHINE SULFATE 2 MG/ML IJ SOLN, norm=morphine
+original=1 ML CRTRDG-NDL : MORPHINE SULFATE (PF) 2 MG/ML IV SOLN, norm=morphine
+original=1 ML  -  DIPHENHYDRAMINE HCL 50 MG/ML IJ SOLN, norm=diphenhydramine
+original=1 ML  -  HALOPERIDOL LACTATE 5 MG/ML IJ SOLN, norm=haloperidol
+original=1 ML  -  HEPARIN SODIUM (PORCINE) 5000 UNIT/ML IJ SOLN, norm=heparin
+original=1 ML : HEPARIN SODIUM (PORCINE) 5000 UNIT/ML IJ SOLN, norm=heparin
+original=1 ML  -  HYDRALAZINE HCL 20 MG/ML IJ SOLN, norm=hydralazine
+original=1 ML  -  HYDROMORPHONE HCL 1 MG/ML IJ SOLN, norm=hydromorphone
+original=1 ML : HYDROMORPHONE HCL PF 1 MG/ML IJ SOLN, norm=hydromorphone
+original=1 ML  : HYDROMORPHONE HCL PF 2 MG/ML IJ SOLN, norm=hydromorphone
+original=1 ML  -  LORAZEPAM 2 MG/ML IJ SOLN, norm=lorazepam
+original=1 ML  -  NALOXONE HCL 0.4 MG/ML IJ SOLN, norm=naloxone
+original=1 ML SYRINGE : MORPHINE SULFATE (PF) 4 MG/ML IV SOLN, norm=morphine
+original=1 ML VIAL : DEXAMETHASONE SODIUM PHOSPHATE 4 MG/ML IJ SOLN, norm=dexamethasone
+original=1 ML VIAL : DIPHENHYDRAMINE HCL 50 MG/ML IJ SOLN, norm=diphenhydramine
+original=1 ML VIAL: DIPHENHYDRAMINE HCL 50 MG/ML IJ SOLN, norm=diphenhydramine
+original=1 ML VIAL : HEPARIN SODIUM (PORCINE) 1000 UNIT/ML IJ SOLN, norm=heparin
+original=1 ML VIAL : HEPARIN SODIUM (PORCINE) 5000 UNIT/ML IJ SOLN, norm=heparin
+original=1 ML VIAL: HEPARIN SODIUM (PORCINE) 5000 UNIT/ML IJ SOLN, norm=heparin
+original=1 ML VIAL : HYDRALAZINE HCL 20 MG/ML IJ SOLN, norm=hydralazine
+original=1 ML VIAL: HYDRALAZINE HCL 20 MG/ML IJ SOLN, norm=hydralazine
+original=1 ML VIAL : LORAZEPAM 2 MG/ML IJ SOLN, norm=lorazepam
+original=1 ML VIAL: LORAZEPAM 2 MG/ML IJ SOLN, norm=lorazepam
+original=20.3 ML CUP : ACETAMINOPHEN 160 MG/5ML PO SOLN, norm=acetaminophen
+original=20 ML  -  LABETALOL HCL 5 MG/ML IV SOLN, norm=labetalol
+original=20 ML  -  LIDOCAINE HCL 1 % IJ SOLN, norm=lidocaine
+original=20 ML  -  POTASSIUM CHLORIDE 2 MEQ/ML IV SOLN, norm=potassium chloride
+original=20 ML SYRINGE : CEFAZOLIN 2 G IN STERILE WATER 20 ML SYRINGE IV, norm=cefazolin
+original=20 ML VIAL : POTASSIUM CHLORIDE 2 MEQ/ML IV SOLN, norm=potassium chloride
+original=20 ML VIAL: POTASSIUM CHLORIDE 2 MEQ/ML IV SOLN, norm=potassium chloride
+original=250 ML  -  ALBUMIN HUMAN 5 % IV SOLN, norm=albumin human, USP
+original=250 ML FLEX CONT : SODIUM CHLORIDE 0.9 % IV SOLN, norm=sodium chloride
+original=250 ML PLAS CONT: FAT EMULSION 20 % IV EMUL, norm=cyclosporine
+original=250 ML PLAS CONT : NOREPINEPHRINE IN D5W 8 MG/250 ML, norm=norepinephrine
+original=250 ML  -  SODIUM CHLORIDE 0.9 % IV SOLN, norm=sodium chloride
+original=2.5 ML PLAS : IPRATROPIUM BROMIDE 0.02 % IN SOLN, norm=ipratropium
+original=2 ML AMPULE: FENTANYL CITRATE 0.05 MG/ML IJ SOLN, norm=fentanyl
+original=2 ML  -  DIGOXIN 0.25 MG/ML IJ SOLN, norm=digoxin
+original=2 ML  -  FAMOTIDINE 10 MG/ML IV SOLN, norm=famotidine
+original=2 ML  -  FENTANYL CITRATE 0.05 MG/ML IJ SOLN, norm=fentanyl
+original=2 ML : FENTANYL CITRATE 0.05 MG/ML IJ SOLN, norm=fentanyl
+original=2 ML: FENTANYL CITRATE 0.05 MG/ML IJ SOLN, norm=fentanyl
+original=2 ML  -  FUROSEMIDE 10 MG/ML IJ SOLN, norm=furosemide
+original=2 ML : FUROSEMIDE 10 MG/ML IJ SOLN, norm=furosemide
+original=2 ML  -  METOCLOPRAMIDE HCL 5 MG/ML IJ SOLN, norm=metoclopramide
+original=2 ML  -  NITROPRUSSIDE SODIUM 25 MG/ML IV SOLN, norm=nitroprusside
+original=2 ML: ONDANSETRON HCL 4 MG/2ML IJ SOLN, norm=ondansetron
+original=2 ML : ONDANSETRON HCL 4 MG/2ML IV SOLN, norm=ondansetron
+original=2 ML  -  PROCHLORPERAZINE EDISYLATE 5 MG/ML IJ SOLN, norm=prochlorperazine
+original=2 ML VIAL : FAMOTIDINE 10 MG/ML IV SOLN, norm=famotidine
+original=2 ML VIAL : FAMOTIDINE 20 MG/2ML IV SOLN, norm=famotidine
+original=2 ML VIAL : FENTANYL CITRATE 0.05 MG/ML IJ SOLN, norm=fentanyl
+original=2 ML VIAL: FENTANYL CITRATE 0.05 MG/ML IJ SOLN, norm=fentanyl
+original=2 ML VIAL: FUROSEMIDE 10 MG/ML IJ SOLN, norm=furosemide
+original=2 ML VIAL : METOCLOPRAMIDE HCL 5 MG/ML IJ SOLN, norm=metoclopramide
+original=2 ML VIAL : MIDAZOLAM HCL 1 MG/ML IJ SOLN, norm=midazolam
+original=2 ML VIAL : MIDAZOLAM HCL 2 MG/2ML IJ SOLN, norm=midazolam
+original=2 ML VIAL: MIDAZOLAM HCL 2 MG/2ML IJ SOLN, norm=midazolam
+original=2 ML VIAL : ONDANSETRON HCL 4 MG/2ML IJ SOLN, norm=ondansetron
+original=30 ML CUP : ALUM & MAG HYDROXIDE-SIMETH 200-200-20 MG/5ML PO SUSP, norm=magnesium hydroxide
+original=30 ML CUP : MAGNESIUM HYDROXIDE 400 MG/5ML PO SUSP, norm=magnesium hydroxide
+original=30 ML  -  IOPAMIDOL 61 % IV SOLN, norm=iopamidol
+original=30 ML  -  LACTULOSE 10 GM/15ML PO SOLN, norm=lactulose
+original=3.5 G  -  REFRESH P.M. OP OINT, norm=mineral oil
+original=37.5 G TUBE : DEXTROSE (DIABETIC USE) 40 % PO GEL, norm=glucose
+original=37.5 G TUBE : GLUCOSE 40 % PO GEL, norm=glucose
+original=3 ML  -  ALBUTEROL SULFATE (2.5 MG/3ML) 0.083% IN NEBU, norm=albuterol
+original=3 ML  -  IPRATROPIUM-ALBUTEROL 0.5-2.5 (3) MG/3ML IN SOLN, norm=albuterol
+original=3 ML PLAS CONT: ALBUTEROL SULFATE (2.5 MG/3ML) 0.083% IN NEBU, norm=albuterol
+original=3 ML PLAS CONT: IPRATROPIUM-ALBUTEROL 0.5-2.5 (3) MG/3ML IN SOLN, norm=albuterol
+original=3 ML SYRINGE CUSTOM NDC : ANTICOAGULANT SODIUM CITRATE 4 % VI SOLN, norm=ANTICOAGULANT SODIUM CITRATE
+original=3 ML VIAL : INSULIN LISPRO (HUMAN) 100 UNIT/ML SC SOLN, norm=insulin lispro
+original=3 ML VIAL : INSULIN REGULAR HUMAN 100 UNIT/ML IJ SOLN, norm=insulin, regular, human
+original=473 ML  -  CHLORHEXIDINE GLUCONATE 0.12 % MT SOLN, norm=chlorhexidine
+original=4 ML  -  FUROSEMIDE 10 MG/ML IJ SOLN, norm=furosemide
+original=4 ML : FUROSEMIDE 10 MG/ML IJ SOLN, norm=furosemide
+original=4 ML  -  LABETALOL HCL 5 MG/ML IV SOLN, norm=labetalol
+original=4 ML SYRINGE : LABETALOL HCL 5 MG/ML IV SOLN, norm=labetalol
+original=4 ML VIAL : FUROSEMIDE 10 MG/ML IJ SOLN, norm=furosemide
+original=4 ML VIAL: FUROSEMIDE 10 MG/ML IJ SOLN, norm=furosemide
+original=500 ML FLEX CONT EXCEL : SODIUM CHLORIDE 0.9 % IV SOLN, norm=sodium chloride
+original=500 ML FLEX CONT : SODIUM CHLORIDE 0.9 % IV SOLN, norm=sodium chloride
+original=500 ML  -  HEPARIN (PORCINE) IN D5W 50-5 UNIT/ML-% IV SOLN, norm=heparin
+original=500 ML : HEPARIN (PORCINE) IN D5W 50-5 UNIT/ML-% IV SOLN, norm=heparin
+original=500 ML  -  SODIUM CHLORIDE 0.9 % IV SOLN, norm=sodium chloride
+original=500 ML : SODIUM CHLORIDE 0.9 % IV SOLN, norm=sodium chloride
+original=50 ML  -  ALBUMIN HUMAN 25 % IV SOLN, norm=albumin human, USP
+original=50 ML FLEX CONT : MAGNESIUM SULFATE 40 MG/ML IJ SOLN, norm=magnesium sulfate
+original=50 ML FLEX CONT: MAGNESIUM SULFATE 40 MG/ML IJ SOLN, norm=magnesium sulfate
+original=50 ML FLEX CONT : MAGNESIUM SULFATE 4% IJ SOLN, norm=magnesium sulfate
+original=50 ML  -  POTASSIUM CHLORIDE 20 MEQ/50ML IV SOLN, norm=potassium chloride
+original=50 ML : POTASSIUM CHLORIDE 20 MEQ/50ML IV SOLN, norm=potassium chloride
+original=50 ML SYRINGE : DEXTROSE 50 % IV SOLN, norm=glucose
+original=50 ML SYRINGE: DEXTROSE 50 % IV SOLN, norm=glucose
+original=50 ML SYRINGE : SODIUM BICARBONATE 8.4 % IV SOLN, norm=sodium bicarbonate
+original=50 ML VIAL : DEXTROSE 50 % IV SOLN, norm=glucose
+original=50 ML VIAL : SODIUM BICARBONATE 8.4 % IV SOLN, norm=sodium bicarbonate
+original=5 G  -  LIDOCAINE-PRILOCAINE 2.5-2.5 % EX CREA, norm=lidocaine
+original=5 ML  -  LEVETIRACETAM 500 MG/5ML IV SOLN, norm=levetiracetam
+original=5 ML  -  METOPROLOL TARTRATE 1 MG/ML IV SOLN, norm=metoprolol
+original=5 ML SYRINGE : HEPARIN SODIUM LOCK FLUSH 10 UNIT/ML IV SOLN, norm=heparin
+original=5 ML VIAL : DILTIAZEM HCL 25 MG/5ML IV SOLN, norm=diltiazem
+original=5 ML VIAL : METOPROLOL TARTRATE 1 MG/ML IV SOLN, norm=metoprolol
+original=5 ML VIAL: METOPROLOL TARTRATE 1 MG/ML IV SOLN, norm=metoprolol
+original=5 ML VIAL : MIDAZOLAM HCL 1 MG/ML IJ SOLN, norm=midazolam
+original=.5 ML VIAL : PNEUMOCOCCAL VAC POLYVALENT 25 MCG/0.5ML IJ INJ, norm=Streptococcus pneumoniae type 1 capsular polysaccharide antigen
+original=5 ML VIAL : SODIUM PHOSPHATE 3 MMOLE/ML IV SOLN, norm=sodium phosphate, monobasic
+original=8 G  -  ALBUTEROL SULFATE HFA 108 (90 BASE) MCG/ACT IN AERS, norm=albuterol
+original=ACETAMIN/HYDROCODON 325MG/5MG, norm=acetaminophen
+original=ACETAMINOPHEN, norm=acetaminophen
+original=ACETAMINOPHEN 10 MG/ML 100 ML VIAL, norm=acetaminophen
+original=ACETAMINOPHEN 325 MG PO TABS, norm=acetaminophen
+original=ACETAMINOPHEN 325 MG RECTAL SUPPOSITORY, norm=acetaminophen
+original=ACETAMINOPHEN 325 MG TAB, norm=acetaminophen
+original=ACETAMINOPHEN 325 MG TABLET, norm=acetaminophen
+original=ACETAMINOPHEN 500 MG PO TABS, norm=acetaminophen
+original=ACETAMINOPHEN 650 MG RECTAL SUPPOSITORY, norm=acetaminophen
+original=ACETAMINOPHEN 650MG RECT SUPP, norm=acetaminophen
+original=ACETAMINOPHEN 650 MG RE SUPP, norm=acetaminophen
+original=ACETAMINOPHEN-OXYCODONE 325 MG-5 MG ORAL TABLET, norm=acetaminophen
+original=ACETAMINOPHEN (TYLENOL) TAB 650 MG, norm=acetaminophen
+original=ACETAMINOPHEN (TYLENOL) TAB 975 MG, norm=acetaminophen
+original=ADVAIR DISKUS, norm=ADVAIR DISKUS
+original=ALBUMIN 25% 100 ML INJ, norm=albumin human, USP
+original=ALBUMIN 5%, norm=ALBUMIN
+original=ALBUMIN 5% 250 ML INJ, norm=albumin human, USP
+original=ALBUMIN 5% 500 ML INJ, norm=albumin human, USP
+original=ALBUMIN HUMAN, norm=albumin human, USP
+original=ALBUMIN HUMAN 25%, norm=albumin human, USP
+original=ALBUMIN HUMAN 5%, norm=albumin human, USP
+original=ALBUMIN (HUMAN) (PLASBUMIN-5) 5% INFUSION 25 G, norm=albumin human, USP
+original=ALBUTEROL, norm=albuterol
+original=ALBUTEROL 0.083%, norm=albuterol
+original=ALBUTEROL 2.5 MG/0.5ML UD INH SOLN, norm=albuterol
+original=ALBUTEROL 2.5 MG/3 ML UD INH SOLN, norm=albuterol
+original=ALBUTEROL INHALE, norm=albuterol
+original=ALBUTEROL INH SOLN (VARIABLE DOSE), norm=albuterol
+original=ALBUTEROL/IPRATROPIUM, norm=albuterol
+original=ALBUTEROL-IPRATROPIUM 2.5MG-0.5MG, norm=albuterol
+original=ALBUTEROL-IPRATROPIUM 3-0.5MG, norm=albuterol
+original=ALBUTEROL-IPRATROPIUM (DUONEB) INHALATION SOLUTION 3 ML, norm=albuterol
+original=ALBUTEROL/IPRATROPIUM NEB 3ML, norm=albuterol
+original=ALBUTEROL NEB, norm=albuterol
+original=ALBUTEROL NEB 2.5 MG/3 ML, norm=albuterol
+original=ALBUTEROL SULF, norm=albuterol
+original=ALBUTEROL SULFATE (2.5 MG/3ML) 0.083% IN NEBU, norm=albuterol
+original=ALBUTEROL SULFATE 2.5 MG/3 ML (0.083 %) NEB SOLUTION 3 ML BLIST PACK, norm=albuterol
+original=ALBUTEROL SULFATE (5 MG/ML) 0.5% IN NEBU, norm=albuterol
+original=ALBUTEROL SULFATE (PROVENTIL) (2.5 MG/3ML) 0.083% INHALATION SOLUTION 2.5 MG, norm=albuterol
+original=ALLOPURINOL, norm=allopurinol
+original=ALLOPURINOL 100 MG PO TABS, norm=allopurinol
+original=ALPRAZOLAM, norm=alprazolam
+original=ALPRAZOLAM 0.25 MG PO TABS, norm=alprazolam
+original=ALPRAZOLAM 0.5 MG PO TABS, norm=alprazolam
+original=ALTEPLASE 1 MG/2ML SYR, norm=alteplase
+original=ALTEPLASE 2 MG IJ SOLR, norm=alteplase
+original=ALTEPLASE (CATHFLO ACTIVASE) INJ 2 MG, norm=alteplase
+original=AMBIEN, norm=zolpidem
+original=AMINOCAPROIC ACID, norm=6-aminocaproic acid
+original=AMIODARONE, norm=amiodarone
+original=AMIODARONE 150 MG IN 100 ML D5W, norm=amiodarone
+original=AMIODARONE 200 MG TAB, norm=amiodarone
+original=AMIODARONE 200 MG TABLET, norm=amiodarone
+original=AMIODARONE 450 MG/250 ML D5W INFUSION (STD CON'C) (REPACKAGE), norm=amiodarone
+original=AMIODARONE 900 MG IN 500 ML D5W, norm=amiodarone
+original=AMIODARONE BOLUS, norm=amiodarone
+original=AMIODARONE (CORDARONE) 150 MG IN D5W 100ML BOLUS, norm=amiodarone
+original=AMIODARONE HCL, norm=amiodarone
+original=AMIODARONE HCL 150 MG/3ML IV SOLN, norm=amiodarone
+original=AMIODARONE HCL 200 MG PO TABS, norm=amiodarone
+original=AMIODARONE HCL 900 MG/18ML IV SOLN, norm=amiodarone
+original=AMLODIPINE, norm=amlodipine
+original=AMLODIPINE 5 MG TAB, norm=amlodipine
+original=AMLODIPINE 5 MG TABLET, norm=amlodipine
+original=AMLODIPINE BESYLATE, norm=amlodipine
+original=AMLODIPINE BESYLATE 10 MG PO TABS, norm=amlodipine
+original=AMLODIPINE BESYLATE 5 MG PO TABS, norm=amlodipine
+original=ANCEF, norm=ANCEF
+original=APRESOLINE, norm=APRESOLINE
+original=ASCORBIC ACID 500 MG TAB, norm=ascorbic acid
+original=ASPART INSULIN, norm=insulin aspart, human
+original=ASPIRIN, norm=aspirin
+original=ASPIRIN 300 MG RECT SUPP, norm=aspirin
+original=ASPIRIN 300 MG RE SUPP, norm=aspirin
+original=ASPIRIN 325 MG EC TAB, norm=aspirin
+original=ASPIRIN 325 MG PO TABS, norm=aspirin
+original=ASPIRIN 325MG TAB, norm=aspirin
+original=ASPIRIN 325 MG TABLET, norm=aspirin
+original=ASPIRIN 81 MG CHEWABLE TABLET, norm=aspirin
+original=ASPIRIN 81 MG EC TAB, norm=aspirin
+original=ASPIRIN 81 MG PO CHEW, norm=aspirin
+original=ASPIRIN (BABY ASA) 81 MG TAB, norm=aspirin
+original=ASPIRIN (CHEWABLE), norm=aspirin
+original=ASPIRIN CHEWABLE, norm=aspirin
+original=ASPIRIN CHEW TAB 81 MG, norm=aspirin
+original=ASPIRIN EC, norm=aspirin
+original=ASPIRIN EC 325 MG PO TBEC, norm=aspirin
+original=ASPIRIN EC 81 MG PO TBEC, norm=aspirin
+original=ASSESS PNEUMOCOCCAL VACCINE, norm=ASSESS PNEUMOCOCCAL VACCINE
+original=ATENOLOL, norm=atenolol
+original=ATIVAN, norm=lorazepam
+original=ATORVASTATIN, norm=atorvastatin
+original=ATORVASTATIN 20 MG TAB, norm=atorvastatin
+original=ATORVASTATIN 40 MG TAB, norm=atorvastatin
+original=ATORVASTATIN 40 MG TABLET, norm=atorvastatin
+original=ATORVASTATIN CALCIUM 10 MG PO TABS, norm=atorvastatin
+original=ATORVASTATIN CALCIUM 20 MG PO TABS, norm=atorvastatin
+original=ATORVASTATIN CALCIUM 40 MG PO TABS, norm=atorvastatin
+original=ATORVASTATIN CALCIUM 80 MG PO TABS, norm=atorvastatin
+original=ATROPINE, norm=atropine
+original=ATROPINE 0.1 MG/ML SYRINGE : 10 ML SYRINGE, norm=atropine
+original=ATROPINE SULFATE SYRINGE, norm=atropine
+original=ATROVENT, norm=ipratropium
+original=AZITHROMYCIN, norm=azithromycin
+original=AZITHROMYCIN 500 MG IN NS 250 ML IV, norm=azithromycin
+original=AZITHROMYCIN 500 MG IV SOLR, norm=azithromycin
+original=BACITRACIN, norm=bacitracin
+original=BAYER CHEWABLE, norm=aspirin
+original=BENADRYL, norm=diphenhydramine
+original=BIOTENE DRY MOUTH MT LIQD, norm=BIOTENE DRY MOUTH
+original=BISACODYL, norm=bisacodyl
+original=BISACODYL 10 MG RECT SUPP, norm=bisacodyl
+original=BISACODYL 10 MG RE SUPP, norm=bisacodyl
+original=BISACODYL 5 MG EC TAB, norm=bisacodyl
+original=BISACODYL 5 MG PO TBEC, norm=bisacodyl
+original=BISACODYL (DULCOLAX) SUPP 10 MG, norm=bisacodyl
+original=BISACODYL SUPP, norm=bisacodyl
+original=BUMETANIDE, norm=bumetanide
+original=BUMETANIDE 0.25 MG/1ML 4ML SDV INJ, norm=bumetanide
+original=BUMEX, norm=bumetanide
+original=BUMINATE, norm=BUMINATE
+original=CALCIUM CARBONATE, norm=calcium carbonate
+original=CALCIUM CARBONATE 500 MG CHEW TAB, norm=calcium carbonate
+original=CALCIUM CARBONATE ANTACID 500 MG PO CHEW, norm=calcium carbonate
+original=CALCIUM CHLORIDE, norm=calcium chloride
+original=CALCIUM GLUCONATE, norm=calcium gluconate
+original=CALCIUM GLUCONATE 10%, norm=calcium gluconate
+original=CALCIUM GLUCONATE 100 MG/ML (10 %) IV : 10 ML, norm=calcium gluconate
+original=CALCIUM GLUCONATE 10 % IV SOLN, norm=calcium gluconate
+original=CALCIUM GLUCONATE 10 % IV SOLN 10ML, norm=calcium gluconate
+original=CALCIUM GLUCONATE 1 GRAM/D5W 50ML, norm=calcium gluconate
+original=CALCIUM GLUCONATE 2 GRAM/D5W 50ML, norm=calcium gluconate
+original=CARDIZEM, norm=diltiazem
+original=CARVEDILOL, norm=carvedilol
+original=CARVEDILOL 12.5 MG PO TABS, norm=carvedilol
+original=CARVEDILOL 25 MG PO TABS, norm=carvedilol
+original=CARVEDILOL 3.125 MG PO TABS, norm=carvedilol
+original=CARVEDILOL 3.125 MG TAB, norm=carvedilol
+original=CARVEDILOL 6.25 MG PO TABS, norm=carvedilol
+original=CATAPRES, norm=clonidine
+original=CEFAZOLIN, norm=cefazolin
+original=CEFAZOLIN 1 G POWDER FOR INJ, norm=cefazolin
+original=CEFAZOLIN 2 GM IN NS 100 ML IVPB, norm=cefazolin
+original=CEFAZOLIN 2 GM IN NS 100 ML IVPB (REPACKAGE), norm=cefazolin
+original=CEFAZOLIN (ANCEF) IN DEXTROSE IVPB 2 G, norm=cefazolin
+original=CEFEPIME, norm=cefepime
+original=CEFEPIME HCL 2 G IJ SOLR, norm=cefepime
+original=CEFEPIME IN D5W (MAXIPIME) IVPB 1 G, norm=cefepime
+original=CEFTRIAXONE, norm=ceftriaxone
+original=CEFTRIAXONE 1 GRAM IN NS 50 ML IVPB, norm=ceftriaxone
+original=CEFTRIAXONE IN D5W (ROCEPHIN) IVPB 1 G, norm=ceftriaxone
+original=CEFTRIAXONE SODIUM 1 G IJ SOLR, norm=ceftriaxone
+original=CEPHULAC, norm=CEPHULAC
+original=CHLORHEXIDINE GLUCONATE 0.12%, norm=chlorhexidine
+original=CHLORHEXIDINE GLUCONATE UD LIQ 15ML, norm=chlorhexidine
+original=CHLORHEXIDINE (PERIOGARD) 0.12 % ORAL RINSE 15 ML, norm=chlorhexidine
+original=CIPROFLOXACIN IN D5W 400 MG/200ML IV SOLN, norm=ciprofloxacin
+original=CISATRACURIUM, norm=cisatracurium
+original=CITALOPRAM, norm=citalopram
+original=CLINDAMYCIN, norm=clindamycin
+original=CLONAZEPAM, norm=clonazepam
+original=CLONAZEPAM 0.5 MG PO TABS, norm=clonazepam
+original=CLONIDINE, norm=clonidine
+original=CLONIDINE 0.1 MG TAB, norm=clonidine
+original=CLONIDINE HCL, norm=clonidine
+original=CLONIDINE HCL 0.1 MG PO TABS, norm=clonidine
+original=CLOPIDOGREL, norm=clopidogrel
+original=CLOPIDOGREL 75 MG TAB, norm=clopidogrel
+original=CLOPIDOGREL BISULFATE, norm=clopidogrel
+original=CLOPIDOGREL BISULFATE 75 MG PO TABS, norm=clopidogrel
+original=COLACE, norm=docusate
+original=COMPAZINE, norm=prochlorperazine
+original=CORDARONE, norm=amiodarone
+original=COREG, norm=carvedilol
+original=COUMADIN, norm=warfarin
+original=COZAAR, norm=losartan
+original=D50, norm=D50
+original=DECADRON, norm=dexamethasone
+original=DEFINITY, norm=DEFINITY
+original=DELTASONE, norm=prednisone
+original=DEXAMETHASONE, norm=dexamethasone
+original=DEXAMETHASONE 4 MG PO TABS, norm=dexamethasone
+original=DEXMEDETOMIDINE, norm=dexmedetomidine
+original=DEXMEDETOMIDINE 200 MCG IN 50 ML NS, norm=dexmedetomidine
+original=DEXMEDETOMIDINE HCL IN NACL 200 MCG/50ML IV SOLN, norm=dexmedetomidine
+original=DEXMEDETOMIDINE HCL IN NACL 400 MCG/100ML IV SOLN, norm=dexmedetomidine
+original=DEXT 5% IN WATER 1000 ML LVP, norm=fluconazole
+original=DEXT 5%-NACL 0.45% 1000 ML LVP, norm=fructose
+original=DEXT 5%-NACL 0.45%-KCL 20MEQ LVP, norm=fructose
+original=DEXT 5%-NACL 0.9% 1000 ML LVP, norm=fructose
+original=DEXTROSE, norm=glucose
+original=DEXTROSE 50%, norm=glucose
+original=DEXTROSE 50% 25 GRAM/50 ML INJ, norm=glucose
+original=DEXTROSE 50% 25 GRAM/50 ML SYR, norm=glucose
+original=DEXTROSE 50% ABBOJECT, norm=glucose
+original=DEXTROSE 50 % INJ, norm=glucose
+original=DEXTROSE 50% INJ, norm=glucose
+original=DEXTROSE 50% IN WATER, norm=glucose
+original=DEXTROSE 50 % IV SOLN, norm=glucose
+original=DEXTROSE 50% VIAL, norm=glucose
+original=DEXTROSE 50%-WATER, norm=glucose
+original=DEXTROSE 5%-1/2 NORMAL SALINE IV : 1000 ML BAG, norm=DEXTROSE NORMAL SALINE
+original=DEXTROSE 5% IN NORMAL SALINE IV : 1000 ML BAG, norm=DEXTROSE NORMAL SALINE
+original=DEXTROSE 5% IN WATER (D5W) IV : 1000 ML BAG, norm=glucose
+original=DEXTROSE 5 % IV SOLN, norm=glucose
+original=DEXTROSE 5%/NACL 0.45%, norm=glucose
+original=DIAZEPAM, norm=diazepam
+original=DIAZEPAM 5 MG PO TABS, norm=diazepam
+original=DIGOXIN, norm=digoxin
+original=DIGOXIN 0.25 MG/1 ML 2 ML INJ, norm=digoxin
+original=DIGOXIN 125 MCG PO TABS, norm=digoxin
+original=DILAUDID, norm=hydromorphone
+original=DILAUDID 1MG/ML, norm=hydromorphone
+original=DILTIAZEM, norm=diltiazem
+original=DILTIAZEM HCL, norm=diltiazem
+original=DILTIAZEM HCL 30 MG PO TABS, norm=diltiazem
+original=DIPHENHYDRAMINE, norm=diphenhydramine
+original=DIPHENHYDRAMINE 25 MG CAP, norm=diphenhydramine
+original=DIPHENHYDRAMINE 50 MG/1 ML 1 ML INJ, norm=diphenhydramine
+original=DIPHENHYDRAMINE HCL, norm=diphenhydramine
+original=DIPHENHYDRAMINE HCL 25 MG PO CAPS, norm=diphenhydramine
+original=DIPHENHYDRAMINE HCL 50 MG/ML IJ SOLN, norm=diphenhydramine
+original=DIPRIVAN, norm=propofol
+original=DOCUSATE, norm=docusate
+original=DOCUSATE SODIUM, norm=docusate
+original=DOCUSATE SODIUM 100 MG CAP, norm=docusate
+original=DOCUSATE SODIUM 100 MG CAPSULE, norm=docusate
+original=DOCUSATE SODIUM 100 MG PO CAPS, norm=docusate
+original=DOCUSATE SODIUM 50 MG/5ML PO LIQD, norm=docusate
+original=DOCUSATE SODIUM (COLACE) CAP 100 MG, norm=docusate
+original=DOCUSATE SODIUM (COLACE) ORAL LIQUID 100 MG, norm=docusate
+original=DOPAMINE, norm=dopamine
+original=DULCOLAX, norm=bisacodyl
+original=DULCOLAX LAXATIVE, norm=bisacodyl
+original=DUONEB, norm=albuterol
+original=DUONEB 3 MG-0.5 MG/3 ML UD INH SOLN, norm=albuterol
+original=ECOTRIN, norm=aspirin
+original=ECOTRIN EC, norm=aspirin
+original=ENOXAPARIN, norm=enoxaparin
+original=ENOXAPARIN 30 MG/0.3 ML SYR, norm=enoxaparin
+original=ENOXAPARIN 40 MG/0.4 ML SUB-Q SYRINGE .4 ML SYRINGE, norm=enoxaparin
+original=ENOXAPARIN 40 MG/0.4 ML SYR, norm=enoxaparin
+original=ENOXAPARIN INJ, norm=enoxaparin
+original=ENOXAPARIN (LOVENOX) INJ 40 MG, norm=enoxaparin
+original=ENOXAPARIN SODIUM 30 MG/0.3ML SC SOLN, norm=enoxaparin
+original=ENOXAPARIN SODIUM 40 MG/0.4ML SC SOLN, norm=enoxaparin
+original=EPHEDRINE, norm=ephedrine
+original=EPHEDRINE SULFATE, norm=ephedrine
+original=EPINEPHRINE, norm=epinephrine
+original=EPINEPHRINE 8 MG IN 250 ML NS, norm=epinephrine
+original=ESOMEPRAZOLE INJ, norm=esomeprazole
+original=ETOMIDATE, norm=etomidate
+original=FAMOTIDINE, norm=famotidine
+original=FAMOTIDINE 20 MG/2 ML SDV INJ, norm=famotidine
+original=FAMOTIDINE 20 MG PO TABS, norm=famotidine
+original=FAMOTIDINE 20 MG TAB, norm=famotidine
+original=FAMOTIDINE 20 MG TABLET, norm=famotidine
+original=FAMOTIDINE (PEPCID) (2 MG/ML) INJ DILUTION 20 MG, norm=famotidine
+original=FAMOTIDINE (PEPCID) TAB 20 MG, norm=famotidine
+original=FAMOTIDINE (PF), norm=famotidine
+original=FAT EMULSION 20 % IV EMUL, norm=cyclosporine
+original=FENTANYL, norm=fentanyl
+original=FENTANYL 1000 MCG IN 100 ML NS, norm=fentanyl
+original=FENTANYL 2000 MCG IN D5W 100 ML INFUSION FINAL CONC = 20 MCG/ML, norm=fentanyl
+original=FENTANYL CITRATE, norm=fentanyl
+original=FENTANYL CITRATE 0.05 MG/ML IJ SOLN, norm=fentanyl
+original=FENTANYL CITRATE INJ, norm=fentanyl
+original=FENTANYL INJ 25 MCG, norm=fentanyl
+original=FENTANYL INJ 50 MCG, norm=fentanyl
+original=FENTANYL (PF) 50 MCG/1 ML 2 ML INJ, norm=fentanyl
+original=FENTANYL (PF) 50 MCG/1 ML 2 ML SYR, norm=fentanyl
+original=FENTANYL STANDARD INFUSION 10 MCG/ML PREMIX, norm=phenazopyridine
+original=FERROUS SULFATE, norm=ferrous sulfate
+original=FERROUS SULFATE 325 (65 FE) MG PO TABS, norm=ferrous sulfate
+original=FERROUS SULFATE 325 MG TAB, norm=ferrous sulfate
+original=FLAGYL, norm=metronidazole
+original=FLOMAX, norm=tamsulosin
+original=FLUMAZENIL, norm=flumazenil
+original=FLUTICASONE-SALMETEROL 250-50 MCG/DOSE IN AEPB, norm=salmeterol
+original=FOLIC ACID, norm=folic acid
+original=FOLIC ACID 1 MG PO TABS, norm=folic acid
+original=FOLIC ACID 1 MG TAB, norm=folic acid
+original=FOLIC ACID 5 MG/ML IJ SOLN, norm=folic acid
+original=FOLIC ACID 5 MG/ML INJECTION 10 ML VIAL, norm=folic acid
+original=FUROSEMIDE, norm=furosemide
+original=FUROSEMIDE 10 MG/1 ML 2ML SDV INJ, norm=furosemide
+original=FUROSEMIDE 10 MG/1 ML 4ML SDV INJ, norm=furosemide
+original=FUROSEMIDE 10 MG/ML IJ SOLN, norm=furosemide
+original=FUROSEMIDE 20 MG PO TABS, norm=furosemide
+original=FUROSEMIDE 20 MG TAB, norm=furosemide
+original=FUROSEMIDE 40 MG PO TABS, norm=furosemide
+original=FUROSEMIDE 40 MG TAB, norm=furosemide
+original=FUROSEMIDE 80 MG PO TABS, norm=furosemide
+original=FUROSEMIDE INJ, norm=furosemide
+original=FUROSEMIDE (LASIX) INJ 20 MG, norm=furosemide
+original=FUROSEMIDE (LASIX) INJ 40 MG, norm=furosemide
+original=FUROSEMIDE (LASIX) TAB 40 MG, norm=furosemide
+original=GABAPENTIN, norm=gabapentin
+original=GABAPENTIN 100 MG PO CAPS, norm=gabapentin
+original=GABAPENTIN 300 MG CAP, norm=gabapentin
+original=GABAPENTIN 300 MG PO CAPS, norm=gabapentin
+original=GLUCAGEN, norm=glucagon
+original=GLUCAGON, norm=glucagon
+original=GLUCAGON 1 MG (1 UNIT) INJ, norm=glucagon
+original=GLUCAGON HCL (RDNA) 1 MG IJ SOLR, norm=glucagon
+original=GLUCAGON (HUMAN RECOMBINANT), norm=glucagon
+original=GLUCAGON (HUMAN RECOMBINANT) 1 MG/ML SOLUTION FOR INJECTION, norm=glucagon
+original=GLUCAGON INJ, norm=glucagon
+original=GLUCOSE, norm=glucose
+original=GLUCOSE 15 GRAM/60 ML BQ LIQ, norm=glucose
+original=GLUCOSE 40% 15 GRAM BQ GEL, norm=glucose
+original=GLUCOSE 40% GEL, norm=glucose
+original=GLUCOSE GEL, norm=glucose
+original=GLUCOSE-VITAMIN C 4-0.006 G PO CHEW, norm=glucose
+original=GLUTOSE 15, norm=glucose
+original=GLYCOPYRROLATE, norm=glycopyrronium
+original=GUAIFENESIN ER 600 MG PO TB12, norm=guaifenesin
+original=HALDOL, norm=haloperidol
+original=HALOPERIDOL, norm=haloperidol
+original=HALOPERIDOL 5 MG/1 ML 1 ML INJ, norm=haloperidol
+original=HALOPERIDOL LACTATE, norm=haloperidol
+original=HALOPERIDOL LACTATE INJ, norm=haloperidol
+original=HEPARIN, norm=heparin
+original=HEPARIN 25,000 UNIT(S) IN D5W 25, norm=heparin
+original=HEPARIN 5000 UNIT/ML 1ML INJ, norm=heparin
+original=HEPARIN/DEXTROSE 5% 25000 UNITS/250 ML BAG, norm=heparin
+original=HEPARIN INJ 5,000 UNITS, norm=heparin
+original=HEPARIN (PORCINE), norm=heparin
+original=HEPARIN (PORCINE) 1,000 UNIT/ML INJECTION : 10 ML VIAL, norm=heparin
+original=HEPARIN (PORCINE)  1000 UNIT/ML INJ SOLN, norm=heparin
+original=HEPARIN (PORCINE) 5,000 UNIT/ML INJECTION : 1 ML VIAL, norm=heparin
+original=HEPARIN (PORCINE) IN 1/2 NS, norm=heparin
+original=HEPARIN (PORCINE) IN NACL 100-0.45 UNIT/ML-% IJ SOLN, norm=heparin
+original=HEPARIN, PORCINE (PF) 10 UNIT/ML IV SYRINGE : 5 ML, norm=heparin
+original=HEPARIN SODIUM (PORCINE) 5000 UNIT/ML IJ SOLN, norm=heparin
+original=HEPARIN SOD (PORCINE), norm=heparin
+original=HEPARIN SUBCUTANEOUS, norm=heparin
+original=HUMALOG, norm=insulin lispro
+original=HUMULIN R, norm=insulin isophane
+original=HYDRALAZINE, norm=hydralazine
+original=HYDRALAZINE 20 MG/1 ML 1 ML INJ, norm=hydralazine
+original=HYDRALAZINE 20 MG/ML INJ SOLN, norm=hydralazine
+original=HYDRALAZINE HCL, norm=hydralazine
+original=HYDRALAZINE HCL 20 MG/ML IJ SOLN, norm=hydralazine
+original=HYDRALAZINE HCL 25 MG PO TABS, norm=hydralazine
+original=HYDRALAZINE HCL 50 MG PO TABS, norm=hydralazine
+original=HYDRALAZINE INJ, norm=hydralazine
+original=HYDROCHLOROTHIAZIDE, norm=hydrochlorothiazide
+original=HYDROCHLOROTHIAZIDE 25 MG PO TABS, norm=hydrochlorothiazide
+original=HYDROCODONE 5 MG-ACETAMINOPHEN 325 MG TABLET, norm=acetaminophen
+original=HYDROCODONE-ACETAMINOPHEN, norm=acetaminophen
+original=HYDROCODONE-ACETAMINOPHEN 10-325 MG PO TABS, norm=acetaminophen
+original=HYDROCODONE-ACETAMINOPHEN 5-325 MG PO TABS, norm=acetaminophen
+original=HYDROCORTISONE NA SUCCINATE PF 100 MG IJ SOLR, norm=hydrocortisone
+original=HYDROCORTISONE  (PF) 100 MG INJ, norm=hydrocortisone
+original=HYDROCORTISONE SOD SUCCINATE, norm=hydrocortisone
+original=HYDROCORTISONE SOD SUCCINATE 100 MG IJ SOLR, norm=hydrocortisone
+original=HYDROMORPHONE, norm=hydromorphone
+original=HYDROMORPHONE 1 MG/1 ML SYR, norm=hydromorphone
+original=HYDROMORPHONE (DILAUDID) 1 MG/ML INJ 0.5 MG, norm=hydromorphone
+original=HYDROMORPHONE HCL, norm=hydromorphone
+original=HYDROMORPHONE INJ, norm=hydromorphone
+original=HYDROMORPHONE (PF), norm=hydromorphone
+original=IBUPROFEN, norm=ibuprofen
+original=IMDUR, norm=IMDUR
+original=INFUVITE IV INJ 10ML, norm=thiamine
+original=INSULIN ASPART, norm=insulin aspart, human
+original=INSULIN ASPART 100 UNIT/ML SC SOLN, norm=insulin aspart, human
+original=INSULIN ASPART CORRECTIVE DOSING, norm=insulin aspart, human
+original=INSULIN ASPART (NOVOLOG) INJ, norm=insulin aspart, human
+original=INSULIN DETEMIR, norm=insulin detemir
+original=INSULIN DETEMIR 100 UNIT/ML SUB-Q 10 ML VIAL, norm=insulin detemir
+original=INSULIN GLARGINE, norm=insulin glargine
+original=INSULIN-GLARGINE *UNIT* INJ, norm=insulin glargine
+original=INSULIN HUMAN REGULAR, norm=insulin, regular, human
+original=INSULIN LISPRO, norm=insulin lispro
+original=INSULIN LISPRO (HUMAN) 100 UNIT/ML SC SOLN, norm=insulin lispro
+original=INSULIN-LISPRO (RDNA) *UNIT* INJ, norm=insulin lispro
+original=INSULIN REGULAR, norm=insulin, regular, human
+original=INSULIN (REGULAR) 100 UNITS IN 1, norm=insulin, regular, human
+original=INSULIN REGULAR, HUMAN, norm=insulin, regular, human
+original=INSULIN REGULAR HUMAN 100 UNIT/ML IJ SOLN, norm=insulin, regular, human
+original=INSULIN-REGULAR (HUMAN) *UNIT* INJ, norm=insulin, regular, human
+original=IOPAMIDOL, norm=iopamidol
+original=IPRATROPIUM, norm=ipratropium
+original=IPRATROPIUM 0.02%, norm=ipratropium
+original=IPRATROPIUM 0.5 MG/2.5ML UD INH SOLN, norm=ipratropium
+original=IPRATROPIUM-ALBUTEROL, norm=albuterol
+original=IPRATROPIUM-ALBUTEROL 0.5-2.5 (3) MG/3ML IN SOLN, norm=albuterol
+original=IPRATROPIUM-ALBUTEROL 0.5 MG-3 MG(2.5 MG BASE)/3 ML NEB SOLUTION 3 ML VIAL, norm=albuterol
+original=IPRATROPIUM BROMIDE 0.02 % IN SOLN, norm=ipratropium
+original=ISOSORBIDE MONONITRATE ER 30 MG PO TB24, norm=isosorbide
+original=KAYCIEL, norm=KAYCIEL
+original=KAYEXALATE, norm=KAYEXALATE
+original=KCL 10%, norm=potassium chloride
+original=KCL 20 MEQ/100ML STERILE WATER BAG, norm=potassium chloride
+original=KCL 40 MEQ/100ML STERILE WATER BAG, norm=potassium chloride
+original=KCL IN DEXTROSE-NACL 20-5-0.45 MEQ/L-%-% IV SOLN, norm=glucose
+original=K-DUR, norm=nitroglycerin
+original=K-DUR 20, norm=nitroglycerin
+original=KEPPRA, norm=levetiracetam
+original=KETOROLAC, norm=ketorolac
+original=KETOROLAC 30 MG/ML 1ML SDV INJ, norm=ketorolac
+original=KETOROLAC INJ, norm=ketorolac
+original=KETOROLAC TROMETHAMINE, norm=ketorolac
+original=KLONOPIN, norm=clonazepam
+original=KLOR-CON, norm=potassium chloride
+original=KLOR-CON,K-TAB, norm=potassium chloride
+original=K PHOS MONO-SOD PHOS DI & MONO 155-852-130 MG PO TABS, norm=sodium phosphate, monobasic
+original=LABETALOL, norm=labetalol
+original=LABETALOL 5 MG/1ML 20ML MDV INJ, norm=labetalol
+original=LABETALOL 5 MG/ML IV 20 ML VIAL, norm=labetalol
+original=LABETALOL 5 MG/ML IV SOLN, norm=labetalol
+original=LABETALOL HCL, norm=labetalol
+original=LABETALOL HCL 5 MG/ML IV SOLN, norm=labetalol
+original=LACTATED RINGERS, norm=LACTATED RINGERS
+original=LACTATED RINGER'S 1,000 ML BAG, norm=lactate
+original=LACTATED RINGER'S 1,000 ML BAG., norm=lactate
+original=LACTATED RINGERS 1000 ML LVP, norm=lactate
+original=LACTATED RINGERS INJECTION, norm=lactate
+original=LACTATED RINGERS INJECTION 1,000 ML, norm=lactate
+original=LACTATED RINGERS IV : 1000 ML BAG, norm=LACTATED RINGERS
+original=LACTULOSE, norm=lactulose
+original=LACTULOSE 20 GRAM/30 ML ORAL SOLN, norm=lactulose
+original=LACTULOSE 20 GRAM/30 ML UD LIQ, norm=lactulose
+original=LANOXIN, norm=digoxin
+original=LANTUS, norm=insulin glargine
+original=LASIX, norm=furosemide
+original=LEVAQUIN, norm=levofloxacin
+original=LEVEMIR, norm=insulin detemir
+original=LEVETIRACETAM, norm=levetiracetam
+original=LEVETIRACETAM 500 MG/5ML IV SOLN, norm=levetiracetam
+original=LEVETIRACETAM 500 MG PO TABS, norm=levetiracetam
+original=LEVOFLOXACIN, norm=levofloxacin
+original=LEVOFLOXACIN 500MG IN D5W 100ML RT, norm=levofloxacin
+original=LEVOFLOXACIN 500 MG PO TABS, norm=levofloxacin
+original=LEVOFLOXACIN 750 MG IN D5W 150ML, norm=levofloxacin
+original=LEVOFLOXACIN 750 MG PO TABS, norm=levofloxacin
+original=LEVOFLOXACIN IN D5W 500 MG/100ML IV SOLN, norm=levofloxacin
+original=LEVOFLOXACIN IN D5W 750 MG/150ML IV SOLN, norm=levofloxacin
+original=LEVOTHYROXINE, norm=levothyroxine
+original=LEVOTHYROXINE SODIUM, norm=levothyroxine
+original=LEVOTHYROXINE SODIUM 100 MCG PO TABS, norm=levothyroxine
+original=LEVOTHYROXINE SODIUM 25 MCG PO TABS, norm=levothyroxine
+original=LEVOTHYROXINE SODIUM 50 MCG PO TABS, norm=levothyroxine
+original=LEVOTHYROXINE SODIUM 75 MCG PO TABS, norm=levothyroxine
+original=LIDOCAINE, norm=lidocaine
+original=LIDOCAINE 1%, norm=lidocaine
+original=LIDOCAINE 10 MG/ML (1 %) INJECTION 20 ML VIAL, norm=lidocaine
+original=LIDOCAINE 1% 10MG/ML 20ML MDV INJ, norm=lidocaine
+original=LIDOCAINE 1% PF, norm=lidocaine
+original=LIDOCAINE 5 % EX PTCH, norm=codeine
+original=LIDOCAINE HCL 1%, norm=lidocaine
+original=LIDOCAINE HCL 2%, norm=lidocaine
+original=LIPITOR, norm=atorvastatin
+original=LISINOPRIL, norm=lisinopril
+original=LISINOPRIL 10 MG PO TABS, norm=lisinopril
+original=LISINOPRIL 10 MG TAB, norm=lisinopril
+original=LISINOPRIL 20 MG PO TABS, norm=lisinopril
+original=LISINOPRIL 20 MG TAB, norm=lisinopril
+original=LISINOPRIL 2.5 MG PO TABS, norm=lisinopril
+original=LISINOPRIL 5 MG PO TABS, norm=lisinopril
+original=LISINOPRIL 5 MG TAB, norm=lisinopril
+original=LOPRESSOR, norm=metoprolol
+original=LORATADINE 10 MG PO TABS, norm=loratadine
+original=LORAZEPAM, norm=lorazepam
+original=LORAZEPAM 0.5 MG PO TABS, norm=lorazepam
+original=LORAZEPAM 0.5 MG TAB, norm=lorazepam
+original=LORAZEPAM 1 MG PO TABS, norm=lorazepam
+original=LORAZEPAM 1 MG TAB, norm=lorazepam
+original=LORAZEPAM 2 MG/1 ML 1 ML INJ, norm=lorazepam
+original=LORAZEPAM 2 MG/1 ML 1 ML SYR, norm=lorazepam
+original=LORAZEPAM 2 MG/ML IJ SOLN, norm=lorazepam
+original=LORAZEPAM (ATIVAN) INJ 1 MG, norm=lorazepam
+original=LORAZEPAM INJ, norm=lorazepam
+original=LOSARTAN POTASSIUM 50 MG PO TABS, norm=losartan
+original=LOVENOX, norm=enoxaparin
+original=LR 1,000 ML, norm=sipuleucel-T
+original=MAALOX, norm=MAALOX
+original=MAG/ALUM HYDROXIDE W/SIMETH, norm=magnesium hydroxide
+original=MAGNESIUM CHLORIDE, norm=magnesium chloride
+original=MAGNESIUM HYDROXIDE, norm=magnesium hydroxide
+original=MAGNESIUM OXIDE, norm=magnesium oxide
+original=MAGNESIUM OXIDE 400 (241.3 MG) MG PO TABS, norm=magnesium oxide
+original=MAGNESIUM OXIDE 400 MG TAB, norm=magnesium oxide
+original=MAGNESIUM SULF 2 G IN D5W 50ML PREMIX, norm=magnesium sulfate
+original=MAGNESIUM SULF 2 GM/SW 50 ML BAG, norm=magnesium sulfate
+original=MAGNESIUM SULFATE, norm=magnesium sulfate
+original=MAGNESIUM SULFATE 1 G IN D5W 100ML **LOCKED DOSE, norm=magnesium sulfate
+original=MAGNESIUM SULFATE 2 G IN NS PREMIX, norm=magnesium sulfate
+original=MAGNESIUM SULFATE 2 GM/50 ML IVPB, norm=magnesium sulfate
+original=MAGNESIUM SULFATE 2 GRAM/50 ML IV PIGGY BACK : 50 ML FLEX CONT, norm=magnesium sulfate
+original=MAGNESIUM SULFATE 2 GRAM/50 ML IV PIGGY BACK 50 ML FLEX CONT, norm=magnesium sulfate
+original=MAGNESIUM SULFATE 4 GRAM/100 ML IV PIGGY BACK : 100 ML FLEX CONT, norm=magnesium sulfate
+original=MAGNESIUM SULFATE 50 % IJ SOLN, norm=magnesium sulfate
+original=MAGNESIUM SULFATE 50 % IJ SOLN 2ML, norm=magnesium sulfate
+original=MAGNESIUM SULFATE IN D5W, norm=magnesium sulfate
+original=MAGNESIUM SULFATE IVPB, norm=magnesium sulfate
+original=MAGNESIUM SULFATE IVPB., norm=magnesium sulfate
+original=MAGOX 400, norm=magnesium oxide
+original=MEDROL, norm=methylprednisolone
+original=MEPERIDINE 25 MG/1 ML 1 ML SYR, norm=meperidine
+original=MEPERIDINE HCL, norm=meperidine
+original=MEPERIDINE RANGE INJ, norm=meperidine
+original=MEROPENEM, norm=meropenem
+original=MEROPENEM 1 G IV SOLR, norm=meropenem
+original=MEROPENEM 500 MG IV SOLR, norm=meropenem
+original=MERREM, norm=meropenem
+original=METFORMIN HCL 500 MG PO TABS, norm=metformin
+original=METHYLPREDNISOLONE, norm=methylprednisolone
+original=METHYLPREDNISOLONE 125 MG INJ, norm=methylprednisolone
+original=METHYLPREDNISOLONE 40 MG INJ, norm=methylprednisolone
+original=METHYLPREDNISOLONE SODIUM SUCC 125 MG IJ SOLR, norm=methylprednisolone
+original=METHYLPREDNISOLONE SODIUM SUCC 40 MG IJ SOLR, norm=methylprednisolone
+original=METHYLPREDNISOLONE SOD SUCC, norm=methylprednisolone
+original=METHYLPREDNISOLONE SOD SUC(PF), norm=methylprednisolone
+original=METOCLOPRAMIDE, norm=metoclopramide
+original=METOCLOPRAMIDE 5 MG/1ML 2ML SDV INJ, norm=metoclopramide
+original=METOCLOPRAMIDE HCL, norm=metoclopramide
+original=METOCLOPRAMIDE HCL 10 MG PO TABS, norm=metoclopramide
+original=METOCLOPRAMIDE HCL 5 MG/ML IJ SOLN, norm=metoclopramide
+original=METOPROLOL, norm=metoprolol
+original=METOPROLOL 1 MG/ML 5ML SDV INJ, norm=metoprolol
+original=METOPROLOL INJ, norm=metoprolol
+original=METOPROLOL (LOPRESSOR) TAB 12.5 MG, norm=metoprolol
+original=METOPROLOL (LOPRESSOR) TAB 25 MG, norm=metoprolol
+original=METOPROLOL SUCCINATE, norm=metoprolol
+original=METOPROLOL SUCCINATE ER 25 MG PO TB24, norm=metoprolol
+original=METOPROLOL SUCCINATE ER 50 MG PO TB24, norm=metoprolol
+original=METOPROLOL TARTRATE, norm=metoprolol
+original=METOPROLOL TARTRATE 12.5 MG HALF TABLET, norm=metoprolol
+original=METOPROLOL TARTRATE 1 MG/ML IV SOLN, norm=metoprolol
+original=METOPROLOL TARTRATE 25 MG PO TABS, norm=metoprolol
+original=METOPROLOL TARTRATE 25 MG TAB, norm=metoprolol
+original=METOPROLOL TARTRATE 25 MG TABLET, norm=metoprolol
+original=METOPROLOL TARTRATE 50 MG PO TABS, norm=metoprolol
+original=METOPROLOL TARTRATE 50 MG TAB, norm=metoprolol
+original=METOPROLOL TARTRATE 5 MG/5 ML IV SOLN, norm=metoprolol
+original=METOPROLOL TARTRATE (LOPRESSOR) INJ 5 MG, norm=metoprolol
+original=METRONIDAZOLE, norm=metronidazole
+original=METRONIDAZOLE 500 MG IN 100ML RTU-PB, norm=metronidazole
+original=METRONIDAZOLE 500 MG PO TABS, norm=metronidazole
+original=MIDAZOLAM, norm=midazolam
+original=MIDAZOLAM 100 MG IN 100 ML NS, norm=midazolam
+original=MIDAZOLAM 1 MG/1 ML 2ML MDV INJ, norm=midazolam
+original=MIDAZOLAM HCL, norm=midazolam
+original=MIDAZOLAM HCL 2 MG/2ML IJ SOLN, norm=midazolam
+original=MIDAZOLAM INJ, norm=midazolam
+original=MIDAZOLAM (PF) 1 MG/1 ML 2 ML INJ, norm=midazolam
+original=MIDAZOLAM (VERSED) 2 MG/2ML INJ 1 MG, norm=midazolam
+original=MIDAZOLAM (VERSED) 2 MG/2ML INJ 2 MG, norm=midazolam
+original=MIDODRINE HCL 5 MG PO TABS, norm=midodrine
+original=MILK OF MAGNESIA, norm=magnesium hydroxide
+original=MILK OF MAGNESIA UD LIQ 30 ML, norm=magnesium hydroxide
+original=MIRALAX, norm=polyethylene glycol 3350
+original=MORPHINE, norm=morphine
+original=MORPHINE 10 MG/1 ML 1 ML SYR, norm=morphine
+original=MORPHINE 10 MG/ML INJECTION : 1 ML INJECTION, norm=morphine
+original=MORPHINE 2 MG/1 ML 1 ML SYR, norm=morphine
+original=MORPHINE 2 MG/ML SYRINGE : 1 ML SYRINGE, norm=morphine
+original=MORPHINE 4 MG/1 ML 1 ML SYR, norm=morphine
+original=MORPHINE 4 MG/ML SYRINGE : 1 ML SYRINGE, norm=morphine
+original=MORPHINE 5 MG/ML INJECTION : 1 ML VIAL, norm=morphine
+original=MORPHINE INJ, norm=morphine
+original=MORPHINE INJECTION ORDERABLE, norm=morphine
+original=MORPHINE SULFATE, norm=morphine
+original=MORPHINE SULFATE 2 MG/ML IJ/IV SOLN, norm=morphine
+original=MORPHINE SULFATE 2 MG/ML IJ SOLN, norm=morphine
+original=MORPHINE SULFATE (PF) INJ 2 MG, norm=morphine
+original=MOTRIN, norm=ibuprofen
+original=MULTIVITAMIN, norm=MULTIVITAMIN
+original=MULTIVITAMINS, norm=MULTIVITAMINS
+original=MUPIROCIN 2 % OINT 1 G SYRINGE, norm=mupirocin
+original=MVI, ADULT NO.4 WITH VIT K 3300 UNIT-150 MCG/10 ML IV 10 ML VIAL, norm=ADULT NO WITH VIT
+original=NACL 0.9%, norm=sodium chloride
+original=NACL 0.9% (1566), norm=sodium chloride
+original=NACL 0.9% ADV, norm=hetastarch
+original=NACL 0.9% BOLUS, norm=kaolin
+original=NACL 0.9% MBP, norm=sodium chloride
+original=NAFCILLIN, norm=nafcillin
+original=NALOXONE, norm=naloxone
+original=NALOXONE 0.4 MG/1 ML SDV INJ, norm=naloxone
+original=NALOXONE HCL, norm=naloxone
+original=NALOXONE HCL 0.4 MG/ML IJ SOLN, norm=naloxone
+original=NARCAN, norm=naloxone
+original=NEOSTIGMINE, norm=neostigmine
+original=NEOSTIGMINE METHYLSULFATE, norm=neostigmine
+original=NEURONTIN, norm=gabapentin
+original=NEXTERONE, norm=amiodarone
+original=NICARDIPINE 40 MG IN 200 ML NS RTU-, norm=nicardipine
+original=NICODERM CQ, norm=nicotine
+original=NICOTINE 21 MG/24HR TD PT24, norm=nicotine
+original=NITRO-BID, norm=nitroglycerin
+original=NITROGLYCERIN, norm=nitroglycerin
+original=NITROGLYCERIN 0.4 MG(1/150) SL TAB, norm=nitroglycerin
+original=NITROGLYCERIN 0.4 MG SL SUBL, norm=nitroglycerin
+original=NITROGLYCERIN 0.4 MG SUBLINGUAL TABLET, norm=nitroglycerin
+original=NITROGLYCERIN 50MG/D5W 250ML BTL, norm=nitroglycerin
+original=NITROGLYCERIN 50 MG IN D5W 250 ML R, norm=nitroglycerin
+original=NITROGLYCERIN IN D5W 200-5 MCG/ML-% IV SOLN, norm=nitroglycerin
+original=NITROGLYCERIN (NITROSTAT) SL TAB 0.4 MG, norm=nitroglycerin
+original=NITROGLYCERIN SL, norm=nitroglycerin
+original=NITROSTAT, norm=nitroglycerin
+original=NITROSTAT 1/150, norm=nitroglycerin
+original=NORCO, norm=acetaminophen
+original=NORCO 5/325 TAB, norm=acetaminophen
+original=NORCO 5 MG-325 MG, norm=acetaminophen
+original=NOREPINEPHRINE, norm=norepinephrine
+original=NOREPINEPHRINE 4 MG/250 ML NS INFUSION (STD CON'C) (REPACKAGE), norm=norepinephrine
+original=<<NOREPINEPHRINE 4 MG/4 ML INJ, norm=norepinephrine
+original=NOREPINEPHRINE 8 MG IN 250ML NS, norm=norepinephrine
+original=NOREPINEPHRINE BITARTRATE 1 MG/ML AMP, norm=norepinephrine
+original=NOREPINEPHRINE BITARTRATE 1 MG/ML IJ SOLN, norm=norepinephrine
+original=NOREPINEPHRINE BITARTRATE 1 MG/ML IV : 4 ML, norm=norepinephrine
+original=NOREPINEPHRINE BITARTRATE 1 MG/ML IV SOLN, norm=norepinephrine
+original=NORMAL SALINE FLUSH, norm=Nigella sativa seed oil
+original=NORMODYNE;TRANDATE, norm=labetalol
+original=NORVASC, norm=amlodipine
+original=NOVOLOG, norm=insulin aspart, human
+original=NOVOLOG FLEXPEN, norm=insulin aspart, human
+original=NS 0.9%, norm=Nigella sativa seed oil
+original=NS 1,000 ML, norm=Nigella sativa seed oil
+original=NSS 0.9% 1,000 ML BOLUS INFUSION, norm=kaolin
+original=NSS 0.9% 500 ML BOLUS INFUSION, norm=kaolin
+original=NSS INFUSION, norm=NSS
+original=NYSTATIN, norm=nystatin
+original=OMEPRAZOLE, norm=omeprazole
+original=OMEPRAZOLE 20 MG PO CAP-DEL-REL, norm=omeprazole
+original=OMEPRAZOLE (PRILOSEC) CAP 20 MG, norm=omeprazole
+original=ONDANSETRON, norm=ondansetron
+original=ONDANSETRON 2 MG/1 ML 2ML SDV INJ, norm=ondansetron
+original=ONDANSETRON 4MG/2ML INJ, norm=ondansetron
+original=ONDANSETRON 4 MG PO TAB-DISPERSE, norm=ondansetron
+original=ONDANSETRON 4 MG PO TBDP, norm=ondansetron
+original=ONDANSETRON HCL, norm=ondansetron
+original=ONDANSETRON HCL 4 MG/2ML IJ SOLN, norm=ondansetron
+original=ONDANSETRON HCL 4 MG PO TABS, norm=ondansetron
+original=ONDANSETRON HCL 4 MG TABLET, norm=ondansetron
+original=ONDANSETRON HCL (PF) 4 MG/2 ML INJECTION 2 ML VIAL, norm=ondansetron
+original=ONDANSETRON INJ, norm=ondansetron
+original=ONDANSETRON (PF), norm=ondansetron
+original=ONDANSETRON (ZOFRAN) INJ 4 MG, norm=ondansetron
+original=OPTIRAY 320, norm=OPTIRAY
+original=OXYCODONE, norm=oxycodone
+original=OXYCODONE 5 MG TAB, norm=oxycodone
+original=OXYCODONE-ACETAMIN 5-325 MG, norm=acetaminophen
+original=OXYCODONE-ACETAMINOPHEN, norm=acetaminophen
+original=OXYCODONE-ACETAMINOPHEN 5-325 MG PO TABS, norm=acetaminophen
+original=OXYCODONE HCL 5 MG PO TABS, norm=oxycodone
+original=OXYCODONE IR, norm=oxycodone
+original=OXYCODONE (OXY IR) CAP-TAB 10 MG, norm=oxycodone
+original=OXYCODONE (OXY IR) CAP-TAB 5 MG, norm=oxycodone
+original=PANTOPRAZOLE, norm=pantoprazole
+original=PANTOPRAZOLE 40 MG EC TAB, norm=pantoprazole
+original=PANTOPRAZOLE 40 MG IN 100 ML NS, norm=pantoprazole
+original=PANTOPRAZOLE 40 MG INJ, norm=pantoprazole
+original=PANTOPRAZOLE 40 MG INTRAVENOUS SOLUTION, norm=pantoprazole
+original=PANTOPRAZOLE 40 MG TABLET,DELAYED RELEASE, norm=pantoprazole
+original=PANTOPRAZOLE SOD, norm=pantoprazole
+original=PANTOPRAZOLE SODIUM, norm=pantoprazole
+original=PANTOPRAZOLE SODIUM 40 MG IV SOLR, norm=pantoprazole
+original=PANTOPRAZOLE SODIUM 40 MG PO TBEC, norm=pantoprazole
+original=PARENTERAL NUTRITION, norm=PARENTERAL NUTRITION
+original=PEPCID, norm=famotidine
+original=PERCOCET, norm=acetaminophen
+original=PERCOCET 5/325 TAB, norm=acetaminophen
+original=PERCOCET 5MG/325MG, norm=acetaminophen
+original=PHENERGAN, norm=promethazine
+original=PHENYLEPHRINE, norm=phenylephrine
+original=PHENYLEPHRINE 40 MG IN 250 ML NS, norm=phenylephrine
+original=PHENYLEPHRINE HCL, norm=phenylephrine
+original=PHENYLEPHRINE HCL 10 MG/ML IJ SOLN, norm=phenylephrine
+original=PHYTONADIONE, norm=vitamin K1
+original=PIPERACILLIN SOD-TAZOBACTAM SO 3-0.375 G IV SOLR, norm=tazobactam
+original=PIPERACILLIN-TAZOBACTAM, norm=tazobactam
+original=PIPERACILLIN/TAZOBACTAM, norm=tazobactam
+original=PIPERACILLIN-TAZOBACTAM 3.375 G IVPB, norm=tazobactam
+original=PIPERACILLIN-TAZOBACTAM 3.375 G MINI-BAG PLUS, norm=tazobactam
+original=PIPERACILLIN/TAZOBACTAM SOD 3.375 GM  VIAL, norm=tazobactam
+original=PLASMA-LYTE 148 INFUSION, norm=sodium acetate
+original=PLAVIX, norm=clopidogrel
+original=PNEUMOCOCCAL 23-VALPS VACCINE 25 MCG/0.5 ML INJ INJ, norm=Streptococcus pneumoniae type 1 capsular polysaccharide antigen
+original=PNEUMOCOCCAL POLYSACCHARIDES, norm=PNEUMOCOCCAL POLYSACCHARIDES
+original=PNEUMOCOCCAL VAC POLYVALENT 25 MCG/0.5ML IJ INJ, norm=Streptococcus pneumoniae type 1 capsular polysaccharide antigen
+original=PNU-IMMUNE-23  25 MCG/0.5 ML INJ, norm=immunoglobulin G
+original=POLYETHYLENE GLYCOL, norm=polyethylene glycols
+original=POLYETHYLENE GLYCOL 3350 17 GRAM ORAL POWDER PACKET, norm=polyethylene glycol 3350
+original=POLYETHYLENE GLYCOL 3350 (MIRALAX) ORAL POWDER 17 G, norm=polyethylene glycol 3350
+original=POLYETHYLENE GLYCOL 3350 PO PACK, norm=polyethylene glycols
+original=POLYETHYLENE GLYCOL 3350 PO POWD, norm=polyethylene glycols
+original=POLYETHYLENE GLYCOL 3350 UDPWD, norm=polyethylene glycols
+original=POTASSIUM CHLORIDE, norm=potassium chloride
+original=POTASSIUM CHLORIDE 10 MEQ/100ML IV SOLN, norm=potassium chloride
+original=POTASSIUM CHLORIDE 10 MEQ/50ML IV SOLN, norm=potassium chloride
+original=POTASSIUM CHLORIDE 10 MEQ I, norm=potassium chloride
+original=POTASSIUM CHLORIDE 10 MEQ IN 100 ML IVPB **LOCKED DOSE, norm=potassium chloride
+original=POTASSIUM CHLORIDE 20 MEQ/100 ML IV PIGGY BACK : 100 ML BAG, norm=potassium chloride
+original=POTASSIUM CHLORIDE 20 MEQ/100ML IV SOLN, norm=potassium chloride
+original=POTASSIUM CHLORIDE 20 MEQ/15ML (10%) PO LIQD, norm=potassium chloride
+original=POTASSIUM CHLORIDE 20 MEQ/50 ML IV PIGGY BACK 50 ML BAG, norm=potassium chloride
+original=POTASSIUM CHLORIDE 20 MEQ/50ML IV SOLN, norm=potassium chloride
+original=POTASSIUM CHLORIDE 20 MEQ IN, norm=potassium chloride
+original=POTASSIUM CHLORIDE 20 MEQ IN 50 ML IVPB **LOCKED DOSE, norm=potassium chloride
+original=POTASSIUM CHLORIDE 20 MEQ PO PACK, norm=potassium chloride
+original=POTASSIUM CHLORIDE 20 MEQ TR TAB, norm=potassium chloride
+original=POTASSIUM CHLORIDE 20 MEQ UD LIQ, norm=potassium chloride
+original=POTASSIUM CHLORIDE 2 MEQ/ML IV SOLN, norm=potassium chloride
+original=POTASSIUM CHLORIDE 2 MEQ/ML IV SOLN : 20 ML VIAL, norm=potassium chloride
+original=POTASSIUM CHLORIDE 40 MEQ/100 ML IV PIGGY BACK : 100 ML BAG, norm=potassium chloride
+original=POTASSIUM CHLORIDE 40 MEQ/100 ML IV PIGGY BACK 100 ML BAG, norm=potassium chloride
+original=POTASSIUM CHLORIDE 40 MEQ INJ, norm=potassium chloride
+original=POTASSIUM CHLORIDE CRYS ER 20 MEQ PO TBCR, norm=potassium chloride
+original=POTASSIUM CHLORIDE ER 10 MEQ PO TAB-CONT-REL, norm=potassium chloride
+original=POTASSIUM CHLORIDE ER 20 MEQ TABLET,EXTENDED RELEASE(PART/CRYST), norm=potassium chloride
+original=POTASSIUM CHLORIDE ER TAB 20 MEQ, norm=potassium chloride
+original=POTASSIUM CHLORIDE ER TAB 40 MEQ, norm=potassium chloride
+original=POTASSIUM CHLORIDE INJ 2 MEQ/ML VIAL, norm=potassium chloride
+original=POTASSIUM CHLORIDE IN NACL 40 MEQ IN 250 ML (PREMIX), norm=potassium chloride
+original=POTASSIUM CHLORIDE IVPB, norm=potassium chloride
+original=POTASSIUM CHLORIDE IVPB IN SW, norm=potassium chloride
+original=POTASSIUM CHLORIDE LIQUID 20 MEQ, norm=potassium chloride
+original=POTASSIUM CHLORIDE LIQUID 40 MEQ, norm=potassium chloride
+original=POTASSIUM CHLORIDE SA, norm=potassium chloride
+original=POTASSIUM CHLORIDE TAB CR, norm=potassium chloride
+original=POTASSIUM PHOSPHATE, norm=potassium phosphate
+original=POTASSIUM PHOSPHATE 3 MMOL/ML15 ML INJ, norm=potassium phosphate
+original=POTASSIUM PHOSPHATE DIBASIC 3 MMOLE/ML IV : 15 ML VIAL, norm=dibasic potassium phosphate
+original=POTASSIUM SODIUM PHOSPHATE PWDPKT, norm=sodium phosphate, monobasic
+original=POTASSIUM & SODIUM PHOSPHATES 280-160-250 MG PO PACK, norm=sodium phosphate, monobasic
+original=PRAVASTATIN SODIUM 40 MG PO TABS, norm=pravastatin
+original=PRECEDEX, norm=dexmedetomidine
+original=PREDNISONE, norm=prednisone
+original=PREDNISONE 10 MG PO TABS, norm=prednisone
+original=PREDNISONE 20 MG PO TABS, norm=prednisone
+original=PREDNISONE 20 MG TAB, norm=prednisone
+original=PREDNISONE 20 MG TABLET, norm=prednisone
+original=PREDNISONE 50 MG PO TABS, norm=prednisone
+original=PREDNISONE 5 MG PO TABS, norm=prednisone
+original=PRINIVIL, norm=lisinopril
+original=PRMX DEXMEDETOMIDINE 400MCG/100ML NS DRIP, norm=dexmedetomidine
+original=PRMX NOREPINEPHRINE 4 MG/250 ML NS DRIP, norm=norepinephrine
+original=PROCHLORPERAZINE MALEATE 10 MG PO TABS, norm=prochlorperazine
+original=PROCHLORPERAZINE MALEATE 5 MG PO TABS, norm=prochlorperazine
+original=PROMETHAZINE 25 MG/1 ML 1ML SDV INJ, norm=promethazine
+original=PROMETHAZINE HCL, norm=promethazine
+original=PROMETHAZINE HCL 25 MG/ML IJ SOLN, norm=promethazine
+original=PROPOFOL, norm=propofol
+original=PROPOFOL 1000 MG/100 ML, norm=propofol
+original=PROPOFOL 1000 MG/100 ML (PMX), norm=propofol
+original=PROPOFOL 10 MG/1 ML 100ML SDV INJ, norm=propofol
+original=PROPOFOL 10 MG/ML INJ 10 MG/ML VIAL, norm=propofol
+original=PROPOFOL 10 MG/ML IV EMUL, norm=propofol
+original=PROPOFOL 1% INJ, norm=propofol
+original=PROPOFOL IV EMULSION, norm=propofol
+original=PROPOFOL IV EMULSION 1,000 MG/100 ML VIAL, norm=propofol
+original=PROPOFOL IV EMULSION 10 MG/ML VIAL, norm=propofol
+original=PROTONIX, norm=pantoprazole
+original=PROVENTIL,VENTOLIN, norm=albuterol
+original=PULMICORT RESPULE, norm=budesonide
+original=QUETIAPINE, norm=quetiapine
+original=QUETIAPINE FUMARATE 25 MG PO TABS, norm=quetiapine
+original=REGLAN, norm=metoclopramide
+original=REGULAR INSULIN, norm=insulin, regular, human
+original=RESTORIL, norm=temazepam
+original=ROCEPHIN, norm=ROCEPHIN
+original=ROCURONIUM, norm=rocuronium
+original=ROCURONIUM BROMIDE, norm=rocuronium
+original=ROXICODONE, norm=oxycodone
+original=SENNA, norm=sennosides, USP
+original=SENNA-DOCUSATE, norm=sennosides, USP
+original=SENNA/DOCUSATE SODIUM, norm=sennosides, USP
+original=SENNA (SENOKOT) 1 TAB, norm=sennosides, USP
+original=SENNOSIDES, norm=sennosides, USP
+original=SENNOSIDES-DOCUSATE SODIUM 8.6-50 MG PO TABS, norm=sennoside B
+original=SENNOSIDES (SENOKOT) ORAL SYRUP 10 ML, norm=sennosides, USP
+original=SENOKOT-S TAB, norm=sennosides, USP
+original=SEROQUEL, norm=quetiapine
+original=SERTRALINE HCL 50 MG PO TABS, norm=sertraline
+original=SIMVASTATIN, norm=simvastatin
+original=SIMVASTATIN 20 MG PO TABS, norm=simvastatin
+original=SIMVASTATIN 40 MG PO TABS, norm=simvastatin
+original=SODIUM BICARBONATE, norm=sodium bicarbonate
+original=SODIUM BICARBONATE 8.4%, norm=sodium bicarbonate
+original=SODIUM BICARBONATE 8.4 % (1 MEQ/ML) IV SYRINGE : 50 ML SYRINGE, norm=sodium bicarbonate
+original=SODIUM BICARBONATE 8.4% 50 ML INJ, norm=sodium bicarbonate
+original=SODIUM BICARBONATE 8.4% (ADULT) SYR, norm=sodium bicarbonate
+original=SODIUM BICARBONATE 8.4 % IV SOLN, norm=sodium bicarbonate
+original=SODIUM CHLORIDE, norm=sodium chloride
+original=SODIUM CHLORIDE 0.45%, norm=sodium chloride
+original=SODIUM CHLORIDE 0.45% 1000 ML LVP, norm=sodium chloride
+original=SODIUM CHLORIDE 0.9 %, norm=sodium chloride
+original=SODIUM CHLORIDE 0.9%, norm=sodium chloride
+original=SODIUM CHLORIDE 0.9% 1,000 ML, norm=sodium chloride
+original=SODIUM CHLORIDE 0.9% 1000 ML, norm=sodium chloride
+original=SODIUM CHLORIDE 0.9% 1,000 ML BAG, norm=sodium chloride
+original=SODIUM CHLORIDE 0.9% 1000 ML LVP, norm=sodium chloride
+original=SODIUM CHLORIDE 0.9% 1000 ML PB, norm=sodium chloride
+original=SODIUM CHLORIDE 0.9% 100 ML PB, norm=sodium chloride
+original=SODIUM CHLORIDE 0.9% 250 ML LVP, norm=sodium chloride
+original=SODIUM CHLORIDE 0.9% 250 ML PB, norm=sodium chloride
+original=SODIUM CHLORIDE 0.9% 500 ML BAG, norm=sodium chloride
+original=SODIUM CHLORIDE 0.9% 500 ML LVP, norm=sodium chloride
+original=SODIUM CHLORIDE 0.9% 500 ML PB, norm=sodium chloride
+original=SODIUM CHLORIDE 0.9% 50 ML PB, norm=sodium chloride
+original=SODIUM CHLORIDE 0.9 % BOLUS, norm=sodium chloride
+original=SODIUM CHLORIDE 0.9% FLUSH, norm=sodium chloride
+original=SODIUM CHLORIDE 0.9% FLUSH 10 ML, norm=sodium chloride
+original=SODIUM CHLORIDE 0.9 % FLUSH PERIPHERAL LOK 3 ML, norm=SODIUM CHLORIDE PERIPHERAL LOK
+original=SODIUM CHLORIDE 0.9 % IJ SOLN, norm=sodium chloride
+original=SODIUM CHLORIDE 0.9 % IV : 1000 ML, norm=sodium chloride
+original=SODIUM CHLORIDE 0.9 % IV 1000 ML BAG, norm=sodium chloride
+original=SODIUM CHLORIDE 0.9 % IV : 250 ML, norm=sodium chloride
+original=SODIUM CHLORIDE 0.9 % IV 250 ML BAG, norm=sodium chloride
+original=SODIUM CHLORIDE 0.9 % IV : 500 ML, norm=sodium chloride
+original=SODIUM CHLORIDE 0.9 % IV SOLN, norm=sodium chloride
+original=SODIUM CHLORIDE 0.9% P.F., norm=clofarabine
+original=SODIUM CHLORIDE 0.9 % SYRINGE : 10 ML SYRINGE, norm=sodium chloride
+original=SODIUM CHLORIDE 0.9 % SYRINGE 10 ML SYRINGE, norm=sodium chloride
+original=SODIUM PHOSPHATE, norm=sodium phosphate
+original=SODIUM PHOSPHATE 15 MMOL/100ML NS, norm=sodium phosphate, monobasic
+original=SODIUM PHOSPHATE 30 MMOL/250ML NS, norm=sodium phosphate, monobasic
+original=SODIUM PHOSPHATE 3 MMOLE/ML IV : 15 ML VIAL, norm=sodium phosphate, monobasic
+original=SODIUM PHOSPHATE 3 MMOL/ML 15 ML INJ, norm=sodium phosphate, monobasic
+original=SODIUM POLYSTYRENE SULFONATE, norm=sodium polystyrene sulfonate
+original=SOLU-MEDROL, norm=methylprednisolone
+original=SOLUMEDROL, norm=methylprednisolone
+original=SOLU-MEDROL (PF), norm=methylprednisolone
+original=SPIRONOLACTONE, norm=spironolactone
+original=SPIRONOLACTONE 25 MG PO TABS, norm=spironolactone
+original=SUBLIMAZE, norm=mercuric chloride
+original=SUCCINYLCHOLINE, norm=succinylcholine
+original=SYNTHROID, norm=levothyroxine
+original=TACROLIMUS, norm=tacrolimus
+original=TACROLIMUS 1 MG PO CAPS, norm=tacrolimus
+original=TAMSULOSIN, norm=tamsulosin
+original=TAMSULOSIN 0.4 MG CAP, norm=tamsulosin
+original=TAMSULOSIN HCL 0.4 MG PO CAPS, norm=tamsulosin
+original=THIAMINE, norm=thiamine
+original=THIAMINE 100 MG TAB, norm=thiamine
+original=THIAMINE HCL, norm=thiamine
+original=THIAMINE HCL 100 MG/ML IJ SOLN, norm=thiamine
+original=THIAMINE HCL 100 MG PO TABS, norm=thiamine
+original=TICAGRELOR 90 MG PO TABS, norm=ticagrelor
+original=TIOTROPIUM BROMIDE MONOHYDRATE 18 MCG IN CAPS, norm=tiotropium
+original=TOPROL XL, norm=metoprolol
+original=TORADOL, norm=TORADOL
+original=TRAMADOL, norm=tramadol
+original=TRAMADOL 50 MG TAB, norm=tramadol
+original=TRAMADOL HCL, norm=tramadol
+original=TRAMADOL HCL 50 MG PO TABS, norm=tramadol
+original=TRANDATE, norm=labetalol
+original=TRANSDERM-SCOP, norm=scopolamine
+original=TRAZODONE, norm=trazodone
+original=TRAZODONE HCL 50 MG PO TABS, norm=trazodone
+original=TYLENOL, norm=acetaminophen
+original=ULTRAM, norm=tramadol
+original=VALIUM, norm=diazepam
+original=VANCOCIN, norm=vancomycin
+original=VANCOMYCIN, norm=vancomycin
+original=VANCOMYCIN 1,000 MG IV SOLUTION : 1 EACH VIAL, norm=vancomycin
+original=VANCOMYCIN 1.25 GM IN NS 250 ML IVPB (REPACKAGE), norm=vancomycin
+original=VANCOMYCIN 1.25 GM IN NS 500ML IVPB, norm=vancomycin
+original=VANCOMYCIN 1.5 GM IN NS 250 ML IVPB (REPACKAGE), norm=vancomycin
+original=VANCOMYCIN 1.5 GM IN NS 500ML IVPB, norm=vancomycin
+original=VANCOMYCIN 1 G MINI-BAG PLUS (VIAL MATE), norm=vancomycin
+original=VANCOMYCIN 1 GM IN NS 250 ML IVPB, norm=vancomycin
+original=VANCOMYCIN 750 MG IN NS 250 ML IVPB, norm=vancomycin
+original=VANCOMYCIN HCL, norm=vancomycin
+original=VANCOMYCIN HCL 1000 MG IV SOLR, norm=vancomycin
+original=VANCOMYCIN HCL 10 G IV SOLR, norm=vancomycin
+original=VANCOMYCIN HCL 1 GM VIAL, norm=vancomycin
+original=VANCOMYCIN HCL IN DEXTROSE 1 GM/200ML IV SOLN, norm=vancomycin
+original=VANCOMYCIN IN D5W (VANCOCIN) IVPB 1 G, norm=vancomycin
+original=VANCOMYCIN INJ 1,000 MG VIAL., norm=vancomycin
+original=VASOPRESSIN 60 UNITS IN 100 ML NS, norm=vasopressin (USP)
+original=VENTOLIN 2.5MG/0.5ML, norm=albuterol
+original=VERSED, norm=VERSED
+original=VITAMIN D 1000 UNITS PO TABS, norm=cholecalciferol
+original=VITAMINS/MINERALS PO TABS, norm=VITAMINS MINERALS
+original=WARFARIN, norm=warfarin
+original=WARFARIN 5 MG TAB, norm=warfarin
+original=WARFARIN 5 MG TABLET, norm=warfarin
+original=WARFARIN - PHYSICIAN MONITORED, norm=warfarin
+original=WARFARIN SOD, norm=warfarin
+original=WARFARIN SODIUM 1 MG PO TABS, norm=warfarin
+original=WARFARIN SODIUM 2.5 MG PO TABS, norm=warfarin
+original=WARFARIN SODIUM 2 MG PO TABS, norm=warfarin
+original=WARFARIN SODIUM 3 MG PO TABS, norm=warfarin
+original=WARFARIN SODIUM 4 MG PO TABS, norm=warfarin
+original=WARFARIN SODIUM 5 MG PO TABS, norm=warfarin
+original=WARFARIN SODIUM 7.5 MG PO TABS, norm=warfarin
+original=WARFARIN SODIUM (COUMADIN) TAB 5 MG, norm=warfarin
+original=XANAX, norm=alprazolam
+original=ZESTRIL, norm=lisinopril
+original=ZOCOR, norm=simvastatin
+original=ZOFRAN, norm=ondansetron
+original=ZOFRAN ODT, norm=ondansetron
+original=ZOLPIDEM, norm=zolpidem
+original=ZOLPIDEM 5 MG TAB, norm=zolpidem
+original=ZOLPIDEM 5 MG TABLET, norm=zolpidem
+original=ZOLPIDEM TARTRATE, norm=zolpidem
+original=ZOLPIDEM TARTRATE 5 MG PO TABS, norm=zolpidem
+original=ZOSYN, norm=tazobactam
+original=ZOSYN 3.375 GRAM INJ, norm=tazobactam
+original=ZOSYN 3.375 GRAM IN NS 100 ML IVPB, norm=tazobactam
