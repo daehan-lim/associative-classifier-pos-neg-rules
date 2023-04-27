@@ -124,19 +124,19 @@ if __name__ == '__main__':
             normalized_drug_name = re.sub(r'(^|\s)IVPB($|\s)', ' ', normalized_drug_name)
             normalized_drug_name = re.sub(r'(^|\s)ORAL($|\s)', ' ', normalized_drug_name)
             normalized_drug_name = re.sub(r'(^|\s)RINSE($|\s)', ' ', normalized_drug_name)
+            normalized_drug_name = re.sub(r'(^|\s)NO($|\s)', ' ', normalized_drug_name)
+            normalized_drug_name = re.sub(r'(^|\s)WITH($|\s)', ' ', normalized_drug_name)
 
-            normalized_drug_name = re.sub(r"\b(?=[MDCLXVI]+\b)M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})\b",
+            normalized_drug_name = re.sub(r"\b(?=[XVI]+\b)M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})\b",
                                           ' ', normalized_drug_name)
-            normalized_drug_name = normalized_drug_name.replace('DEXT', 'DEXTROSE')
-
-            # text = text.replace('PO', '-')
+            normalized_drug_name = re.sub(r'^DEXT($|\s)', 'DEXTROSE', normalized_drug_name)
 
             # normalized_drug_name = re.sub(r'(^|\s|\.):($|\s)', ' ', original_drug_name)
             # normalized_drug_name = re.sub(r'(^|\s|\.)-($|\s)', ' ', normalized_drug_name)
             # normalized_drug_name = re.sub(r'[0-9]+-[0-9]+', ' ', normalized_drug_name)
             # normalized_drug_name = normalized_drug_name.replace('-%', ' ')
             normalized_drug_name = re.sub(r'\s+', ' ', normalized_drug_name).strip()
-            # normalized_drug_name = original_drug_name
+
             if generic_name := query_rxnorm_api(normalized_drug_name):
                 normalized_drug_name = generic_name
             else:
@@ -144,6 +144,7 @@ if __name__ == '__main__':
                 if generic_name:
                     normalized_drug_name = generic_name
 
+            normalized_drug_name = re.sub(r'^ALBUMIN$', 'albumin human, USP', normalized_drug_name)
             result = f"ORIGINAL={original_drug_name}, NORM={normalized_drug_name}"
             print(result)
             norm_drug_names.append(result)
