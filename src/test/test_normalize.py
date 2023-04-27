@@ -9,28 +9,30 @@ BASE_URL = "https://rxnav.nlm.nih.gov/REST"
 
 def query_rxnorm_api(drug_name):
     url = f'{BASE_URL}/approximateTerm.json?term={drug_name}&maxEntries=5'
-    response = requests.get(url)
-    data = response.json()
     try:
+        response = requests.get(url)
+        data = response.json()
         if data['approximateGroup']['candidate'][0]['rxcui']:
             for candidate in data['approximateGroup']['candidate']:
                 rxcui = candidate['rxcui']
                 generic_name = get_generic_name(rxcui)
                 if generic_name:
                     return generic_name
-    except (IndexError, KeyError):
+    except Exception:
         return None
 
 
 def get_generic_name(rxcui):
     url = f'{BASE_URL}/rxcui/{rxcui}/related.json?tty=IN'
-    response = requests.get(url)
-    data = response.json()
     try:
-        generic_rxcui = data['relatedGroup']['conceptGroup'][0]['conceptProperties'][0]['rxcui']
-        generic_name = data['relatedGroup']['conceptGroup'][0]['conceptProperties'][0]['name']
-        return generic_name
-    except (IndexError, KeyError):
+        response = requests.get(url)
+        data = response.json()
+        generic_name = ''
+        # generic_rxcui = data['relatedGroup']['conceptGroup'][0]['conceptProperties'][0]['rxcui']
+        for concept_property in data['relatedGroup']['conceptGroup'][0]['conceptProperties']:
+            generic_name += f" / {concept_property['name']}"
+        return generic_name.replace(' / ', '', 1)
+    except Exception:
         return None
 
 
