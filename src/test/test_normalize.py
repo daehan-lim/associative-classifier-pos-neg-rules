@@ -43,6 +43,7 @@ if __name__ == '__main__':
     with open(input_file, newline='') as infile, open(output_file, 'w', newline='') as outfile:
         reader = csv.reader(infile)
         writer = csv.writer(outfile)
+        count = 1
         for row in reader:
             original_drug_name = row[0]
             # normalized_drug_name = re.sub(r'[^a-zA-Z0-9 ]', '', original_drug_name).strip()
@@ -146,7 +147,8 @@ if __name__ == '__main__':
 
             normalized_drug_name = re.sub(r'^ALBUMIN$', 'albumin human, USP', normalized_drug_name)
             result = f"ORIGINAL={original_drug_name}, NORM={normalized_drug_name}"
-            print(result)
+            print(str(count) + ': ' + result)
+            count += 1
             norm_drug_names.append(result)
             writer.writerow([original_drug_name, normalized_drug_name])
         norm_drug_names = np.array(norm_drug_names)
